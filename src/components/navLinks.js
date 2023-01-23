@@ -1,14 +1,14 @@
 import React from "react";
-import {Link} from "react-router-dom";
+import {NavLink} from "react-router-dom";
 import './navLinks.scss';
 
 
 const NaviLinks = ()=> (
         <div className='navlink'>
-            <Link to="/">Home</Link>
-            <Link to="/create">Create</Link>
-            <Link to="/edit">Edit</Link>
-            <Link to="/help">Help</Link>
+            <NavLink to="/">Home</NavLink>
+            <NavLink to="/create">Create</NavLink>
+            <NavLink to="/edit">Edit</NavLink>
+            <NavLink to="/help">Help</NavLink>
         </div>
     );
 
