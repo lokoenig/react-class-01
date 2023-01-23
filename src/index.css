@@ -11,3 +11,25 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+#root>.App {
+  display: grid;
+    grid-template-columns: 10rem 1fr;
+    column-gap: 1rem;
+    grid-template-areas:
+    "pagehead pagehead"
+    "nav  main"
+    "foot  foot";
+}
+
+#root>.App>header {
+  grid-area: pagehead;
+}
+
+#root>.App>.sidebar {
+  grid-area: nav;
+}
+#page-main {
+  grid-area: main;
+}
+

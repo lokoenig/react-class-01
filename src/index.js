@@ -6,16 +6,15 @@ import reportWebVitals from './reportWebVitals';
 import {
   createBrowserRouter,
   RouterProvider,
-  Outlet,
 } from 'react-router-dom';
 import ErrorPage from "./error";
 import HomePage from "./home";
 
 
 
-const Dashboard = ()=> (
+const HelpPage = ()=> (
   <div>
-    <h2>dashboard</h2>
+    <h2>HAAAAAALP</h2>
   </div>
 );
 
@@ -25,7 +24,7 @@ const AddExpensePage = ()=> (
   </div>
 );
 
-const AboutPage = ()=> (
+const EditPage = ()=> (
   <p>
     Enough about me. Let's talk about me.
   </p>
@@ -40,16 +39,16 @@ const router = createBrowserRouter([
     children: [
       { index: true, element: <HomePage /> },
  {
-    path: "dash",
-    element: <Dashboard />
+    path: "help",
+    element: <HelpPage />
   },
     {
     path: "create",
     element: <AddExpensePage />
   },
     {
-    path: "about",
-    element: <AboutPage />
+    path: "edit",
+    element: <EditPage />
   }
     ]
   },
