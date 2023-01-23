@@ -6,7 +6,10 @@ import reportWebVitals from './reportWebVitals';
 import {
   createBrowserRouter,
   RouterProvider,
+  Outlet,
 } from 'react-router-dom';
+import ErrorPage from "./error";
+import HomePage from "./home";
 
 
 
@@ -16,27 +19,48 @@ const Dashboard = ()=> (
   </div>
 );
 
+const AddExpensePage = ()=> (
+  <div>
+    <h2>Create</h2>
+  </div>
+);
+
+const AboutPage = ()=> (
+  <p>
+    Enough about me. Let's talk about me.
+  </p>
+);
+
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <div>Hello world!</div>,
-  },
-  {
+    element: <App />,
+    errorElement: <ErrorPage />,
+    children: [
+      { index: true, element: <HomePage /> },
+ {
     path: "dash",
     element: <Dashboard />
+  },
+    {
+    path: "create",
+    element: <AddExpensePage />
+  },
+    {
+    path: "about",
+    element: <AboutPage />
   }
+    ]
+  },
+ 
 ]);
 
 
 
 
 
-const About = ()=> (
-  <p>
-    Enough about me. Let's talk about me.
-  </p>
-);
+
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
