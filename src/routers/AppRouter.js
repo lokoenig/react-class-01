@@ -25,7 +25,11 @@ const AppRouter = createBrowserRouter([
     element: <AddExpensePage />
   },
     {
-    path: "edit",
+    path: "edit/",
+    element: <EditExpensePage />
+  },
+     {
+    path: "edit/:eid",
     element: <EditExpensePage />
   }
     ]
