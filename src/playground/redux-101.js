@@ -1,5 +1,7 @@
 import { createStore } from "redux";
-const store = createStore((state = { count: 0 }, action) => {
+
+// Reducers:
+const countReducer = (state = { count: 0 }, action) => {
     var out; // function scoped
     var by;
 
@@ -23,7 +25,9 @@ const store = createStore((state = { count: 0 }, action) => {
     }
 
     return out;
-});
+};
+
+const store = createStore(countReducer);
 
 const incStore = ({by=1} = {})=> ({
     type: 'INC',
