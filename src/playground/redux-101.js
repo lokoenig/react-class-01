@@ -25,30 +25,32 @@ const store = createStore((state = { count: 0 }, action) => {
     return out;
 });
 
+const incStore = ({by=1} = {})=> ({
+    type: 'INC',
+    by
+});
+const decStore = ({ by = 1 } = {}) => ({
+    type: 'DEC',
+    by
+});
+const resetStore = ({ to = 1 } = {}) => ({
+    type: 'RESET',
+    to
+});
+
+
 const unsub = store.subscribe( ()=>{
     console.log(store.getState());
 })
 
 
-store.dispatch({
-    type: 'INC'
-});
-store.dispatch({
-    type: 'DEC'
-});
+store.dispatch(incStore());
+store.dispatch(incStore({by:10}));
+store.dispatch(decStore());
+store.dispatch(incStore());
+store.dispatch(resetStore());
+store.dispatch(resetStore({to:100}));
 
 // unsub();
-
-store.dispatch({
-    type: 'INC',
-    by: 10
-});
-store.dispatch({
-    type: 'INC'
-});
-store.dispatch({
-    type: 'RESET',
-    to: 20
-});
 
 
