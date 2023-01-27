@@ -18,11 +18,18 @@ const addExpense = ({
 });
 
 // REMOVE_EXPENSE
-const removeExpense = ({id} )  => ({
+const removeExpense = ({ id }) => ({
     type: 'REMOVE_EXPENSE',
     expense: {
         id
     }
+});
+
+// UPDATE_EXPENSE
+const updateExpense = (id, updates) => ({
+    type: 'UPDATE_EXPENSE',
+    id,
+    updates
 });
 
 
@@ -34,12 +41,25 @@ const expensesReducer = (state = expensesReducerDef, action) => {
         case 'ADD_EXPENSE':
             out = [...state, action.expense];
             break;
-        
+
         case 'REMOVE_EXPENSE':
-            out = state.filter( (v)=> {
-                return (v.id != action.expense.id)
+            out = state.filter((v) => {
+                return (v.id !== action.expense.id)
             });
-             break;
+            break;
+
+        case 'UPDATE_EXPENSE':
+            out = state.map((v) => {
+                if (v.id === action.id) {
+                    return {
+                        ...v,
+                        ...action.updates
+                    };
+                } else {
+                    return v;
+                }
+            });
+            break;
 
         default:
             out = state;
@@ -74,12 +94,12 @@ store.subscribe(() => {
     console.log('state', store.getState());
 });
 
-const{ id: waffleID } = store.dispatch(addExpense({
+const { id: waffleID } = store.dispatch(addExpense({
     description: 'Waffles (frozen)',
     amount: 200
 })).expense;
 
-store.dispatch(addExpense({
+const { id: sockID } = store.dispatch(addExpense({
     description: 'Socks',
     amount: 250
 }));
@@ -90,14 +110,31 @@ store.dispatch(addExpense({
 }));
 
 store.dispatch(addExpense({
-    description: 'keycaps',
+    description: 'pizza pizza',
     amount: 12000
 }));
 
+store.dispatch(updateExpense(
+    sockID,
+    {
+        description: 'fuzzy socks'
+    }
+));
+
 store.dispatch(removeExpense({
-    id:waffleID
+    id: waffleID
 }));
 
+const uusy = {
+    firstname: 'Biff',
+    callsign: 'Kingsly'
+};
+
+console.log(
+    {
+        ...uusy
+    }
+)
 
 const demoState = {
     expenses: [{
