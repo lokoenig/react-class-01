@@ -68,19 +68,92 @@ const expensesReducer = (state = expensesReducerDef, action) => {
 };
 
 
+// FILTER_SET_TEXT
+const setFilterText = (filterText = "") => ({
+    type: 'FILTER_SET_TEXT',
+    text: filterText
+});
+
+const sortByAmount = () => ({
+    type: 'FILTER_SET_SORT_FIELD',
+    sortBy: 'amount'
+});
+
+const sortByDate = () => ({
+    type: 'FILTER_SET_SORT_FIELD',
+    sortBy: 'date'
+});
+
+const setStartDate = (searchStart = undefined) => ({
+    type: 'FILTER_SET_DATE',
+    dateRange: {
+        ...store.getState().filters.dateRange,
+        start: searchStart
+    }
+})
+
+
 const filtersReducerDef = {
     text: '',
     sortBy: 'date', // date or amount
-    dateRange: [undefined, undefined]
+    dateRange: {start: undefined, end:undefined}
 };
 const filtersReducer = (state = filtersReducerDef, action) => {
     let out;
     switch (action.type) {
+        case 'FILTER_SET_TEXT':
+            out = {
+                ...state,
+                text: action.text
+            };
+            break;
+        case 'FILTER_SET_SORT_FIELD':
+            out = {
+                ...state,
+                sortBy: action.sortBy // this should have sanity checking
+            }
+            break;
+
+        case 'FILTER_SET_DATE':
+            out = {
+                ...state, 
+                dateRange: action.dateRange
+            };
+            break;
+            
         default:
             out = state;
-
     };
     return out;
+};
+
+
+const getFilteredExpenses = (expenses,{text, sortBy, dateRange})=> {
+
+    return expenses.filter((expense) => {
+        const startDateMatch = 
+        typeof dateRange.start !== 'number'
+        ||
+        expense.created >= dateRange.start;
+        const endDateMatch =
+            typeof dateRange.end !== 'number'
+            ||
+            expense.created <= dateRange.end;
+        
+        let textMatch = typeof text !== 'string' || text.length === 0;
+        if (false == textMatch
+            &&
+            typeof expense.description === 'string'
+            ) {
+            const haystack = expense.description.toLowerCase();
+            const needle = text.toLowerCase();
+           textMatch = haystack.includes(needle);
+           console.log('matched', textMatch);
+
+            }
+        ;
+        return startDateMatch && endDateMatch && textMatch;
+    });
 };
 
 
@@ -91,27 +164,35 @@ const store = createStore(
     })
 );
 store.subscribe(() => {
-    console.log('state', store.getState());
+    const currentState = store.getState();
+    const filtered = getFilteredExpenses(currentState.expenses,currentState.filters);
+   console.log('filtered', filtered);
+
+   // console.log('state', store.getState());
 });
 
 const { id: waffleID } = store.dispatch(addExpense({
     description: 'Waffles (frozen)',
-    amount: 200
+    amount: 200,
+    created: 1000,
 })).expense;
 
 const { id: sockID } = store.dispatch(addExpense({
     description: 'Socks',
-    amount: 250
+    amount: 250,
+    created: 2000,
 }));
 
 store.dispatch(addExpense({
     description: 'keycaps',
-    amount: 12000
+    amount: 12000,
+    created: 3000,
 }));
 
 store.dispatch(addExpense({
     description: 'pizza pizza',
-    amount: 12000
+    amount: 12000,
+    created: 13000
 }));
 
 store.dispatch(updateExpense(
@@ -120,21 +201,26 @@ store.dispatch(updateExpense(
         description: 'fuzzy socks'
     }
 ));
+console.log('filter for pizza');
+store.dispatch(setFilterText('pizza'));
+store.dispatch(setFilterText());
+
 
 store.dispatch(removeExpense({
     id: waffleID
 }));
 
-const uusy = {
-    firstname: 'Biff',
-    callsign: 'Kingsly'
-};
+store.dispatch(sortByAmount());
+store.dispatch(sortByDate());
 
-console.log(
-    {
-        ...uusy
-    }
-)
+
+
+store.dispatch(setStartDate(2000));
+store.dispatch(setStartDate());
+//store.dispatch(setStartDate(3000));
+
+
+
 
 const demoState = {
     expenses: [{
@@ -147,6 +233,6 @@ const demoState = {
     filters: {
         text: 'rent',
         sortBy: 'amount', // date or amount
-        dateRange: [undefined, undefined]
+        dateRange: {start:undefined, end:undefined}
     }
 };
