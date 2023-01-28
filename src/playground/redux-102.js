@@ -148,11 +148,16 @@ const getFilteredExpenses = (expenses,{text, sortBy, dateRange})=> {
             const haystack = expense.description.toLowerCase();
             const needle = text.toLowerCase();
            textMatch = haystack.includes(needle);
-           console.log('matched', textMatch);
 
             }
         ;
         return startDateMatch && endDateMatch && textMatch;
+    }).sort( (a,b)=> {
+        if ('date' === sortBy){
+            return a.created < b.created ? 1 : a.created > b.created ? -1 : 0;
+        } else {
+            return a.amount < b.amount ? 1 : a.amount > b.amount ? -1 : 0;
+        }
     });
 };
 
@@ -190,6 +195,13 @@ store.dispatch(addExpense({
 }));
 
 store.dispatch(addExpense({
+    description: 'oatmeal',
+    amount: 200,
+    created: 90,
+}));
+
+
+store.dispatch(addExpense({
     description: 'pizza pizza',
     amount: 12000,
     created: 13000
@@ -210,8 +222,10 @@ store.dispatch(removeExpense({
     id: waffleID
 }));
 
-store.dispatch(sortByAmount());
 store.dispatch(sortByDate());
+console.log('after sort', store.getState());
+store.dispatch(sortByAmount());
+console.log('after sort', store.getState());
 
 
 
