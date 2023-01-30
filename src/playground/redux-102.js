@@ -225,7 +225,6 @@ store.dispatch(removeExpense({
 store.dispatch(sortByDate());
 console.log('after sort', store.getState());
 store.dispatch(sortByAmount());
-console.log('after sort', store.getState());
 
 
 
