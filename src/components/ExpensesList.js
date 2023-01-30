@@ -1,5 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
+import getFilteredExpenses from "../selectors/expenses";
 import ExpenseItem from "./ExpenseItem";
 const ExpensesList = (props) => {
     let template = (<p>No expenses entered</p>);
@@ -24,8 +25,7 @@ const ExpensesList = (props) => {
 
 const mapStateToProps = (state) => {
     return {
-        expenses: state.expenses,
-        filters: state.filters
+        expenses: getFilteredExpenses(state.expenses, state.filters)
     };
 };
 

@@ -35,7 +35,7 @@ const filtered = getFilteredExpenses(currentState.expenses, currentState.filters
 console.log(filtered);
 
 setTimeout( ()=> {
-  store.dispatch(setFilterText('electric'));
+  store.dispatch(setFilterText('bill'));
 
 }, 3000 );
 
