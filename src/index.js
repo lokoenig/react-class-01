@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import { Provider } from 'react-redux'
 import './index.css';
 import reportWebVitals from './reportWebVitals';
 import {
@@ -9,8 +10,8 @@ import {
 import AppRouter from './routers/AppRouter';
 
 import configureStore from "./store/configureStore";
-import {addExpense, removeExpense, updateExpense} from "./actions/expenses";
-import {setFilterText, sortByAmount, sortByDate } from "./actions/filters";
+import { addExpense, removeExpense, updateExpense } from "./actions/expenses";
+import { setFilterText, sortByAmount, sortByDate } from "./actions/filters";
 import getFilteredExpenses from "./selectors/expenses";
 const store = configureStore();
 store.dispatch(addExpense({
@@ -27,18 +28,25 @@ store.dispatch(addExpense({
 
 console.log(store.getState());
 
-store.dispatch(setFilterText('bill'));
+store.dispatch(setFilterText('water'));
 const currentState = store.getState();
 const filtered = getFilteredExpenses(currentState.expenses, currentState.filters);
 
 console.log(filtered);
+
+setTimeout( ()=> {
+  store.dispatch(setFilterText('electric'));
+
+}, 3000 );
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 
 root.render(
   <React.StrictMode>
-   <RouterProvider router={AppRouter} />
+    <Provider store={store} >
+      <RouterProvider router={AppRouter} />
+    </Provider>
   </React.StrictMode>
 );
 
