@@ -1,4 +1,4 @@
-export default (expenses, { text, sortBy, dateRange }) => {
+const getFilteredExpenses = (expenses, { text, sortBy, dateRange }) => {
 
     return expenses.filter((expense) => {
         const startDateMatch =
@@ -11,7 +11,7 @@ export default (expenses, { text, sortBy, dateRange }) => {
             expense.created <= dateRange.end;
 
         let textMatch = typeof text !== 'string' || text.length === 0;
-        if (false == textMatch
+        if (false === textMatch
             &&
             typeof expense.description === 'string'
         ) {
@@ -30,3 +30,5 @@ export default (expenses, { text, sortBy, dateRange }) => {
         }
     });
 };
+
+export default getFilteredExpenses;

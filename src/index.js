@@ -8,7 +8,33 @@ import {
 
 import AppRouter from './routers/AppRouter';
 
+import configureStore from "./store/configureStore";
+import {addExpense, removeExpense, updateExpense} from "./actions/expenses";
+import {setFilterText, sortByAmount, sortByDate } from "./actions/filters";
+import getFilteredExpenses from "./selectors/expenses";
+const store = configureStore();
+store.dispatch(addExpense({
+  description: 'water bill',
+  amount: 2000,
+  created: 13000
+}));
+store.dispatch(addExpense({
+  description: 'electric bill',
+  amount: 3500,
+  created: 900
+}));
+
+
+console.log(store.getState());
+
+store.dispatch(setFilterText('bill'));
+const currentState = store.getState();
+const filtered = getFilteredExpenses(currentState.expenses, currentState.filters);
+
+console.log(filtered);
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
+
 
 root.render(
   <React.StrictMode>

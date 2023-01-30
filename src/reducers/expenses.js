@@ -1,6 +1,6 @@
 
 const expensesReducerDef = [];
-export default (state = expensesReducerDef, action) => {
+const expensesReducer = (state = expensesReducerDef, action) => {
     let out;
     switch (action.type) {
         case 'ADD_EXPENSE':
@@ -31,3 +31,5 @@ export default (state = expensesReducerDef, action) => {
     };
     return out;
 };
+
+export default expensesReducer;

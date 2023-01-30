@@ -4,7 +4,7 @@ const filtersReducerDef = {
     sortBy: 'date', // date or amount
     dateRange: { start: undefined, end: undefined }
 };
-export default (state = filtersReducerDef, action) => {
+const filtersReducer = (state = filtersReducerDef, action) => {
     let out;
     switch (action.type) {
         case 'FILTER_SET_TEXT':
@@ -33,3 +33,4 @@ export default (state = filtersReducerDef, action) => {
     return out;
 };
 
+export default filtersReducer;

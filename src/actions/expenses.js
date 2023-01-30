@@ -1,7 +1,5 @@
 import uuid from 'react-uuid';
 
-
-
 // ADD_EXPENSE
 export const addExpense = ({
     description = '',

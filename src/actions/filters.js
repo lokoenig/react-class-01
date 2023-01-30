@@ -15,7 +15,7 @@ export const sortByDate = () => ({
     type: 'FILTER_SET_SORT_FIELD',
     sortBy: 'date'
 });
-
+/*
 export const setStartDate = (searchStart = undefined) => ({
     type: 'FILTER_SET_DATE',
     dateRange: {
@@ -23,3 +23,4 @@ export const setStartDate = (searchStart = undefined) => ({
         start: searchStart
     }
 })
+*/
