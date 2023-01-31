@@ -1,5 +1,4 @@
 const getFilteredExpenses = (expenses, { text, sortBy, dateRange }) => {
-
     return expenses.filter((expense) => {
         const startDateMatch =
             typeof dateRange.start !== 'number'

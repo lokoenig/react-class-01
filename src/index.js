@@ -37,6 +37,7 @@ store.dispatch(addExpense({
 
 
 store.dispatch(setFilterText());
+store.dispatch(sortByDate());
 const currentState = store.getState();
 const filtered = getFilteredExpenses(currentState.expenses, currentState.filters);
 
