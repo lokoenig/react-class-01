@@ -1,7 +1,7 @@
 .expense-single {
     display: grid;
-    width: 20rem;
-    grid-template-columns: 10rem 1fr 1fr;
+    width: 30rem;
+    grid-template-columns: 10rem 1fr 1fr max-content;
     gap: 1rem;
     &>span {
         outline: 1px solid plum;

@@ -18,12 +18,13 @@ export const addExpense = ({
 });
 
 // REMOVE_EXPENSE
-export const removeExpense = ({ id }) => ({
+export const removeExpense = (id ) => {
+    console.log('REMOVE_EXPENSE', id);
+    return {
     type: 'REMOVE_EXPENSE',
-    expense: {
-        id
+    expense: {id}
     }
-});
+};
 
 // UPDATE_EXPENSE
 export const updateExpense = (id, updates) => ({

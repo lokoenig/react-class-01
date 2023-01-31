@@ -24,19 +24,20 @@ store.dispatch(addExpense({
   amount: 3500,
   created: 900
 }));
+store.dispatch(addExpense({
+  description: 'Salads',
+  amount: 1200,
+  created: 1100
+}));
 
 
-console.log(store.getState());
+// console.log(store.getState());
 
-store.dispatch(setFilterText('water'));
+store.dispatch(setFilterText());
 const currentState = store.getState();
 const filtered = getFilteredExpenses(currentState.expenses, currentState.filters);
 
 console.log(filtered);
-
-setTimeout( ()=> {
-  store.dispatch(setFilterText('electric'));
-}, 3000 );
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
