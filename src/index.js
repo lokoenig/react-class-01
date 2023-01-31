@@ -17,21 +17,24 @@ const store = configureStore();
 store.dispatch(addExpense({
   description: 'water bill',
   amount: 2000,
-  created: 13000
+  created: (new Date('Feb 22, 2022')).getTime()
 }));
 store.dispatch(addExpense({
   description: 'electric bill',
   amount: 3500,
-  created: 900
+  created: (new Date('January 1, 2021')).getTime()
 }));
 store.dispatch(addExpense({
   description: 'Salads',
   amount: 1200,
-  created: 1100
+  created: (new Date('December 12, 2021')).getTime()
+}));
+store.dispatch(addExpense({
+  description: 'Internet',
+  amount: 4000,
+  created: (new Date('Nov 1, 2022')).getTime()
 }));
 
-
-// console.log(store.getState());
 
 store.dispatch(setFilterText());
 const currentState = store.getState();
