@@ -6,20 +6,15 @@ import { AdapterMoment } from '@mui/x-date-pickers/AdapterMoment';
 import dayjs, { Dayjs } from 'dayjs';
 import Stack from '@mui/material/Stack';
 import TextField from '@mui/material/TextField';
-
-
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-
-
-
-
 
 export default class ExpenseForm extends React.Component {
     state = {
         description: '',
         note: '',
         amount: '0',
-        created: moment()
+        created: moment(),
+        errorMsg: ''
     };
     onChangeDescription = (e) => {
         const newDiscription = e.target.value;
@@ -48,15 +43,39 @@ export default class ExpenseForm extends React.Component {
         this.setState(() => ({
             created: newValue
         }));
-        console.log('changedate', this.state);
 
     };
+
+    onSubmit = (e)=>{
+        e.preventDefault();
+        // So some basic validation:
+        console.log(this.state);
+
+        if (!this.state.description.length || !this.state.amount.length){
+            this.setState(() => ({
+                errorMsg: 'I am the Egg Man'
+            }));
+            console.log('error');
+
+        } else {
+            this.setState(() => ({
+                errorMsg: ''
+            }));
+            console.log('onSubmit');
+
+        }
+    }
 
     render() {
         return (
             <>
                 <h1>I be a form!</h1>
-                <form>
+                {this.state.errorMsg &&
+                    <div className="pre-form-error-banner" key="errMsg1">
+                        {this.state.errorMsg}
+                    </div>
+                }
+                <form onSubmit={this.onSubmit}>
                     <input
                         type="text"
                         placeholder="Description"
