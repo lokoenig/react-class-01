@@ -35,8 +35,7 @@ const filtered = getFilteredExpenses(currentState.expenses, currentState.filters
 console.log(filtered);
 
 setTimeout( ()=> {
-  store.dispatch(setFilterText('bill'));
-
+  store.dispatch(setFilterText('electric'));
 }, 3000 );
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
