@@ -7,7 +7,6 @@ const DeleteExpenseButton = (props) => (
     onClick={
         ()=> {
             props.dispatch(removeExpense(props.expenseID));
-            console.log('delete2', props);
         }
     }
     >delete
