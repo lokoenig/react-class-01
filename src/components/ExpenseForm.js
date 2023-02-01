@@ -7,17 +7,18 @@ import dayjs, { Dayjs } from 'dayjs';
 import Stack from '@mui/material/Stack';
 import TextField from '@mui/material/TextField';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-
 export default class ExpenseForm extends React.Component {
     constructor(props) {
         super(props);
         let pe = props.expense;
+       
         this.state = {
             description: pe ? pe.description : '',
             note: pe ? pe.note : '',
             amount: pe ? (pe.amount/100).toString() : '0',
             created: pe ? moment(pe.created) : moment(),
-            errorMsg: ''
+            errorMsg: '',
+            buttonText: props.buttonText ? props.buttonText : 'Add Expense'
         };
     };
 
@@ -115,7 +116,7 @@ export default class ExpenseForm extends React.Component {
 
                         />
                     </LocalizationProvider>
-                    <button>Add/Update Expense</button>
+                    <button>{this.state.buttonText}</button>
                 </form>
             </>
         )

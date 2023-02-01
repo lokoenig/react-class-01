@@ -1,10 +1,8 @@
 import React from "react";
 import './ExpenseItem.scss';
-import DeleteExpenseButton from "./DeleteExpenseButton";
 import EditExpenseButton from "./EditExpenseButton";
 
 // Description, amount, creation date
-
 const ExpenseItem = (props)=> (
 <div
     className="expense-single"
@@ -21,7 +19,6 @@ const ExpenseItem = (props)=> (
     <span className="expense-singe__created">
     { (new Date(props.created)).toLocaleDateString()}
     </span>
-        <DeleteExpenseButton expenseID={props.id} />
         <EditExpenseButton expenseID={props.id} />
 </div>
 );
