@@ -1,27 +1,23 @@
 import React from "react";
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { connect } from 'react-redux';
 import ExpenseForm from "./ExpenseForm";
 import { updateExpense } from "../actions/expenses";
 
-
-
-
-const EditExpensePageContent = (props) =>{
+const EditExpensePageContent = (props) => {
+    const navigate = useNavigate();
     let out;
     if (props.params.eid) {
         out = (
             <>
-            <div>Editing: {props.params.eid}</div>
-                <ExpenseForm 
+                <div>Editing: {props.params.eid}</div>
+                <ExpenseForm
                     expense={props.expense}
                     onSubmit={(expense) => {
-                        // props.dispatch(updateExpense(expense));
-                       // navigate('/');
-                        console.log('submit ExpenseForm', expense);
-                        }
+                        props.dispatch(updateExpense(props.params.eid, expense));
+                        navigate('/');
                     }
-
+                    }
                 />
             </>
         )
@@ -41,19 +37,17 @@ const EditExpensePageContent = (props) =>{
 const mapStateToProps = (state, ownProps) => {
     return {
         expense: state.expenses.find((expense) => {
-           // return true;
+            // return true;
             return expense.id === ownProps.params.eid;
         })
     }
 }
 const EditExpensePageContentConnected = connect(mapStateToProps)(EditExpensePageContent);
 
-
-
 const EditExpensePage = (props) => {
     const params = useParams();
     return (
-    <EditExpensePageContentConnected params={params} />
+        <EditExpensePageContentConnected params={params} />
     )
 };
 export default EditExpensePage;
