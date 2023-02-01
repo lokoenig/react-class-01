@@ -9,13 +9,18 @@ import TextField from '@mui/material/TextField';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 
 export default class ExpenseForm extends React.Component {
-    state = {
-        description: '',
-        note: '',
-        amount: '0',
-        created: moment(),
-        errorMsg: ''
+    constructor(props) {
+        super(props);
+        let pe = props.expense;
+        this.state = {
+            description: pe ? pe.description : '',
+            note: pe ? pe.note : '',
+            amount: pe ? (pe.amount/100).toString() : '0',
+            created: pe ? moment(pe.created) : moment(),
+            errorMsg: ''
+        };
     };
+
     onChangeDescription = (e) => {
         const newDiscription = e.target.value;
         this.setState(() => ({
@@ -30,7 +35,7 @@ export default class ExpenseForm extends React.Component {
         }));
     };
 
-    onChangeAmount = (e)=>{
+    onChangeAmount = (e) => {
         const v = e.target.value;
         if (v.match(/^\d*\.?\d{0,2}$/)) {
             this.setState(() => ({
@@ -46,12 +51,10 @@ export default class ExpenseForm extends React.Component {
 
     };
 
-    onSubmit = (e)=>{
+    onSubmit = (e) => {
         e.preventDefault();
         // So some basic validation:
-        console.log(this.state);
-
-        if (!this.state.description.length || !this.state.amount.length){
+        if (!this.state.description.length || !this.state.amount.length) {
             this.setState(() => ({
                 errorMsg: 'I am the Egg Man'
             }));
@@ -100,7 +103,7 @@ export default class ExpenseForm extends React.Component {
                         placeholder="Note"
                         value={this.state.note}
                         onChange={this.onChangeNote}
-                        >
+                    >
                     </textarea>
 
                     <LocalizationProvider dateAdapter={AdapterMoment}>
