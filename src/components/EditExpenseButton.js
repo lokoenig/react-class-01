@@ -1,6 +1,5 @@
 import React from "react";
 import { useNavigate } from 'react-router-dom';
-import { removeExpense } from "../actions/expenses";
 
 const  EditExpenseButton = (props) => {
     const navigate = useNavigate();

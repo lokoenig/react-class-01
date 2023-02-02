@@ -27,13 +27,18 @@ const filtersReducer = (state = filtersReducerDef, action) => {
         case 'FILTER_SET_DATE':
             out = {
                 ...state,
-                dateRange: action.dateRange
+                dateRange: {
+                    start: action.dateRange.start,
+                    end: action.dateRange.end
+                }
             };
             break;
 
         default:
             out = state;
     };
+    console.log(typeof state.dateRange.start)
+    console.log(out);
     return out;
 };
 

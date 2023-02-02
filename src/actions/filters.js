@@ -15,12 +15,14 @@ export const sortByDate = () => ({
     type: 'FILTER_SET_SORT_FIELD',
     sortBy: 'date'
 });
-/*
-export const setStartDate = (searchStart = undefined) => ({
-    type: 'FILTER_SET_DATE',
-    dateRange: {
-        ...store.getState().filters.dateRange,
-        start: searchStart
-    }
-})
-*/
+
+export const setFilterDateRange = (dates) => {
+    console.log('setFilterDateRange', dates);
+    return ({
+        type: 'FILTER_SET_DATE',
+        dateRange: {
+            start: dates[0],
+            end: dates[1]
+        }
+    })
+}
