@@ -1,12 +1,6 @@
-import React from "react";
-import moment from "moment";
-
-import { DatePicker } from '@mui/x-date-pickers/DatePicker';
-import { AdapterMoment } from '@mui/x-date-pickers/AdapterMoment';
-import dayjs, { Dayjs } from 'dayjs';
-import Stack from '@mui/material/Stack';
-import TextField from '@mui/material/TextField';
-import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import React, { useState } from "react";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 export default class ExpenseForm extends React.Component {
     constructor(props) {
         super(props);
@@ -16,7 +10,7 @@ export default class ExpenseForm extends React.Component {
             description: pe ? pe.description : '',
             note: pe ? pe.note : '',
             amount: pe ? (pe.amount/100).toString() : '0',
-            created: pe ? moment(pe.created) : moment(),
+            created: pe ? pe.created : (new Date()),
             errorMsg: '',
             buttonText: props.buttonText ? props.buttonText : 'Add Expense'
         };
@@ -45,7 +39,7 @@ export default class ExpenseForm extends React.Component {
         }
     };
 
-    onChangeDate = (newValue: Dayjs | null) => {
+    onChangeDate = (newValue) => {
         this.setState(() => ({
             created: newValue
         }));
@@ -107,15 +101,11 @@ export default class ExpenseForm extends React.Component {
                     >
                     </textarea>
 
-                    <LocalizationProvider dateAdapter={AdapterMoment}>
                         <DatePicker
                             label="Date Added"
-                            value={this.state.created}
+                            selected={this.state.created}
                             onChange={this.onChangeDate}
-                            renderInput={(params) => <TextField {...params} />}
-
                         />
-                    </LocalizationProvider>
                     <button>{this.state.buttonText}</button>
                 </form>
             </>

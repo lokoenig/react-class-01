@@ -1,11 +1,11 @@
-import moment from 'moment';
+import { startOfMonth, endOfMonth } from 'date-fns'
 
 const filtersReducerDef = {
     text: '',
     sortBy: 'date', // date or amount
     dateRange: { 
-        start: moment().startOf('month'), 
-        end: moment().endOf('month')
+        start: startOfMonth(new Date()),
+        end: endOfMonth(new Date())
     }
 };
 const filtersReducer = (state = filtersReducerDef, action) => {

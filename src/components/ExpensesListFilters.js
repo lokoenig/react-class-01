@@ -1,13 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
-
-import { DateRangePicker } from '@mui/x-date-pickers/DateRangePicker';
-import { AdapterMoment } from '@mui/x-date-pickers/AdapterMoment';
-import dayjs, { Dayjs } from 'dayjs';
-import Stack from '@mui/material/Stack';
-import TextField from '@mui/material/TextField';
-import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 
 import { setFilterText, sortByDate, sortByAmount } from "../actions/filters";
