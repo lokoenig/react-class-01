@@ -1,14 +1,26 @@
 const getFilteredExpenses = (expenses, { text, sortBy, dateRange }) => {
     return expenses.filter((expense) => {
-        const startDateMatch =
-            typeof dateRange.start !== 'number'
-            ||
-            expense.created >= dateRange.start;
-        const endDateMatch =
-            typeof dateRange.end !== 'number'
-            ||
-            expense.created <= dateRange.end;
+        // is created date in filter range?
+        let dateInRange = true; // if no date range, then all match
 
+        if (typeof dateRange === 'object' && Object.keys(dateRange).length === 2){
+            dateInRange = false;
+            const startDateMatch =(
+                (dateRange.start instanceof Date)
+                &&
+                expense.created.getTime() >= dateRange.start.getTime()
+            );
+
+            const endDateMatch =(
+                (dateRange.end instanceof Date)
+                &&
+                expense.created.getTime() <= dateRange.end.getTime()
+            );
+            dateInRange = startDateMatch && endDateMatch;
+        }
+
+
+        // is filter string contained in text]?
         let textMatch = typeof text !== 'string' || text.length === 0;
         if (false === textMatch
             &&
@@ -20,7 +32,10 @@ const getFilteredExpenses = (expenses, { text, sortBy, dateRange }) => {
 
         }
         ;
-        return startDateMatch && endDateMatch && textMatch;
+
+
+
+        return dateInRange && textMatch;
     }).sort((a, b) => {
         if ('date' === sortBy) {
             return a.created < b.created ? 1 : a.created > b.created ? -1 : 0;

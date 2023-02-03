@@ -1,0 +1,5 @@
+// override the 100% width of default stylesheet
+.react-datepicker-wrapper .react-datepicker__input-container {
+    width: fit-content;
+    padding-right: 2rem;
+}

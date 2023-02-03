@@ -5,7 +5,7 @@ export const addExpense = ({
     description = '',
     note = '',
     amount = 0,
-    created = 0
+    created = new Date()
 } = {}) => ({
     type: 'ADD_EXPENSE',
     expense: {

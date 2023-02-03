@@ -17,7 +17,7 @@ const ExpenseItem = (props)=> (
     
     </span>
     <span className="expense-singe__created">
-    { (new Date(props.created)).toLocaleDateString()}
+    { props.created.toLocaleDateString()}
     </span>
         <EditExpenseButton expenseID={props.id} />
 </div>

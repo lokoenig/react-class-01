@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { format, startOfMonth, endOfMonth } from 'date-fns'
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import "./ExpensesListFilters.scss";
 
 
 import { setFilterText, sortByDate, sortByAmount, setFilterDateRange } from "../actions/filters";
@@ -58,8 +59,6 @@ class ExpensesListFilters extends React.Component {
                         startDate={this.state.dateStart}
                         endDate={this.state.dateEnd}
                         onChange={(dates) => {
-
-
                             const [start, end] = dates;
                             this.setState(() => ({
                                 dateStart: start
@@ -76,6 +75,8 @@ class ExpensesListFilters extends React.Component {
                          }
                         }
                         selectsRange
+                        isClearable
+                        placeholderText="Select a display range"
                     />
                 </form>
             </>
