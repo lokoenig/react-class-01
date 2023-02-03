@@ -14,12 +14,8 @@ class ExpensesListFilters extends React.Component {
         let pf = props.filters;
 
         this.state = {
-            text: pf ? pf.text : '',
-            sortBy: pf ? pf.sortBy : 'date', // date or amount
-            dateRange: {
-                start: pf ? pf.dateRange.start : startOfMonth(new Date()),
-                end: pf ? pf.dateRange.end : endOfMonth(new Date())
-                }
+            dateStart: pf ? pf.dateRange.start : startOfMonth(new Date()),
+            dateEnd: pf ? pf.dateRange.end : endOfMonth(new Date())
             };
     };
     
@@ -55,15 +51,31 @@ class ExpensesListFilters extends React.Component {
                     </select>
                  <p>start: {format(this.props.filters.dateRange.start, 'MM/dd/yyyy')}</p>
                  <p>end: {format(this.props.filters.dateRange.end, 'MM/dd/yyyy')}</p>
-
+                 <label htmlFor="double-pick">Date Range</label>
                     <DatePicker
-                        selected={this.props.filters.dateRange.start}
-                        startDate={this.props.filters.dateRange.start}
+                        id="double-pick"
+                        selected={this.state.dateStart}
+                        startDate={this.state.dateStart}
+                        endDate={this.state.dateEnd}
                         onChange={(dates) => {
+
+
+                            const [start, end] = dates;
+                            this.setState(() => ({
+                                dateStart: start
+                            }));
+                            this.setState(() => ({
+                                dateEnd: end
+                            }));
+                            if (end) {
                             console.log('dates', dates)
-                           // this.props.dispatch(setFilterDateRange(dates));
+                            this.props.dispatch(setFilterDateRange(
+                                [start, end]
+                                ));
+                            }
                          }
                         }
+                        selectsRange
                     />
                 </form>
             </>
