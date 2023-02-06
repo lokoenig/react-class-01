@@ -84,20 +84,22 @@ test('getFilteredExpenses (sort by amount)', () => {
 test('getFilteredExpenses (filter date range only)', () => {
     const filter = {
         ...FilterTestData,
-        sortBy: 'date',
+        sortBy: 'date', // date or amount
         dateRange: {
-            start: (new Date(1999, 2, 2)),
-            end: (new Date(2011, 2, 2))
+            start: (new Date(1999, 11, 1)),
+            end: (new Date(2029, 1, 1))
         }
-       
-    };
+    }
+
+        const expenses = [
+            ...ExpenseTestData,
+        ];
+
 
     const result = getFilteredExpenses(ExpenseTestData, filter);
 
     expect(result).toEqual([
-        ExpenseTestData[3],
-        ExpenseTestData[2],
-        ExpenseTestData[1],
-        ExpenseTestData[0]
-    ])
+        expenses[3],
+        expenses[2]
+    ]);
 });
