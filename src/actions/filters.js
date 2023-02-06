@@ -17,7 +17,7 @@ export const sortByDate = () => ({
 });
 
 export const setFilterDateRange = (dates) => {
-    console.log('setFilterDateRange', dates);
+   // console.log('setFilterDateRange', dates);
     return ({
         type: 'FILTER_SET_DATE',
         dateRange: {
