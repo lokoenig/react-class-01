@@ -67,10 +67,12 @@ class ExpensesListFilters extends React.Component {
                                 dateEnd: end
                             }));
                             if (end) {
-                            console.log('dates', dates)
-                            this.props.dispatch(setFilterDateRange(
-                                [start, end]
-                                ));
+                                console.log('dates', dates)
+                                this.props.dispatch(setFilterDateRange([start, end]));
+                            } else {
+                                console.log('dates', dates)
+                                console.log('clear?');
+                                // we may need a clear range function
                             }
                          }
                         }
