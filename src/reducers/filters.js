@@ -37,8 +37,8 @@ const filtersReducer = (state = filtersReducerDef, action) => {
         default:
             out = state;
     };
-    console.log(typeof state.dateRange.start)
-    console.log(out);
+// console.log(typeof state.dateRange.start)
+   // console.log(out);
     return out;
 };
 
