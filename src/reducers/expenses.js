@@ -8,8 +8,9 @@ const expensesReducer = (state = expensesReducerDef, action) => {
             break;
 
         case 'REMOVE_EXPENSE':
+            const expenseID = action.expense.id;
             out = state.filter((v) => {
-                return (v.id !== action.expense.id)
+                return (v.id !== expenseID)
             });
             break;
 
