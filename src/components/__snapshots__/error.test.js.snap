@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`404 page renders ErrorPage component 1`] = `
+<DocumentFragment>
+  <div
+    id="error-page"
+  >
+    <h1>
+      Oops!
+    </h1>
+    <p>
+      Welcome to the 404.
+    </p>
+    <a
+      href="/"
+    >
+      Back to home
+    </a>
+  </div>
+</DocumentFragment>
+`;

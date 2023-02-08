@@ -1,9 +1,15 @@
+import React from "react";
 import { render, screen } from '@testing-library/react';
+import { BrowserRouter } from "react-router-dom";
+
 import App from './App';
 
-test('renders learn react link', () => {
- // render(<App />);
- // const docMainElement = screen.getById('page-main');
- // expect(docMainElement).toBeInTheDocument();
- return true;
+test('App framework changes', () => {
+    const { getByText, asFragment } = render(
+        <BrowserRouter>
+            <App />
+        </BrowserRouter>
+        );
+    //    screen.debug();
+    expect(asFragment()).toMatchSnapshot();
 });
