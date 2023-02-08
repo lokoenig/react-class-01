@@ -1,11 +1,12 @@
 import React from "react";
-import ShallowRenderer from 'react-test-renderer/shallow';
+import { render, screen } from '@testing-library/react';
 
 import PageHeader from "./Header";
 
-test('Confirm DOM structure of page header', ()=>{
-    const renderer = new ShallowRenderer();
-    renderer.render(<PageHeader />);
-
-    expect(renderer.getRenderOutput()).toMatchSnapshot();
-})
+describe('PageHeader', () => {
+    it('renders PageHeader component', () => {
+        const { getByText, asFragment} = render(<PageHeader />);
+       // screen.debug();
+        expect(asFragment()).toMatchSnapshot();
+    });
+});

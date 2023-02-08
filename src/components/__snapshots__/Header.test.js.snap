@@ -1,13 +1,15 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Confirm DOM structure of page header 1`] = `
-<header
-  className="App-header"
->
-  <img
-    alt="logo"
-    className="App-logo"
-    src="logo.svg"
-  />
-</header>
+exports[`PageHeader renders PageHeader component 1`] = `
+<DocumentFragment>
+  <header
+    class="App-header"
+  >
+    <img
+      alt="logo"
+      class="App-logo"
+      src="logo.svg"
+    />
+  </header>
+</DocumentFragment>
 `;
