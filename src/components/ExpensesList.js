@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import getFilteredExpenses from "../selectors/expenses";
 import ExpenseItem from "./ExpenseItem";
-const ExpensesList = (props) => {
+export const ExpensesList = (props) => {
     let template = (<p>No expenses entered</p>);
     if (props.expenses.length !== 0) {
         template = (

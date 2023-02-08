@@ -1,0 +1,28 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ExpenseItem - render single item 1`] = `
+<DocumentFragment>
+  <div
+    class="expense-single"
+  >
+    <span
+      class="expense-single__description"
+    >
+      A very special expense
+    </span>
+    <span
+      class="expense-single__amount"
+    >
+      $666.66
+    </span>
+    <span
+      class="expense-singe__created"
+    >
+      2/8/2023
+    </span>
+    <button>
+      Edit
+    </button>
+  </div>
+</DocumentFragment>
+`;

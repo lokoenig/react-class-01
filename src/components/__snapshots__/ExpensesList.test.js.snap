@@ -1,0 +1,107 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders ExpensesList component - no expenses 1`] = `
+<DocumentFragment>
+  <p>
+    No expenses entered
+  </p>
+</DocumentFragment>
+`;
+
+exports[`renders ExpensesList component - with expenses 1`] = `
+<DocumentFragment>
+  <div>
+    <h2>
+      List of Expenses
+    </h2>
+    <div
+      class="expense-single"
+    >
+      <span
+        class="expense-single__description"
+      >
+        booze
+      </span>
+      <span
+        class="expense-single__amount"
+      >
+        $140.00
+      </span>
+      <span
+        class="expense-singe__created"
+      >
+        5/1/1995
+      </span>
+      <button>
+        Edit
+      </button>
+    </div>
+    <div
+      class="expense-single"
+    >
+      <span
+        class="expense-single__description"
+      >
+        rent
+      </span>
+      <span
+        class="expense-single__amount"
+      >
+        $1,200.00
+      </span>
+      <span
+        class="expense-singe__created"
+      >
+        3/27/1999
+      </span>
+      <button>
+        Edit
+      </button>
+    </div>
+    <div
+      class="expense-single"
+    >
+      <span
+        class="expense-single__description"
+      >
+        Cat Supplies
+      </span>
+      <span
+        class="expense-single__amount"
+      >
+        $33.33
+      </span>
+      <span
+        class="expense-singe__created"
+      >
+        3/27/2002
+      </span>
+      <button>
+        Edit
+      </button>
+    </div>
+    <div
+      class="expense-single"
+    >
+      <span
+        class="expense-single__description"
+      >
+        combs
+      </span>
+      <span
+        class="expense-single__amount"
+      >
+        $16,662.99
+      </span>
+      <span
+        class="expense-singe__created"
+      >
+        1/20/2019
+      </span>
+      <button>
+        Edit
+      </button>
+    </div>
+  </div>
+</DocumentFragment>
+`;
