@@ -1,15 +1,13 @@
 import React from "react";
-import logo from './logo.svg';
 import './App.css';
 import { Outlet } from "react-router-dom";
 import NaviLinks  from "./components/navLinks";
+import PageHeader from "./components/Header";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-      </header>
+      <PageHeader />
       <div className='sidebar' >
         <NaviLinks />
       </div>
