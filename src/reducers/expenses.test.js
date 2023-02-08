@@ -3,7 +3,6 @@ import uuid from 'react-uuid';
 import expensesReducer from "./expenses";
 import ExpenseTestData from "../fixtures/expenses";
 import ExpenseSingleTestData from "../fixtures/expense-single"
-import FilterTestData from "../fixtures/filter";
 
 test('expensesReducer @@INIT (undef state)', () => {
     const result = expensesReducer(undefined, { type: '@@INIT' });
@@ -48,14 +47,13 @@ test('expensesReducer Add Expense', () => {
     expect(result).toEqual([...ExpenseTestData, action.expense]);
 });
 
-test('expensesReducer Update Expense', () => {
+test('expensesReducer Update Expense (valid ID)', () => {
     const targetExpense = Math.floor(Math.random() * ExpenseTestData.length);
     const testID = ExpenseTestData[targetExpense].id;
     const action = {
         type: 'UPDATE_EXPENSE',
         id: testID,
         updates: ExpenseSingleTestData
-   
     };
 
     const testExpenses = ExpenseTestData.map( (ex)=>{
@@ -67,6 +65,17 @@ test('expensesReducer Update Expense', () => {
     });
 
     const result = expensesReducer(ExpenseTestData, action);
-
     expect(result).toEqual(testExpenses);
+});
+
+test('expensesReducer Update Expense (invalid ID)', () => {
+    const testID = uuid();
+    const action = {
+        type: 'UPDATE_EXPENSE',
+        id: testID,
+        updates: ExpenseSingleTestData
+    };
+
+    const result = expensesReducer(ExpenseTestData, action);
+    expect(result).toEqual(ExpenseTestData);
 });
