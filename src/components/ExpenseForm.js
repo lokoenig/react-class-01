@@ -1,6 +1,5 @@
 import React from "react";
 import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
 export default class ExpenseForm extends React.Component {
     constructor(props) {
         super(props);
@@ -79,7 +78,7 @@ export default class ExpenseForm extends React.Component {
                         {this.state.errorMsg}
                     </div>
                 }
-                <form onSubmit={this.onSubmit}>
+                <form onSubmit={this.onSubmit} title="Edit An Expense Entry" >
                     <input
                         type="text"
                         placeholder="Description"

@@ -1,0 +1,47 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ExpenseForm checks if ExpenseForm changed 1`] = `
+<DocumentFragment>
+  <h1>
+    I be a form!
+  </h1>
+  <form
+    title="Edit An Expense Entry"
+  >
+    <input
+      placeholder="Description"
+      type="text"
+      value=""
+    />
+    <input
+      placeholder="Amount"
+      type="text"
+      value="0"
+    />
+    <textarea
+      placeholder="Note"
+    />
+    <div
+      class="react-datepicker-wrapper"
+    >
+      <div
+        class="react-datepicker__input-container"
+      >
+        <span
+          aria-live="polite"
+          class="react-datepicker__aria-live"
+          role="alert"
+        />
+        <input
+          class=""
+          type="text"
+          value="02/08/2023"
+        />
+      </div>
+    </div>
+    <button>
+      Add Expense
+    </button>
+  </form>
+</DocumentFragment>
+`;
