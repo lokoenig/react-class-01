@@ -50,10 +50,12 @@ export default class ExpenseForm extends React.Component {
         e.preventDefault();
         // So some basic validation:
         if (!this.state.description.length || !this.state.amount.length) {
+            // missing description or amount
             this.setState(() => ({
                 errorMsg: 'I am the Egg Man'
             }));
 
+            // no errors: clear errors
         } else {
             this.setState(() => ({
                 errorMsg: ''
@@ -61,11 +63,10 @@ export default class ExpenseForm extends React.Component {
             this.props.onSubmit({
                 description: this.state.description,
                 amount: parseFloat(this.state.amount, 10) * 100,
-                created: this.state.created.valueOf(),
+                created: this.state.created,
                 note: this.state.note
             });
             console.log('onSubmit');
-
         }
     }
 
