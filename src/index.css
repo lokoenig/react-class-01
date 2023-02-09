@@ -14,9 +14,9 @@ code {
 
 #root>.App {
   display: grid;
-    grid-template-columns: 10ch 1fr;
-    column-gap: 1rem;
-    grid-template-areas:
+  grid-template-columns: 10ch 1fr;
+  column-gap: 1rem;
+  grid-template-areas:
     "pagehead pagehead"
     "nav  main"
     "foot  foot";
@@ -29,7 +29,11 @@ code {
 #root>.App>.sidebar {
   grid-area: nav;
 }
+
 #page-main {
   grid-area: main;
+  padding-right: 1rem;
 }
-
+#page-main > div {
+  width:min(80ch, 100% );
+}

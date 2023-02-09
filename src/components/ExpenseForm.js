@@ -1,14 +1,15 @@
 import React from "react";
 import DatePicker from "react-datepicker";
+
 export default class ExpenseForm extends React.Component {
     constructor(props) {
         super(props);
         let pe = props.expense;
-       
+
         this.state = {
             description: pe ? pe.description : '',
             note: pe ? pe.note : '',
-            amount: pe ? (pe.amount/100).toString() : '0',
+            amount: pe ? (pe.amount / 100).toString() : '0',
             created: pe ? pe.created : (new Date()),
             errorMsg: '',
             buttonText: props.buttonText ? props.buttonText : 'Add Expense'
@@ -52,7 +53,6 @@ export default class ExpenseForm extends React.Component {
             this.setState(() => ({
                 errorMsg: 'I am the Egg Man'
             }));
-            console.log('error');
 
         } else {
             this.setState(() => ({
@@ -74,37 +74,65 @@ export default class ExpenseForm extends React.Component {
             <>
                 <h1>I be a form!</h1>
                 {this.state.errorMsg &&
-                    <div className="pre-form-error-banner" key="errMsg1">
+                    <div className="pre-form-error-banner" role="alert" title="Expense was not submitted" key="errMsg1">
                         {this.state.errorMsg}
                     </div>
                 }
                 <form onSubmit={this.onSubmit} title="Edit An Expense Entry" >
-                    <input
-                        type="text"
-                        placeholder="Description"
-                        value={this.state.description}
-                        onChange={this.onChangeDescription}
-                        autoFocus
-                    />
-                    <input
-                        type="text"
-                        placeholder="Amount"
-                        value={this.state.amount}
-                        onChange={this.onChangeAmount}
+                    <div class="form-input-group">
+                        <div class="form-input field-wide">
+                            <label for="expense-description">Description</label>
+                            <input
+                                id="expense-description"
+                                name="description"
+                                type="text"
+                                placeholder="Description"
+                                value={this.state.description}
+                                onChange={this.onChangeDescription}
+                                autoFocus
+                            />
+                        </div>
 
-                    />
-                    <textarea
-                        placeholder="Note"
-                        value={this.state.note}
-                        onChange={this.onChangeNote}
-                    >
-                    </textarea>
+                        <div class="form-input">
+                            <label for="expense-amount">Expense Amount</label>
+                            <input
+                                id="expense-amount"
+                                name="amount"
+                                type="text"
+                                placeholder="Amount"
+                                value={this.state.amount}
+                                onChange={this.onChangeAmount}
 
-                        <DatePicker
-                            selected={this.state.created}
-                            onChange={this.onChangeDate}
-                        />
-                    <button>{this.state.buttonText}</button>
+                            />
+                        </div>
+
+                        <div class="form-input">
+                            <label for="form-datepicker">Date</label>
+                            <DatePicker
+                                id="form-datepicker"
+                                selected={this.state.created}
+                                onChange={this.onChangeDate}
+                            />
+                        </div>
+                    </div>
+
+                    <div class="form-input-group">
+                    <div class="form-input field-wide">
+                        <label for="expense-note">Note</label>
+                        <textarea
+                            id="expense-note"
+                            placeholder="Note"
+                            value={this.state.note}
+                            onChange={this.onChangeNote}
+                            name="note"
+                        >
+                        </textarea>
+                    </div>
+                    <div class="form-submit">
+                        <button>{this.state.buttonText}</button>
+                        </div>
+                    </div>
+                   
                 </form>
             </>
         )

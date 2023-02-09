@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client';
 import { Provider } from 'react-redux'
 import './index.css';
 import "react-datepicker/dist/react-datepicker.css";
+import "./components/ExpenseForm.scss";
 
 import reportWebVitals from './reportWebVitals';
 import {

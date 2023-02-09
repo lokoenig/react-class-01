@@ -9,38 +9,39 @@ import ExpenseForm from "./ExpenseForm";
 
 describe('ExpenseForm', () => {
     const onSubmit = jest.fn();
-/*
-    beforeEach(() => {
-        onSubmit.mockClear();
-        render(<ExpenseForm onSubmit={onSubmit} />);
-    });
-  */  
-    test('checks if ExpenseForm changed', () => {
+ 
+    test('checks if empty ExpenseForm changed', () => {
+        const targetExpense = Math.floor(Math.random() * ExpenseTestData.length);
+
         const { getByText, asFragment } = render(
             <ExpenseForm />
         );
+    
         expect(asFragment()).toMatchSnapshot();
     });
 
 
-test('renders populated ExpenseForm', ()=>{
-    const targetExpense = Math.floor(Math.random() * ExpenseTestData.length);
+test('submits empty ExpenseForm', ()=>{
     const { getByText, asFragment } = render(
         <ExpenseForm
             onSubmit={onSubmit}
-            expense={ExpenseTestData[targetExpense]}
          />
     );
-    screen.debug();
-  //  const elem = screen.getByTitle('Edit An Expense Entry');
-  /*
-    const subButton = screen.getByRole('button', {
-        name: /.* Expense$/
-    });
-    */
     clickSubmitButton();
-   // expect(asFragment()).toMatchSnapshot();
+    const alertElem = screen.getByRole('alert', {
+        name: /expense was not submitted/i
+    });
+    expect(alertElem).toBeInTheDocument(); // error message
 });
+
+    test('type', () => {
+        render(<textarea />)
+
+        user.type(screen.getByRole('textbox', {
+            name: /expense amount/i
+        });
+        expect(screen.getByRole('textbox')).toHaveValue('Hello,\nWorld!')
+    })
 
 });
 
