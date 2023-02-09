@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import ExpenseForm from "./ExpenseForm";
 import { addExpense } from "../actions/expenses";
 import withRouter from '../routers/WithRouter';
-class AddExpensePage extends React.Component {
+export class AddExpensePage extends React.Component {
 
   
   onSubmit = (expense) => {
