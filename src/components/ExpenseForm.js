@@ -79,9 +79,9 @@ export default class ExpenseForm extends React.Component {
                     </div>
                 }
                 <form onSubmit={this.onSubmit} title="Edit An Expense Entry" >
-                    <div class="form-input-group">
-                        <div class="form-input field-wide">
-                            <label for="expense-description">Description</label>
+                    <div className="form-input-group">
+                        <div className="form-input field-wide">
+                            <label htmlFor="expense-description">Description</label>
                             <input
                                 id="expense-description"
                                 name="description"
@@ -93,8 +93,8 @@ export default class ExpenseForm extends React.Component {
                             />
                         </div>
 
-                        <div class="form-input">
-                            <label for="expense-amount">Expense Amount</label>
+                        <div className="form-input">
+                            <label htmlFor="expense-amount">Expense Amount</label>
                             <input
                                 id="expense-amount"
                                 name="amount"
@@ -106,8 +106,8 @@ export default class ExpenseForm extends React.Component {
                             />
                         </div>
 
-                        <div class="form-input">
-                            <label for="form-datepicker">Date</label>
+                        <div className="form-input">
+                            <label htmlFor="form-datepicker">Date</label>
                             <DatePicker
                                 id="form-datepicker"
                                 selected={this.state.created}
@@ -116,9 +116,9 @@ export default class ExpenseForm extends React.Component {
                         </div>
                     </div>
 
-                    <div class="form-input-group">
-                    <div class="form-input field-wide">
-                        <label for="expense-note">Note</label>
+                    <div className="form-input-group">
+                    <div className="form-input field-wide">
+                            <label htmlFor="expense-note">Note</label>
                         <textarea
                             id="expense-note"
                             placeholder="Note"
@@ -128,7 +128,7 @@ export default class ExpenseForm extends React.Component {
                         >
                         </textarea>
                     </div>
-                    <div class="form-submit">
+                    <div className="form-submit">
                         <button>{this.state.buttonText}</button>
                         </div>
                     </div>
