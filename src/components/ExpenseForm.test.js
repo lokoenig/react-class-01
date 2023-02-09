@@ -3,12 +3,13 @@ import { render, screen, waitFor, within } from '@testing-library/react';
 import user from '@testing-library/user-event';
 
 import ExpenseTestData from "../fixtures/expenses";
+import ExpenseSingleTestData from "../fixtures/expense-single";
 
 import ExpenseForm from "./ExpenseForm";
 
 
 describe('ExpenseForm', () => {
-    const onSubmit = jest.fn();
+    const onSubmitSpy = jest.fn();
 
     test('checks if empty ExpenseForm changed', () => {
         const targetExpense = Math.floor(Math.random() * ExpenseTestData.length);
@@ -24,7 +25,7 @@ describe('ExpenseForm', () => {
     test('submits empty ExpenseForm', () => {
         const { getByText, asFragment } = render(
             <ExpenseForm
-                onSubmit={onSubmit}
+                onSubmit={onSubmitSpy}
             />
         );
         clickSubmitButton();
@@ -34,10 +35,27 @@ describe('ExpenseForm', () => {
         expect(alertElem).toBeInTheDocument(); // error message
     });
 
+    test('submits valid ExpenseForm', () =>{
+        const exSub =jest.fn();
+        render(
+            <ExpenseForm
+                onSubmit={exSub}
+                expense={ExpenseSingleTestData}
+            />
+        );
+        clickSubmitButton();
+        //screen.debug();
+
+        expect(exSub).toBeCalled();
+    });
+
+
+
+
     test('type valid number', () => {
         render(
             <ExpenseForm
-                onSubmit={onSubmit}
+                onSubmit={onSubmitSpy}
             />
         );
 
@@ -49,7 +67,7 @@ describe('ExpenseForm', () => {
     test('type invalid number', () => {
         render(
             <ExpenseForm
-                onSubmit={onSubmit}
+                onSubmit={onSubmitSpy}
             />
         );
         const numberBox = screen.getByLabelText('Expense Amount');
@@ -60,5 +78,9 @@ describe('ExpenseForm', () => {
 
 
 function clickSubmitButton() {
-    user.click(screen.getByRole('button', { name: /Add Expense/ }));
+    user.click(
+        screen.getByRole('button', { name: /Add Expense/ }),
+        undefined,
+        ({delay:2})
+        );
 }
