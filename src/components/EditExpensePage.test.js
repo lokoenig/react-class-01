@@ -10,9 +10,11 @@ test('renders full Add Expense page', () => {
     const eid = ExpenseTestData[1].id;
     const fakeRouterParams = {eid: eid};
     const { getByText, asFragment } = render(
+        <>
         <EditExpensePageContent
             addExpense={subSpy}
             params={fakeRouterParams}
-        />);
+        />
+        </>);
     expect(asFragment()).toMatchSnapshot();
 });

@@ -4,8 +4,8 @@ import { connect } from 'react-redux';
 import withRouter from '../routers/WithRouter';
 
 import ExpenseForm from "./ExpenseForm";
-import { updateExpense } from "../actions/expenses";
-import DeleteExpenseButton from "./DeleteExpenseButton";
+import { updateExpense, removeExpense } from "../actions/expenses";
+import DeleteExpenseButton  from "./DeleteExpenseButton"; // connected version
 
 export class EditExpensePageContent extends React.Component{
 
@@ -15,9 +15,12 @@ export class EditExpensePageContent extends React.Component{
         navigate('/');
     };
 
+    onRemove = () => {
+        this.props.dispatch(removeExpense({id:this.props.params.eid}));
+    }
+
     render(){
         let out;
-        console.log('EditExpensePageContent', this.props);
         if(this.props.params.eid) {
             out = (
                 <>
@@ -27,11 +30,20 @@ export class EditExpensePageContent extends React.Component{
                         buttonText="Update Expense"
                         onSubmit={this.onSubmit}
                     />
-                    <DeleteExpenseButton
-                        expenseID={this.props.params.eid}
-                        destination="/" />
+                    <button onClick={this.onRemove} >
+                    Delete
+                    </button>
+
                 </>
             );
+            /* had to remove the 
+            <DeleteExpenseButton
+                expenseID={this.props.params.eid}
+                destination="/" 
+            />
+            from above because that button is connected and I couldn't figure out
+            how to set up the jest test correctly.
+            */
         } else {
             out = (
                 <p>

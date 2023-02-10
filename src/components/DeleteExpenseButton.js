@@ -1,20 +1,21 @@
 import React from "react";
 import { connect } from "react-redux";
-import {useNavigate } from 'react-router-dom';
 import { removeExpense } from "../actions/expenses";
+import withRouter from '../routers/WithRouter';
 
-const DeleteExpenseButton = (props) => {
-    const navigate = useNavigate();
+export const DeleteExpenseButton = (props) => {
     return (
+        <>
 <button 
     onClick={
         ()=> {
-            props.dispatch(removeExpense(props.expenseID));
+            props.remove();
             navigate(props.destination.length ?  props.destination : '/');
         }
     }
     >delete
     </button>
+        </>
 )};
 
 const mapStateToProps = (state) => {
@@ -23,4 +24,8 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps)(DeleteExpenseButton);
+const mapDispatchToProps = (dispatch) => ({
+    removeExpense: (expense) => dispatch(addExpense(expense))
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(DeleteExpenseButton));
