@@ -7,7 +7,7 @@ import ExpenseForm from "./ExpenseForm";
 import { updateExpense } from "../actions/expenses";
 import DeleteExpenseButton from "./DeleteExpenseButton";
 
-class EditExpensePageContent extends React.Component{
+export class EditExpensePageContent extends React.Component{
 
     onSubmit = (expense) => {
         const { navigate } = this.props;
@@ -17,6 +17,7 @@ class EditExpensePageContent extends React.Component{
 
     render(){
         let out;
+        console.log('EditExpensePageContent', this.props);
         if(this.props.params.eid) {
             out = (
                 <>
@@ -59,11 +60,11 @@ const mapDispatchToProps = (dispatch) => ({
 
 const EditExpensePageContentConnected = connect(mapStateToProps, mapDispatchToProps)(withRouter(EditExpensePageContent));
 
-
-export const EditExpensePage = (props) => {
+const EditExpensePage = (props) => {
     const params = useParams();
     return (
         <EditExpensePageContentConnected params={params} />
     )
 };
+
 export default withRouter(EditExpensePage);
