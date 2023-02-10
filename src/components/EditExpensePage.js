@@ -1,54 +1,64 @@
 import React from "react";
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { connect } from 'react-redux';
+import withRouter from '../routers/WithRouter';
+
 import ExpenseForm from "./ExpenseForm";
 import { updateExpense } from "../actions/expenses";
 import DeleteExpenseButton from "./DeleteExpenseButton";
 
+class EditExpensePageContent extends React.Component{
 
-const EditExpensePageContent = (props) => {
-    const navigate = useNavigate();
-    let out;
-    if (props.params.eid) {
-        out = (
-            <>
-                <div>Editing: {props.params.eid}</div>
-                <ExpenseForm
-                    expense={props.expense}
-                    buttonText="Update Expense"
-                    onSubmit={(expense) => {
-                        props.dispatch(updateExpense(props.params.eid, expense));
-                        navigate('/');
-                    }
-                    }
-                />
-                <DeleteExpenseButton
-                expenseID={props.params.eid} 
-                destination="/" />
-            </>
-        )
-    } else {
-        out = (
-            <p>
-                Enough about me. Let's talk about me.
-                <br />
-                This will actually be a list in the future.
-            </p>
-        );
+    onSubmit = (expense) => {
+        const { navigate } = this.props;
+        this.props.updateExpense(this.props.params.eid, expense);
+        navigate('/');
+    };
+
+    render(){
+        let out;
+        if(this.props.params.eid) {
+            out = (
+                <>
+                    <div>Editing: {this.props.params.eid}</div>
+                    <ExpenseForm
+                        expense={this.props.expense}
+                        buttonText="Update Expense"
+                        onSubmit={this.onSubmit}
+                    />
+                    <DeleteExpenseButton
+                        expenseID={this.props.params.eid}
+                        destination="/" />
+                </>
+            );
+        } else {
+            out = (
+                <p>
+                    Enough about me. Let's talk about me.
+                    <br />
+                    This will actually be a list in the future.
+                </p>
+            );
+        }
+        return out;
     }
-    return out;
-}
+};
 
 
 const mapStateToProps = (state, ownProps) => {
     return {
         expense: state.expenses.find((expense) => {
-            // return true;
             return expense.id === ownProps.params.eid;
         })
     }
 }
-const EditExpensePageContentConnected = connect(mapStateToProps)(EditExpensePageContent);
+
+const mapDispatchToProps = (dispatch) => ({
+    updateExpense: (eid, expense) => dispatch(updateExpense(eid, expense))
+});
+
+const EditExpensePageContentConnected = connect(mapStateToProps, mapDispatchToProps)(withRouter(EditExpensePageContent));
+
 
 const EditExpensePage = (props) => {
     const params = useParams();
@@ -56,4 +66,4 @@ const EditExpensePage = (props) => {
         <EditExpensePageContentConnected params={params} />
     )
 };
-export default EditExpensePage;
+export default withRouter(EditExpensePage);
