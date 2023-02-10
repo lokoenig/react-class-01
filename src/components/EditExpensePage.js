@@ -60,7 +60,7 @@ const mapDispatchToProps = (dispatch) => ({
 const EditExpensePageContentConnected = connect(mapStateToProps, mapDispatchToProps)(withRouter(EditExpensePageContent));
 
 
-const EditExpensePage = (props) => {
+export const EditExpensePage = (props) => {
     const params = useParams();
     return (
         <EditExpensePageContentConnected params={params} />

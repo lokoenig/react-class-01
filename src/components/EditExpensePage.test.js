@@ -2,13 +2,14 @@ import React from "react";
 import { render, screen, waitFor, within } from '@testing-library/react';
 import user from '@testing-library/user-event';
 
-import { AddExpensePage } from "./AddExpensePage";
+import { EditExpensePage } from "./EditExpensePage";
 
-test('renders full Edit Expense page', () => {
+
+test('renders full Add Expense page', () => {
     const subSpy = jest.fn();
     const { getByText, asFragment } = render(
-        <AddExpensePage
-            updateExpense={subSpy}
+        <EditExpensePage
+            addExpense={subSpy}
         />);
     expect(asFragment()).toMatchSnapshot();
 });
