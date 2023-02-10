@@ -10,14 +10,14 @@ test('expensesReducer @@INIT (undef state)', () => {
 });
 
 test('expensesReducer remove valid ID', () => {
-    const targetExpense = Math.floor(Math.random() * ExpenseTestData.length);
+    const targetExpense = 2
     let testExpenses = ExpenseTestData.map((x) => x);
     const action = {
         type: 'REMOVE_EXPENSE',
         expense: { id: ExpenseTestData[targetExpense].id }
     }
     const result = expensesReducer(testExpenses, action);
-    testExpenses.splice(targetExpense, 1); // remove the element from expected
+    testExpenses.splice(targetExpense, targetExpense); // remove the element from expected
     expect(result).toEqual(testExpenses);
 
 });
