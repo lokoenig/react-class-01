@@ -80,7 +80,5 @@ describe('ExpenseForm', () => {
 function clickSubmitButton() {
     user.click(
         screen.getByRole('button', { name: /Add Expense/ }),
-        undefined,
-        ({delay:2})
         );
 }

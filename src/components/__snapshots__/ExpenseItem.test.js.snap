@@ -18,7 +18,7 @@ exports[`ExpenseItem - render single item 1`] = `
     <span
       class="expense-singe__created"
     >
-      2/9/2023
+      2/10/2023
     </span>
     <button>
       Edit
