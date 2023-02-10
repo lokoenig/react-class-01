@@ -15,7 +15,7 @@ class ExpensesListFilters extends React.Component {
         let pf = props.filters;
 
         this.state = {
-            dateStart: pf ? pf.dateRange.start : startOfMonth(new Date()),
+            dateStart: pf ? pf.dateRange.start : (new Date(2002, 11, 17)),
             dateEnd: pf ? pf.dateRange.end : endOfMonth(new Date())
             };
     };

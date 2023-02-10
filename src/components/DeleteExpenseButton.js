@@ -3,20 +3,29 @@ import { connect } from "react-redux";
 import { removeExpense } from "../actions/expenses";
 import withRouter from '../routers/WithRouter';
 
-export const DeleteExpenseButton = (props) => {
-    return (
+export class DeleteExpenseButton extends React.Component{
+
+    onDeleteExpense = ()=>{
+        console.log('Delete',this.props);
+        const { navigate } = this.props;
+        this.props.removeExpense();
+        navigate(this.props.destination.length ? this.props.destination : '/');
+    };
+
+    render(){
+        return(
         <>
-<button 
-    onClick={
-        ()=> {
-            props.remove();
-            navigate(props.destination.length ?  props.destination : '/');
-        }
-    }
-    >delete
-    </button>
+        <button
+        onClick={this.onDeleteExpense}
+        >delete
+        </button>
         </>
-)};
+        );
+    }
+
+
+}
+
 
 const mapStateToProps = (state) => {
     return {
@@ -25,7 +34,7 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-    removeExpense: (expense) => dispatch(addExpense(expense))
+    removeExpense: (expense) => dispatch(removeExpense(expense))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(withRouter(DeleteExpenseButton));

@@ -16,7 +16,9 @@ export class EditExpensePageContent extends React.Component{
     };
 
     onRemove = () => {
-        this.props.removeExpense({id:this.props.params.eid});
+        const { navigate } = this.props;
+        this.props.removeExpense(this.props.params.eid );
+        navigate('/');
     }
 
     render(){
@@ -30,7 +32,9 @@ export class EditExpensePageContent extends React.Component{
                         buttonText="Update Expense"
                         onSubmit={this.onSubmit}
                     />
-                    <button onClick={this.onRemove} >
+                    <button
+                    onClick={this.onRemove} 
+                    >
                     Delete
                     </button>
 
@@ -68,7 +72,7 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = (dispatch, props) => ({
     updateExpense: (eid, expense) => dispatch(updateExpense(eid, expense)),
-    removeExpense: (data) => dispatch(removeExpense(data))
+    removeExpense: (eid) => dispatch(removeExpense(eid))
 });
 
 const EditExpensePageContentConnected = connect(mapStateToProps, mapDispatchToProps)(withRouter(EditExpensePageContent));
