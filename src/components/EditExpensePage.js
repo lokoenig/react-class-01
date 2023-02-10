@@ -16,7 +16,7 @@ export class EditExpensePageContent extends React.Component{
     };
 
     onRemove = () => {
-        this.props.dispatch(removeExpense({id:this.props.params.eid}));
+        this.props.removeExpense({id:this.props.params.eid});
     }
 
     render(){
@@ -66,8 +66,9 @@ const mapStateToProps = (state, ownProps) => {
     }
 }
 
-const mapDispatchToProps = (dispatch) => ({
-    updateExpense: (eid, expense) => dispatch(updateExpense(eid, expense))
+const mapDispatchToProps = (dispatch, props) => ({
+    updateExpense: (eid, expense) => dispatch(updateExpense(eid, expense)),
+    removeExpense: (data) => dispatch(removeExpense(data))
 });
 
 const EditExpensePageContentConnected = connect(mapStateToProps, mapDispatchToProps)(withRouter(EditExpensePageContent));
