@@ -7,7 +7,7 @@ test('renders full Add Expense page', () => {
     const subSpy = jest.fn();
     const { getByText, asFragment } = render(
         <AddExpensePage
-            onSubmit={subSpy}
+            addExpense={subSpy}
         />);
     expect(asFragment()).toMatchSnapshot();
 });
