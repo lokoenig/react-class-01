@@ -77,3 +77,36 @@ test('Sort by Amount', ()=>{
     expect(sortByAmount).toHaveBeenCalled()
 
 })
+
+test('Sort by Date', () => {
+    render(<ExpensesListFilters
+        filters={FilterTestData}
+        setFilterText={setFilterText}
+        sortByDate={sortByDate}
+        sortByAmount={sortByAmount}
+        setFilterDateRange={setFilterDateRange}
+    />)
+    const sortSelector = screen.getByLabelText('Sort by');
+    user.selectOptions(sortSelector, ['date']);
+    expect(sortByDate).toHaveBeenCalled()
+
+})
+
+/* Don't see a user event method for this: 
+There are aria-labels for every element to navigate months and days
+
+test('Change date range is updating', () => {
+    render(<ExpensesListFilters
+        filters={FilterTestData}
+        setFilterText={setFilterText}
+        sortByDate={sortByDate}
+        sortByAmount={sortByAmount}
+        setFilterDateRange={setFilterDateRange}
+    />)
+    const sortSelector = screen.getByLabelText('Sort by');
+    user.selectOptions(sortSelector, ['amount']);
+    expect(sortByAmount).toHaveBeenCalled()
+
+})
+*/
+
