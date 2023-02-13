@@ -13,14 +13,14 @@ export class ExpensesListFilters extends React.Component {
     constructor(props) {
         super(props);
         let pf = props.filters;
-        if ((undefined === pf.dateRange) || undefined === pf.dateRange.start || undefined === pf.dateRange.end){
+        if ((undefined === pf.dateRange) || undefined === pf.dateRange.start || undefined === pf.dateRange.end) {
             pf.dateRange.start = (new Date(2019, 11, 17));
             pf.dateRange.end = endOfMonth(new Date());
         }
         this.state = {
             dateStart: pf ? pf.dateRange.start : (new Date(2019, 11, 17)),
             dateEnd: pf ? pf.dateRange.end : endOfMonth(new Date())
-            };
+        };
     };
 
     onTextChange = (e) => {
@@ -34,33 +34,39 @@ export class ExpensesListFilters extends React.Component {
             this.props.sortByAmount();
         }
     }
-    
-    updateDateRange = (dates) =>{
+
+    updateDateRange = (dates) => {
         console.log('dates', dates)
-        const[start, end] = dates;
+        const [start, end] = dates;
         this.props.setFilterDateRange([start, end]);
         console.log('start' + start);
         console.log('end' + end);
     }
 
     render() {
-     return   (
+        return (
             <>
                 <form>
+                    <label htmlFor="search-text-input">Search Text</label>
                     <input
                         type="text"
+                        id="search-text-input"
+                        data-testid="sssss" 
                         value={this.props.filters.text}
                         onChange={this.onTextChange} />
+
+                    <label htmlFor="sort-by-selector">Sort by</label>
                     <select
+                        id="sort-by-selector"
                         value={this.props.filters.sortBy}
                         onChange={this.onSortChange}
                     >
                         <option value="date" >Date</option>
                         <option value="amount" >Amount</option>
                     </select>
-                 <p>start: {format(this.props.filters.dateRange.start, 'MM/dd/yyyy')}</p>
-                 <p>end: {format(this.props.filters.dateRange.end, 'MM/dd/yyyy')}</p>
-                 <label htmlFor="double-pick">Date Range</label>
+                    <p>start: {format(this.props.filters.dateRange.start, 'MM/dd/yyyy')}</p>
+                    <p>end: {format(this.props.filters.dateRange.end, 'MM/dd/yyyy')}</p>
+                    <label htmlFor="double-pick">Date Range</label>
                     <DatePicker
                         id="double-pick"
                         selected={this.state.dateStart}
@@ -81,7 +87,7 @@ export class ExpensesListFilters extends React.Component {
                                 console.log('clear?');
                                 // we may need a clear range function
                             }
-                         }
+                        }
                         }
                         selectsRange
                         isClearable
@@ -99,12 +105,12 @@ const mapStateToProps = (state) => ({
     filters: state.filters
 });
 
-const mapDispatchToProps = (dispatch)=>({
+const mapDispatchToProps = (dispatch) => ({
     setFilterText: (text) => dispatch(setFilterText(text)),
-    sortByDate: () =>  dispatch(sortByDate()),
+    sortByDate: () => dispatch(sortByDate()),
     sortByAmount: () => dispatch(sortByAmount()),
     setFilterDateRange: (v) => dispatch(setFilterDateRange(v))
-        
+
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ExpensesListFilters);
