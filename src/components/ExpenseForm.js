@@ -66,7 +66,7 @@ export default class ExpenseForm extends React.Component {
                 created: this.state.created,
                 note: this.state.note
             });
-            console.log('onSubmit');
+           // console.log('onSubmit');
         }
     }
 

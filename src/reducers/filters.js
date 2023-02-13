@@ -1,6 +1,6 @@
 import { startOfMonth, endOfMonth } from 'date-fns'
 
-const filtersReducerDef = {
+export const filtersReducerDef = {
     text: '',
     sortBy: 'date', // date or amount
     dateRange: { 
@@ -8,7 +8,7 @@ const filtersReducerDef = {
         end: endOfMonth(new Date())
     }
 };
-const filtersReducer = (state = filtersReducerDef, action) => {
+export const filtersReducer = (state = filtersReducerDef, action) => {
     let out;
     switch (action.type) {
         case 'FILTER_SET_TEXT':

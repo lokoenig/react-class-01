@@ -11,13 +11,13 @@ test('expensesReducer @@INIT (undef state)', () => {
 
 test('expensesReducer remove valid ID', () => {
     const targetExpense = 2
-    let testExpenses = ExpenseTestData.map((x) => x);
+    let testExpenses = ExpenseTestData.map((x) => x); //deep copy
     const action = {
         type: 'REMOVE_EXPENSE',
-        expense: { id: ExpenseTestData[targetExpense].id }
+        id: ExpenseTestData[targetExpense].id 
     }
     const result = expensesReducer(testExpenses, action);
-    testExpenses.splice(targetExpense, targetExpense); // remove the element from expected
+    testExpenses.splice(targetExpense, 1); // remove the element from expected
     expect(result).toEqual(testExpenses);
 
 });

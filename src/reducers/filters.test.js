@@ -1,5 +1,7 @@
 import { isDate, startOfMonth, endOfMonth } from 'date-fns'
-import filtersReducer from "./filters";
+import { filtersReducer, filtersReducerDef} from "./filters";
+import { FilterTestData, nullFilterTestData } from "../fixtures/filter";
+
 
 const defFilters = {
     text: '',
@@ -12,15 +14,13 @@ const defFilters = {
 
 test('filtersReducer @@INIT (undef state)', () => {
     const result = filtersReducer(undefined, { type: '@@INIT' });
-    expect(result).toEqual({
-        ...defFilters
-    })
+    expect(result).toEqual(filtersReducerDef)
 });
 
 test('filtersReducer FILTER_SET_SORT_FIELD AMOUNT (undef state)', () => {
     const result = filtersReducer(undefined, { type: 'FILTER_SET_SORT_FIELD', sortBy: 'amount' });
     expect(result).toEqual({
-        ...defFilters,
+        ...filtersReducerDef,
         sortBy: 'amount'
     })
 });
@@ -77,7 +77,7 @@ test('FILTER_SET_DATE', ()=>{
 
     const action = {
         type: 'FILTER_SET_DATE',
-        dateRange: testRange
+        dateRange: { ...testRange}
     };
 
     const result = filtersReducer(miniState, action);

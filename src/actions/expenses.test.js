@@ -3,13 +3,11 @@ import { isDate, format } from 'date-fns';
 import { addExpense, removeExpense, updateExpense } from './expenses';
 
 
-test('removeExpense', ()=>{
+test('removeExpense - invalid ID', ()=>{
     const result = removeExpense('ccTestID');
     expect(result).toEqual({
         type: 'REMOVE_EXPENSE',
-        expense: {
-            id: 'ccTestID'
-        }
+        id: 'ccTestID'
     });
 })
 

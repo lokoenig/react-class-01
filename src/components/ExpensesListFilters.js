@@ -9,10 +9,15 @@ import "./ExpensesListFilters.scss";
 import { setFilterText, sortByDate, sortByAmount, setFilterDateRange } from "../actions/filters";
 
 
-class ExpensesListFilters extends React.Component {
+export class ExpensesListFilters extends React.Component {
     constructor(props) {
         super(props);
         let pf = props.filters;
+        if ((undefined === pf.dateRange) || undefined === pf.dateRange.start || undefined === pf.dateRange.end){
+            pf.dateRange.start = (new Date(2019, 11, 17));
+            pf.dateRange.end = endOfMonth(new Date());
+        }
+        this.props.filters.dateRange.start
 
         this.state = {
             dateStart: pf ? pf.dateRange.start : (new Date(2019, 11, 17)),

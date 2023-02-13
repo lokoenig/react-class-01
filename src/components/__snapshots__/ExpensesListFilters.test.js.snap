@@ -1,0 +1,121 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders ExpensesList Filters component with normal data 1`] = `
+<DocumentFragment>
+  <form>
+    <input
+      type="text"
+      value=""
+    />
+    <select>
+      <option
+        value="date"
+      >
+        Date
+      </option>
+      <option
+        value="amount"
+      >
+        Amount
+      </option>
+    </select>
+    <p>
+      start: 12/31/1979
+    </p>
+    <p>
+      end: 12/31/2028
+    </p>
+    <label
+      for="double-pick"
+    >
+      Date Range
+    </label>
+    <div
+      class="react-datepicker-wrapper"
+    >
+      <div
+        class="react-datepicker__input-container"
+      >
+        <span
+          aria-live="polite"
+          class="react-datepicker__aria-live"
+          role="alert"
+        />
+        <input
+          class=""
+          id="double-pick"
+          placeholder="Select a display range"
+          type="text"
+          value="12/31/1979 - 12/31/2028"
+        />
+        <button
+          aria-label="Close"
+          class="react-datepicker__close-icon"
+          tabindex="-1"
+          type="button"
+        />
+      </div>
+    </div>
+  </form>
+</DocumentFragment>
+`;
+
+exports[`renders ExpensesList Filters component with null data 1`] = `
+<DocumentFragment>
+  <form>
+    <input
+      type="text"
+      value=""
+    />
+    <select>
+      <option
+        value="date"
+      >
+        Date
+      </option>
+      <option
+        value="amount"
+      >
+        Amount
+      </option>
+    </select>
+    <p>
+      start: 12/17/2019
+    </p>
+    <p>
+      end: 02/28/2023
+    </p>
+    <label
+      for="double-pick"
+    >
+      Date Range
+    </label>
+    <div
+      class="react-datepicker-wrapper"
+    >
+      <div
+        class="react-datepicker__input-container"
+      >
+        <span
+          aria-live="polite"
+          class="react-datepicker__aria-live"
+          role="alert"
+        />
+        <input
+          class=""
+          id="double-pick"
+          placeholder="Select a display range"
+          type="text"
+          value="12/17/2019 - 02/28/2023"
+        />
+        <button
+          aria-label="Close"
+          class="react-datepicker__close-icon"
+          tabindex="-1"
+          type="button"
+        />
+      </div>
+    </div>
+  </form>
+</DocumentFragment>
+`;
