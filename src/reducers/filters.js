@@ -4,7 +4,7 @@ const filtersReducerDef = {
     text: '',
     sortBy: 'date', // date or amount
     dateRange: { 
-        start: (new Date(2002,1,1)),
+        start: (new Date(2019,1,1)),
         end: endOfMonth(new Date())
     }
 };

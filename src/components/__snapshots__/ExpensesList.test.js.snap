@@ -3,7 +3,7 @@
 exports[`renders ExpensesList component - no expenses 1`] = `
 <DocumentFragment>
   <p>
-    No expenses entered
+    No expenses in meet the search criteria.
   </p>
 </DocumentFragment>
 `;
