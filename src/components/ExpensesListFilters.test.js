@@ -59,12 +59,21 @@ test('Type into the expense search filter', () => {
         setFilterDateRange={setFilterDateRange}
     />);
     const searchTextBox = screen.getByLabelText('Search Text');
-   // user.click(searchTextBox);
-
-    
- user.type(searchTextBox, 'bill');
-
-   // expect(searchTextBox).toHaveValue('bill')
+    user.type(searchTextBox, 'bill');
     expect(setFilterText).toHaveBeenCalledTimes(4)// 4 letters in bill
 
 });
+
+test('Sort by Amount', ()=>{
+    render(<ExpensesListFilters
+        filters={FilterTestData}
+        setFilterText={setFilterText}
+        sortByDate={sortByDate}
+        sortByAmount={sortByAmount}
+        setFilterDateRange={setFilterDateRange}
+    />)
+    const sortSelector = screen.getByLabelText('Sort by');
+    user.selectOptions(sortSelector, ['amount']);
+    expect(sortByAmount).toHaveBeenCalled()
+
+})
