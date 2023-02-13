@@ -3,11 +3,25 @@
 exports[`renders ExpensesList Filters component with normal data 1`] = `
 <DocumentFragment>
   <form>
+    <label
+      for="search-text-input"
+    >
+      Search Text
+    </label>
     <input
+      data-testid="sssss"
+      id="search-text-input"
       type="text"
       value=""
     />
-    <select>
+    <label
+      for="sort-by-selector"
+    >
+      Sort by
+    </label>
+    <select
+      id="sort-by-selector"
+    >
       <option
         value="date"
       >
@@ -63,11 +77,25 @@ exports[`renders ExpensesList Filters component with normal data 1`] = `
 exports[`renders ExpensesList Filters component with null data 1`] = `
 <DocumentFragment>
   <form>
+    <label
+      for="search-text-input"
+    >
+      Search Text
+    </label>
     <input
+      data-testid="sssss"
+      id="search-text-input"
       type="text"
       value=""
     />
-    <select>
+    <label
+      for="sort-by-selector"
+    >
+      Sort by
+    </label>
+    <select
+      id="sort-by-selector"
+    >
       <option
         value="date"
       >
