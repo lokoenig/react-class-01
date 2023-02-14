@@ -2,7 +2,7 @@
   "name": "expensify",
   "version": "0.1.0",
   "private": false,
-  "homepage": "https://lokoenig.github.io/react-class-01/build/index.html",
+  "homepage": "https://lokoenig.github.io/react-class-01/build/",
   "dependencies": {
     "@babel/core": "^7.16.0",
     "@pmmmwh/react-refresh-webpack-plugin": "^0.5.3",
