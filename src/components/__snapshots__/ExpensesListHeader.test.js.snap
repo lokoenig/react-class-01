@@ -13,6 +13,7 @@ exports[`snapshot header with standard fixture data 1`] = `
     </span>
     <span
       class="total-amount"
+      title="Total Expenses Amount"
     >
       $18,036.32
     </span>

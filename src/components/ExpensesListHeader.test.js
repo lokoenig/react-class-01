@@ -13,4 +13,17 @@ test('snapshot header with standard fixture data', ()=>{
             expenses={ExpenseTestData} />
         );
     expect(asFragment()).toMatchSnapshot();
+
+    expect
+});
+
+test('header totals', () => {
+
+        render(
+            <ExpensesListHeader
+                expenses={ExpenseTestData} />
+        );
+    const totalElement = screen.getByTitle(/total expenses amount/i);
+    expect(totalElement).toHaveTextContent('$18,036.32');
+      //  screen.debug();
 });

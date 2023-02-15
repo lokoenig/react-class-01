@@ -22,6 +22,7 @@ exports[`renders ExpensesList component - with expenses 1`] = `
       </span>
       <span
         class="total-amount"
+        title="Total Expenses Amount"
       >
         $18,036.32
       </span>
