@@ -11,7 +11,7 @@ export const ExpensesListHeader = (props) =>{
         <span>
             Description
         </span>
-            <span className="total-amount">
+            <span className="total-amount" title="Total Expenses Amount">
             {new Intl.NumberFormat(
                 'en-US',
                 { style: 'currency', currency: 'USD' }
