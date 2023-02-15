@@ -1,0 +1,24 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`snapshot header with standard fixture data 1`] = `
+<DocumentFragment>
+  <h2>
+    List of Expenses
+  </h2>
+  <div
+    class="expense-list-header"
+  >
+    <span>
+      Description
+    </span>
+    <span
+      class="total-amount"
+    >
+      $18,036.32
+    </span>
+    <span>
+      Date Posted
+    </span>
+  </div>
+</DocumentFragment>
+`;

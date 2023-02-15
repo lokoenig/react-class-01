@@ -15,6 +15,21 @@ exports[`renders ExpensesList component - with expenses 1`] = `
       List of Expenses
     </h2>
     <div
+      class="expense-list-header"
+    >
+      <span>
+        Description
+      </span>
+      <span
+        class="total-amount"
+      >
+        $18,036.32
+      </span>
+      <span>
+        Date Posted
+      </span>
+    </div>
+    <div
       class="expense-single"
     >
       <span
