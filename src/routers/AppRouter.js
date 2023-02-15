@@ -9,7 +9,8 @@ import HelpPage from "../components/HelpPage";
 import AddExpensePage from "../components/AddExpensePage";
 import EditExpensePage from "../components/EditExpensePage";
 
-const AppRouter = createBrowserRouter([
+const AppRouter = createBrowserRouter(
+  [
   {
     path: "/",
     element: <App />,
@@ -34,7 +35,7 @@ const AppRouter = createBrowserRouter([
   }
     ]
   },
- 
-]);
+]
+);
 
 export default AppRouter;

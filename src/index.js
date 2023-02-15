@@ -11,6 +11,8 @@ import {
 } from 'react-router-dom';
 
 import AppRouter from './routers/AppRouter';
+//import { HashRouter } from 'react-router-dom'
+
 
 import configureStore from "./store/configureStore";
 import { addExpense, removeExpense, updateExpense } from "./actions/expenses";
