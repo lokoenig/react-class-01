@@ -1,4 +1,3 @@
-import React from "react";
 import { connect } from "react-redux";
 
 import getFilteredExpenses from "./expenses";
@@ -8,6 +7,7 @@ export const expenseListTotal = (props) => {
         props.expenses.map( 
             (v)=>{
                 runningTotal = runningTotal + v.amount;
+                return v;
             }
         );
     return runningTotal;
