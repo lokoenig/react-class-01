@@ -1,7 +1,12 @@
 import { isDate, format } from 'date-fns';
+import configureStore from 'redux-mock-store' //ES6 modules
+import thunk from 'redux-thunk';
 
-import { addExpense, removeExpense, updateExpense } from './expenses';
-import ExpenseTestData from "../fixtures/expense-single";
+
+import { startAddExpense, addExpense, removeExpense, updateExpense } from './expenses';
+import { ExpenseSingleTestData, ExpenseAlternateSingleTestData} from "../fixtures/expense-single";
+
+const mockStore = configureStore([thunk]);
 
 describe('CRUD an Expense', () => {
 
@@ -26,15 +31,24 @@ test('updateExpense', ()=>{
     })
 });
 
-test('addExpense populated with passed values', ()=>{
-    const result = addExpense(ExpenseTestData);
+test('CREATE Expense populated with passed values', ()=>{
+    const result = addExpense(ExpenseSingleTestData);
     expect(result).toEqual({
         type: 'ADD_EXPENSE',
         expense: {
-            ...ExpenseTestData,
+            ...ExpenseSingleTestData,
         }
     })
-})
+});
+
+    test('CREATE Expense on database & store populated with passed values', () => {
+        const store = mockStore({});
+        store.dispatch(startAddExpense())
+
+    });
+
+
+
 
 });
 
