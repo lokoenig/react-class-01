@@ -10,6 +10,8 @@ import {
   RouterProvider,
 } from 'react-router-dom';
 
+import './firebase/firebase';
+
 import AppRouter from './routers/AppRouter';
 //import { HashRouter } from 'react-router-dom'
 
