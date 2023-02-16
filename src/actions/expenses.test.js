@@ -1,7 +1,9 @@
 import { isDate, format } from 'date-fns';
 
 import { addExpense, removeExpense, updateExpense } from './expenses';
+import ExpenseTestData from "../fixtures/expense-single";
 
+describe('CRUD an Expense', () => {
 
 test('removeExpense - invalid ID', ()=>{
     const result = removeExpense('ccTestID');
@@ -24,24 +26,19 @@ test('updateExpense', ()=>{
     })
 });
 
-test('addExpense populated', ()=>{
-    const expenseTestData = {
-        description: 'I am not a waffle __!!#',
-        amount: 66666,
-        created: new Date('6/15/2021'),
-        note: 'notes cannot contain waffles or egg products'
-    };
-
-    const result = addExpense(expenseTestData);
+test('addExpense populated with passed values', ()=>{
+    const result = addExpense(ExpenseTestData);
     expect(result).toEqual({
         type: 'ADD_EXPENSE',
         expense: {
-            ...expenseTestData,
-            id: expect.any(String)
+            ...ExpenseTestData,
         }
     })
 })
 
+});
+
+/*
 test('addExpense defaults', ()=>{
     const result = addExpense();
     expect(result).toEqual({
@@ -55,3 +52,4 @@ test('addExpense defaults', ()=>{
         }
     })
 });
+*/

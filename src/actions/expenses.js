@@ -1,20 +1,13 @@
 import uuid from 'react-uuid';
+import { getDatabase, ref, set, get, off, remove, update, onValue, push, child } from "firebase/database";
+
+import database from "../firebase/firebase";
+
 
 // ADD_EXPENSE
-export const addExpense = ({
-    description = '',
-    note = '',
-    amount = 0,
-    created = new Date()
-} = {}) => ({
+export const addExpense = (expense) => ({
     type: 'ADD_EXPENSE',
-    expense: {
-        id: uuid(),
-        description,
-        note,
-        amount,
-        created
-    }
+    expense
 });
 
 // REMOVE_EXPENSE
@@ -34,3 +27,25 @@ export const updateExpense = (id, updates) => {
     }
 };
 
+//connect the thunk calls. (For Firebase)
+export const startAddExpense = (expenseData = {}) => {
+    return (dispatch) => {
+        const {
+            description = '',
+            note = '',
+            amount = 0,
+            created = new Date()
+        } = expenseData;
+        const newPostKey = push(child(ref(database), 'expenses')).key;
+
+        const rec = { description, note, amount, created, id: newPostKey };
+        dispatch(addExpense(rec));
+
+        let updates = {};
+        updates['/expenses/' + newPostKey] = rec;
+        updates['/user_expenses/1/' + newPostKey] = rec.description;
+        update(ref(database), updates);
+        console.log('dispatched');
+
+    }
+}

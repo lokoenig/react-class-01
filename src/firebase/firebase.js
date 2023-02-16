@@ -2,7 +2,7 @@
 
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-import { getDatabase, ref, set, get, off, remove, update, onValue, push, child } from "firebase/database";
+import { getDatabase } from "firebase/database";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -11,10 +11,12 @@ import {firebaseConfig} from "../credentials"
 
 
 // Initialize Firebase
-const app = initializeApp(firebaseConfig);
+const firebase = initializeApp(firebaseConfig);
 const database = getDatabase();
 
+export {firebase, database as default};
 
+/*
 const p1 = 'user/id_' + 1;
 const p2 = 'user/id_' + 2;
 
@@ -44,7 +46,7 @@ const expenseTestData = [
         created: (new Date(2018, 12, 20))
     }
 ];
-
+*/
 /*
 // populate the DB 
 let newPostKey, updates;
@@ -57,6 +59,7 @@ expenseTestData.forEach((rec)=>{
 });
 */
 
+/*
 let localExpenses = [];
 const expensesRef = ref(database, 'expenses');
 
@@ -77,7 +80,7 @@ const unsub = onValue(expensesRef, (snapshot) => {
     console.log('localExpenses', localExpenses);
     
 })
-
+*/
 
 /*
 const userRef = ref(database, p1);
