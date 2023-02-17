@@ -9,7 +9,7 @@ import database from "../firebase/firebase";
 
 import { startAddExpense, addExpense, removeExpense, updateExpense } from './expenses';
 import { ExpenseSingleTestData, ExpenseAlternateSingleTestData } from "../fixtures/expense-single";
-
+const ExpenseSingleNulltData = {};
 const mockStore = configureStore([thunk]);
 
 describe('CRUD an Expense', () => {
@@ -46,10 +46,10 @@ describe('CRUD an Expense', () => {
         })
     });
 
-    test('CREATE Expense on database & store populated with passed values', (done) => {
+    test('CREATE Expense on database & store populated with passed values', () => {
         const store = mockStore({});
 
-        store.dispatch(startAddExpense(ExpenseAlternateSingleTestData)).then(() => {
+        store.dispatch(startAddExpense(ExpenseAlternateSingleTestData)).then((done) => {
             const actions = store.getActions();
             const result = actions[0];
             expect(result).toEqual({
@@ -60,31 +60,42 @@ describe('CRUD an Expense', () => {
                 }
             });
 
-
             const path = 'expenses/' + result.expense.id;
-            const recordRef = ref(database, path);
-            get(recordRef).then((snapshot) => {
+            const expenseDBRef = ref(database, path);
+            get(expenseDBRef).then((snapshot) => {
                 expect(snapshot).toBeDefined;
                 if (snapshot.exists()) {
-                    expect(snapshot.val()).toEqual(
-                        {...ExpenseAlternateSingleTestData,
-                            created: expect.any(String),
-                            id: expect.any(String)
+                    expect(snapshot.val()).toEqual({
+                        ...ExpenseAlternateSingleTestData,
+                        created: expect.any(String),
+                        id: expect.any(String)
                         });
                     // console.log('from db', snapshot.val());
                 } else {
-                    console.log("No data available");
+                  //  console.log("No data available");
                 }
                 done();
             })
-
-
-
         })
-
     });
 
 
+    test('CREATE Expense on database & store populated with default values', () => {
+        const store = mockStore({});
+
+        store.dispatch(startAddExpense(ExpenseSingleNulltData)).then((done) => {
+            const actions = store.getActions();
+         
+            expect(actions).toEqual({
+                type: 'ADD_EXPENSE',
+                expense: {
+                    ...ExpenseAlternateSingleTestData,
+                    id: expect.any(String)
+                }
+            });
+            done();
+        });
+    });
 
 
 });
