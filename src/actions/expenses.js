@@ -36,16 +36,18 @@ export const startAddExpense = (expenseData = {}) => {
             amount = 0,
             created = new Date()
         } = expenseData;
-        const newPostKey = push(child(ref(database), 'expenses')).key;
 
+        const newPostKey = push(child(ref(database), 'expenses')).key;
         const rec = { description, note, amount, created, id: newPostKey };
-        dispatch(addExpense(rec));
 
         let updates = {};
         updates['/expenses/' + newPostKey] = rec;
         updates['/user_expenses/1/' + newPostKey] = rec.description;
-        update(ref(database), updates);
+
+        dispatch(addExpense(rec));
         console.log('dispatched');
 
+        return update(ref(database), updates); // return the promise for the update
+  
     }
 }

@@ -91,23 +91,6 @@ const unsub = onValue(userRef, (snapshot) => {
    console.log( data.name + ' works at ' + data.job.org + ' as a ' + data.job.title + '.');
 });
 
-setTimeout(() => {
-    const updates = {};
-    updates['location/state'] = 'MN';
-    updates['stress_level'] = 1;
-    updates['job/org'] = 'IRS';
-    update(ref(database), updates).then(() => {
-        console.log('update returned')
-    });
-}, 2000);
-
-
-setTimeout(() => {
-    unsub();
-    console.log('unsub')
-}, 10000);
-
-
 */
 
 /*
