@@ -7,8 +7,9 @@ import database from "../firebase/firebase";
 
 
 
-import { startAddExpense, addExpense, removeExpense, updateExpense } from './expenses';
+import { startAddExpense, addExpense, removeExpense, updateExpense, setExpenses } from './expenses';
 import { ExpenseSingleTestData, ExpenseAlternateSingleTestData } from "../fixtures/expense-single";
+import { ExpenseTestData } from "../fixtures/expenses";
 const ExpenseSingleNulltData = {};
 const mockStore = configureStore([thunk]);
 
@@ -88,5 +89,18 @@ describe('CRUD an Expense', () => {
         });
     });
 */
+
+
+test(
+'SET creates multiple expenses',
+()=>{
+    const result = setExpenses(ExpenseTestData);
+    expect(result).toEqual({
+        type: 'SET_EXPENSES',
+        expenses: ExpenseTestData
+    })
+
+}
+)
 
 });

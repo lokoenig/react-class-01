@@ -20,6 +20,7 @@ import configureStore from "./store/configureStore";
 // set default filters:
 import { setFilterText, sortByDate } from "./actions/filters";
 import getFilteredExpenses from "./selectors/expenses";
+import {startSetExpenses} from "./actions/expenses";
 const store = configureStore();
 
 
@@ -33,14 +34,23 @@ console.log(filtered);
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
-
 root.render(
-  <React.StrictMode>
-    <Provider store={store} >
-      <RouterProvider router={AppRouter} />
-    </Provider>
-  </React.StrictMode>
+  <>
+    <p>Loading</p>
+  </>
 );
+
+store.dispatch(startSetExpenses() ).then( ()=>{
+  root.render(
+    <React.StrictMode>
+      <Provider store={store} >
+        <RouterProvider router={AppRouter} />
+      </Provider>
+    </React.StrictMode>
+  );
+});
+
+
 
 
 // If you want to start measuring performance in your app, pass a function

@@ -79,3 +79,13 @@ test('expensesReducer Update Expense (invalid ID)', () => {
     const result = expensesReducer(ExpenseTestData, action);
     expect(result).toEqual(ExpenseTestData);
 });
+
+test('expensesReducer SET (all expenses)', ()=>{
+    //step 1: create dummy expenses that will be overwritten:
+    const action = {
+        type: 'SET_EXPENSES',
+        expenses: [ExpenseSingleTestData]
+    };
+    const result = expensesReducer(ExpenseTestData, action);
+    expect(result).toEqual([ExpenseSingleTestData]);
+})

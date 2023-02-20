@@ -51,3 +51,36 @@ export const startAddExpense = (expenseData = {}) => {
   
     }
 }
+
+// ADD MULTIPLE EXPENSES
+export const setExpenses = (expenses) => ({
+    type: 'SET_EXPENSES',
+    expenses
+});
+
+export const startSetExpenses = (expenses) => {
+
+    return(dispatch) => {
+        let updates = {};
+        let newPostKey, description, note, amount, created;
+        expenses.forEach(thisExpense => {
+            ({
+                description = '',
+                note = '',
+                amount = 0,
+                created = new Date()
+            } = thisExpense);
+
+            newPostKey = push(child(ref(database), 'expenses')).key;
+            updates['/expenses/' + newPostKey] = {
+                description, note, amount, created, id: newPostKey
+            };
+            updates['/user_expenses/1/' + newPostKey] = description;
+
+        });
+    dispatch(setExpenses(expenses));
+        console.log('startSetExpenses: dispatched');
+    return update(ref(database), updates); // return the promise for the update
+}
+
+};

@@ -27,6 +27,11 @@ const expensesReducer = (state = expensesReducerDef, action) => {
             });
             break;
 
+
+        case 'SET_EXPENSES':
+            out = action.expenses;
+            break;
+
         default:
             out = state;
     };
