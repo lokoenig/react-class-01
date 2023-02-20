@@ -8,7 +8,7 @@ import { getDatabase } from "firebase/database";
 
 // moved the credentials out of git:
 import {firebaseConfig} from "../credentials"
-
+// console.log('api: '  + firebaseConfig.apiKey);
 
 // Initialize Firebase
 const firebase = initializeApp(firebaseConfig);

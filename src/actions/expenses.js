@@ -45,7 +45,7 @@ export const startAddExpense = (expenseData = {}) => {
         updates['/user_expenses/1/' + newPostKey] = rec.description;
 
         dispatch(addExpense(rec));
-        console.log('dispatched');
+        console.log('startAddExpense: dispatched');
 
         return update(ref(database), updates); // return the promise for the update
   

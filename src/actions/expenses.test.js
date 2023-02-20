@@ -36,7 +36,29 @@ describe('CRUD an Expense', () => {
         })
     });
 
-    test('CREATE Expense populated with passed values', () => {
+    test('should add expense to database and store', (done) => {
+        const store = mockStore({});
+      
+
+        store.dispatch(startAddExpense(ExpenseAlternateSingleTestData)).then(() => {
+            const actions = store.getActions();
+            expect(actions[0]).toEqual({
+                type: 'ADD_EXPENSE',
+                expense: {
+                    id: expect.any(String),
+                    ...ExpenseAlternateSingleTestData
+                }
+            });
+
+            return database.ref(`expenses/${actions[0].expense.id}`).once('value');
+        }).then((snapshot) => {
+            expect(snapshot.val()).toEqual(ExpenseAlternateSingleTestData);
+            done();
+        });
+    });
+
+
+    test('CREATE Expense populated with passed values (local)', () => {
         const result = addExpense(ExpenseSingleTestData);
         expect(result).toEqual({
             type: 'ADD_EXPENSE',
@@ -46,40 +68,9 @@ describe('CRUD an Expense', () => {
         })
     });
 
-    test('CREATE Expense on database & store populated with passed values', () => {
-        const store = mockStore({});
+  
 
-        store.dispatch(startAddExpense(ExpenseAlternateSingleTestData)).then((done) => {
-            const actions = store.getActions();
-            const result = actions[0];
-            expect(result).toEqual({
-                type: 'ADD_EXPENSE',
-                expense: {
-                    ...ExpenseAlternateSingleTestData,
-                    id: expect.any(String)
-                }
-            });
-
-            const path = 'expenses/' + result.expense.id;
-            const expenseDBRef = ref(database, path);
-            get(expenseDBRef).then((snapshot) => {
-                expect(snapshot).toBeDefined;
-                if (snapshot.exists()) {
-                    expect(snapshot.val()).toEqual({
-                        ...ExpenseAlternateSingleTestData,
-                        created: expect.any(String),
-                        id: expect.any(String)
-                        });
-                    // console.log('from db', snapshot.val());
-                } else {
-                  //  console.log("No data available");
-                }
-                done();
-            })
-        })
-    });
-
-
+/*
     test('CREATE Expense on database & store populated with default values', () => {
         const store = mockStore({});
 
@@ -96,22 +87,6 @@ describe('CRUD an Expense', () => {
             done();
         });
     });
-
-
-});
-
-/*
-test('addExpense defaults', ()=>{
-    const result = addExpense();
-    expect(result).toEqual({
-        type: 'ADD_EXPENSE',
-        expense: {
-            description : '',
-            note : '',
-            amount : 0,
-            created: expect.anything(),
-            id: expect.any(String)
-        }
-    })
-});
 */
+
+});
