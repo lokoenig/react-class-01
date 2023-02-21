@@ -58,29 +58,33 @@ export const setExpenses = (expenses) => ({
     expenses
 });
 
-export const startSetExpenses = (expenses) => {
+export const startSetExpenses = () => {
 
     return(dispatch) => {
-        let updates = {};
-        let newPostKey, description, note, amount, created;
-        expenses.forEach(thisExpense => {
-            ({
-                description = '',
-                note = '',
-                amount = 0,
-                created = new Date()
-            } = thisExpense);
+        const dbRef = ref(database, '/expenses');
+        let expensesFromDB = [];
+        let  ex, childKey, childData;
 
-            newPostKey = push(child(ref(database), 'expenses')).key;
-            updates['/expenses/' + newPostKey] = {
-                description, note, amount, created, id: newPostKey
-            };
-            updates['/user_expenses/1/' + newPostKey] = description;
+        return get(dbRef)
+        .then(snapshot => {
+            if (snapshot.exists) {
+                snapshot.forEach((ex) => {
+                    childKey = ex.key;
+                    childData = ex.val();
+                    expensesFromDB.push({
+                        ...childData, 
+                        created: new Date(childData.created),
+                        id: childKey 
+                    })
+                });
+                dispatch(setExpenses(expensesFromDB));
+            }
 
         });
-    dispatch(setExpenses(expenses));
-        console.log('startSetExpenses: dispatched');
-    return update(ref(database), updates); // return the promise for the update
-}
+
+     
+
+
+    };
 
 };

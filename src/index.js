@@ -30,8 +30,6 @@ store.dispatch(sortByDate());
 const currentState = store.getState();
 const filtered = getFilteredExpenses(currentState.expenses, currentState.filters);
 
-console.log(filtered);
-
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 root.render(
@@ -48,7 +46,7 @@ store.dispatch(startSetExpenses() ).then( ()=>{
       </Provider>
     </React.StrictMode>
   );
-});
+})
 
 
 
