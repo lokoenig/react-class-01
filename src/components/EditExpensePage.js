@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import withRouter from '../routers/WithRouter';
 
 import ExpenseForm from "./ExpenseForm";
-import { updateExpense, removeExpense } from "../actions/expenses";
+import { updateExpense, startRemoveExpense } from "../actions/expenses";
 import DeleteExpenseButton  from "./DeleteExpenseButton"; // connected version
 
 export class EditExpensePageContent extends React.Component{
@@ -17,7 +17,7 @@ export class EditExpensePageContent extends React.Component{
 
     onRemove = () => {
         const { navigate } = this.props;
-        this.props.removeExpense(this.props.params.eid );
+        this.props.startRemoveExpense(this.props.params.eid );
         navigate('/');
     }
 
@@ -72,7 +72,7 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = (dispatch, props) => ({
     updateExpense: (eid, expense) => dispatch(updateExpense(eid, expense)),
-    removeExpense: (eid) => dispatch(removeExpense(eid))
+    startRemoveExpense: (eid) => dispatch(startRemoveExpense(eid))
 });
 
 const EditExpensePageContentConnected = connect(mapStateToProps, mapDispatchToProps)(withRouter(EditExpensePageContent));

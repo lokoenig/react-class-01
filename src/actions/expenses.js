@@ -18,6 +18,15 @@ export const removeExpense = (id) => {
     }
 };
 
+// REMOVE_EXPENSE (with database)
+export const startRemoveExpense =(id) =>{
+    return (dispatch) => {
+        const dbRef = ref(database, '/expenses/' + id);
+        dispatch(removeExpense(id));
+        return remove(dbRef)
+    }
+}
+
 // UPDATE_EXPENSE
 export const updateExpense = (id, updates) => {
     return {

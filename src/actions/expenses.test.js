@@ -7,9 +7,10 @@ import database from "../firebase/firebase";
 
 
 
-import { startAddExpense, addExpense, removeExpense, updateExpense, setExpenses } from './expenses';
+import { startAddExpense, addExpense, removeExpense, updateExpense, setExpenses, startSetExpenses } from './expenses';
 import { ExpenseSingleTestData, ExpenseAlternateSingleTestData } from "../fixtures/expense-single";
 import { ExpenseTestData } from "../fixtures/expenses";
+import { stringify } from 'postcss';
 const ExpenseSingleNulltData = {};
 const mockStore = configureStore([thunk]);
 
@@ -37,21 +38,28 @@ describe('CRUD an Expense', () => {
         })
     });
 
-    test('should add expense to database and store', (done) => {
+    test(
+        'should add expense to database and store', 
+        (done) => {
         const store = mockStore({});
-      
 
-        store.dispatch(startAddExpense(ExpenseAlternateSingleTestData)).then(() => {
+        store.dispatch(startAddExpense(ExpenseAlternateSingleTestData))
+        .then(() => {
             const actions = store.getActions();
+            let localTestData = { ...ExpenseAlternateSingleTestData}; //deep copy
+
+           // localTestData.created = new Date(localTestData.created)
+            console.log('test', typeof localTestData.created)
+            console.log('actions' , typeof actions[0].expense.created)
             expect(actions[0]).toEqual({
                 type: 'ADD_EXPENSE',
                 expense: {
+                    ...localTestData,
                     id: expect.any(String),
-                    ...ExpenseAlternateSingleTestData
                 }
             });
-
-            return database.ref(`expenses/${actions[0].expense.id}`).once('value');
+            const dbRef = ref(database, '/expenses/' + actions[0].expense.id );
+            return get(dbRef);
         }).then((snapshot) => {
             expect(snapshot.val()).toEqual(ExpenseAlternateSingleTestData);
             done();
@@ -69,38 +77,40 @@ describe('CRUD an Expense', () => {
         })
     });
 
-  
-
-/*
-    test('CREATE Expense on database & store populated with default values', () => {
-        const store = mockStore({});
-
-        store.dispatch(startAddExpense(ExpenseSingleNulltData)).then((done) => {
-            const actions = store.getActions();
-         
-            expect(actions).toEqual({
-                type: 'ADD_EXPENSE',
-                expense: {
-                    ...ExpenseAlternateSingleTestData,
-                    id: expect.any(String)
-                }
-            });
-            done();
-        });
-    });
-*/
 
 
-test(
-'SET creates multiple expenses',
-()=>{
-    const result = setExpenses(ExpenseTestData);
-    expect(result).toEqual({
-        type: 'SET_EXPENSES',
-        expenses: ExpenseTestData
-    })
+    test(
+        'SET creates multiple expenses',
+        () => {
+            const result = setExpenses(ExpenseTestData);
+            expect(result).toEqual({
+                type: 'SET_EXPENSES',
+                expenses: ExpenseTestData
+            })
 
-}
-)
+        }
+    );
+
+
+    test(
+        'should read all test data from database',
+        (done) => {
+            const store = mockStore({});
+            store.dispatch(startSetExpenses())
+                .then(() => {
+                    const actions = store.getActions();
+                    /*
+                    console.log('actions[0].expenses', actions[0].expenses);
+                    expect(actions[0]).toEqual({
+                        type: 'SET_EXPENSES',
+                        expenses: ExpenseTestData
+                    });
+                    */
+                    expect(actions[0].type).toEqual('SET_EXPENSES');
+                    done();
+
+                });
+        });  
 
 });
+
