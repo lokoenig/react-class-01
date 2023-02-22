@@ -5,7 +5,11 @@ import { getDatabase, ref, set, get, off, remove, update, onValue, push, child }
 import database from "../firebase/firebase";
 
 // functions to test:
-import { startAddExpense, addExpense, startRemoveExpense, removeExpense, updateExpense, setExpenses, startSetExpenses } from './expenses';
+import { 
+    startAddExpense, addExpense, 
+    startRemoveExpense, removeExpense, 
+    startUpdateExpense, updateExpense, 
+    startSetExpenses, setExpenses  } from './expenses';
 
 // test data:
 import { ExpenseSingleTestData, ExpenseAlternateSingleTestData } from "../fixtures/expense-single";
@@ -41,6 +45,9 @@ describe('CRUD an Expense', () => {
             }
         })
     });
+
+
+
 
     test(
         'should add expense to database and store', 
@@ -119,6 +126,30 @@ describe('CRUD an Expense', () => {
 
 
         // going to need a valid ID to test with
+
+
+    test(
+        'UPDATE expense on store and database',
+        (done) => {
+            const store = mockStore({});
+            const newNote = 'I am not a note';
+            const dbPath = '/expenses/' + lastID + '/note';
+            store.dispatch(startUpdateExpense(lastID, {note:newNote}))
+            .then( ()=> {
+                const actions = store.getActions();
+                console.log('UPDATE actions', actions);
+                return get(ref(database,dbPath));
+            })
+            .then( (snapshot) => {
+                expect(snapshot).toBeDefined();
+                expect(snapshot.val()).toEqual(newNote);
+                done();
+            })
+
+        }
+    )
+
+
     test(
         'REMOVE expense (store and database)',
         (done) => {
