@@ -4,17 +4,19 @@ import thunk from 'redux-thunk';
 import { getDatabase, ref, set, get, off, remove, update, onValue, push, child } from "firebase/database";
 import database from "../firebase/firebase";
 
+// functions to test:
+import { startAddExpense, addExpense, startRemoveExpense, removeExpense, updateExpense, setExpenses, startSetExpenses } from './expenses';
 
-
-
-import { startAddExpense, addExpense, removeExpense, updateExpense, setExpenses, startSetExpenses } from './expenses';
+// test data:
 import { ExpenseSingleTestData, ExpenseAlternateSingleTestData } from "../fixtures/expense-single";
 import { ExpenseTestData } from "../fixtures/expenses";
-import { stringify } from 'postcss';
 const ExpenseSingleNulltData = {};
+
+
 const mockStore = configureStore([thunk]);
 
 describe('CRUD an Expense', () => {
+    let lastID;
 
     test('removeExpense - invalid ID', () => {
         const result = removeExpense('ccTestID');
@@ -23,7 +25,9 @@ describe('CRUD an Expense', () => {
             id: 'ccTestID'
         });
 
-    })
+    });
+
+    
 
 
     test('updateExpense', () => {
@@ -50,7 +54,7 @@ describe('CRUD an Expense', () => {
 
            // localTestData.created = new Date(localTestData.created)
             console.log('test', typeof localTestData.created)
-            console.log('actions' , typeof actions[0].expense.created)
+            console.log('expense created' , typeof actions[0].expense.created)
             expect(actions[0]).toEqual({
                 type: 'ADD_EXPENSE',
                 expense: {
@@ -99,18 +103,35 @@ describe('CRUD an Expense', () => {
             store.dispatch(startSetExpenses())
                 .then(() => {
                     const actions = store.getActions();
-                    /*
-                    console.log('actions[0].expenses', actions[0].expenses);
-                    expect(actions[0]).toEqual({
+                    
+                   // console.log('actions[0].expenses', actions[0].expenses);
+                   /* expect(actions[0]).toEqual({
                         type: 'SET_EXPENSES',
                         expenses: ExpenseTestData
                     });
                     */
+                    lastID = actions[0].expenses[actions[0].expenses.length -1].id;
                     expect(actions[0].type).toEqual('SET_EXPENSES');
                     done();
 
                 });
         });  
+
+
+        // going to need a valid ID to test with
+    test(
+        'REMOVE expense (store and database)',
+        (done) => {
+            const store = mockStore({});
+            store.dispatch(startRemoveExpense(lastID))
+                .then(() => {
+                    const actions = store.getActions();
+                    console.log('REMOVE actions',actions);
+                    done();
+                })
+        }
+    )
+
 
 });
 
