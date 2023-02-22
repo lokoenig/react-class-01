@@ -4,14 +4,14 @@ import { connect } from 'react-redux';
 import withRouter from '../routers/WithRouter';
 
 import ExpenseForm from "./ExpenseForm";
-import { updateExpense, startRemoveExpense } from "../actions/expenses";
+import { startUpdateExpense, startRemoveExpense } from "../actions/expenses";
 import DeleteExpenseButton  from "./DeleteExpenseButton"; // connected version
 
 export class EditExpensePageContent extends React.Component{
 
     onSubmit = (expense) => {
         const { navigate } = this.props;
-        this.props.updateExpense(this.props.params.eid, expense);
+        this.props.startUpdateExpense(this.props.params.eid, expense);
         navigate('/');
     };
 
@@ -71,7 +71,7 @@ const mapStateToProps = (state, ownProps) => {
 }
 
 const mapDispatchToProps = (dispatch, props) => ({
-    updateExpense: (eid, expense) => dispatch(updateExpense(eid, expense)),
+    startUpdateExpense: (eid, expense) => dispatch(startUpdateExpense(eid, expense)),
     startRemoveExpense: (eid) => dispatch(startRemoveExpense(eid))
 });
 

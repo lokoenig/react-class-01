@@ -36,6 +36,21 @@ export const updateExpense = (id, updates) => {
     }
 };
 
+// UPDATE_EXPENSE (with database)
+export const startUpdateExpense =(id, updates) => {
+    let i;
+    return (dispatch) => {
+        const dbPath =  '/expenses/' + id + '/';
+        dispatch(updateExpense(id, updates));
+        let dbUpdates = {};
+
+        for ( i in updates){
+            dbUpdates[dbPath + i] = updates[i];
+        }
+        return update(ref(database), dbUpdates);
+    }
+}
+
 //connect the thunk calls. (For Firebase)
 export const startAddExpense = (expenseData = {}) => {
     return (dispatch) => {
