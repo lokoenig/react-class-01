@@ -1,5 +1,6 @@
 import React from "react";
 import DatePicker from "react-datepicker";
+import {  Link } from "react-router-dom"
 
 export default class LoginForm extends React.Component {
     constructor(props) {
@@ -135,6 +136,7 @@ export default class LoginForm extends React.Component {
                     </div>
                    
                 </form>
+                <Link to={`home`}>Fake Login</Link>
             </>
         )
     }

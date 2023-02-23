@@ -5,10 +5,10 @@ import './navLinks.scss';
 
 const NaviLinks = ()=> (
         <div className='navlink'>
-            <NavLink to="/">Home</NavLink>
-            <NavLink to="/create">Create</NavLink>
-            <NavLink to="/edit">Edit</NavLink>
-            <NavLink to="/help">Help</NavLink>
+        <NavLink to={`home`}>Home</NavLink>
+        <NavLink to={`create`}>Create</NavLink>
+        <NavLink to={`edit`}>Edit</NavLink>
+        <NavLink to={`help`}>Help</NavLink>
         </div>
     );
 
