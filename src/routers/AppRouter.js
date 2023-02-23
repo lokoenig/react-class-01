@@ -8,34 +8,43 @@ import HomePage from "../home";
 import HelpPage from "../components/HelpPage";
 import AddExpensePage from "../components/AddExpensePage";
 import EditExpensePage from "../components/EditExpensePage";
+import LoginPage from '../components/LoginPage';
 
 const AppRouter = createBrowserRouter(
   [
-  {
-    path: "/",
-    element: <App />,
-    errorElement: <ErrorPage />,
-    children: [
-      { index: true, element: <HomePage /> },
- {
-    path: "help",
-    element: <HelpPage />
-  },
     {
-    path: "create",
-    element: <AddExpensePage />
-  },
+      path: "/",
+      element: <LoginPage />,
+      errorElement: <ErrorPage />
+    },
     {
-    path: "edit/",
-    element: <EditExpensePage />
-  },
-     {
-    path: "edit/:eid",
-    element: <EditExpensePage />
-  }
-    ]
-  },
-]
+      element: <App />,
+      children: [
+        {
+          path: "home",
+          element: <HomePage />
+        },
+        {
+          path: "help",
+          element: <HelpPage />
+        },
+        {
+          path: "create",
+          element: <AddExpensePage />
+        },
+        {
+          path: "edit/",
+          element: <EditExpensePage />
+        },
+        {
+          path: "edit/:eid",
+          element: <EditExpensePage />
+        }
+        
+
+      ]
+    },
+  ]
 );
 
 export default AppRouter;
