@@ -10,7 +10,8 @@ import {
   RouterProvider,
 } from 'react-router-dom';
 
-import './firebase/firebase';
+import { firebase, googleAuthProvider, firebaseAuth } from './firebase/firebase';
+ 
 
 import AppRouter from './routers/AppRouter';
 //import { HashRouter } from 'react-router-dom'
@@ -48,6 +49,15 @@ store.dispatch(startSetExpenses() ).then( ()=>{
   );
 })
 
+// test some auth stuff:
+firebaseAuth.onAuthStateChanged( (user) => {
+  if (user) {
+    console.log('logged in');
+
+  } else {
+    console.log('logged out');
+  }
+})
 
 
 
