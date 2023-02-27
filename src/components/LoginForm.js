@@ -1,59 +1,52 @@
 import React from "react";
 import DatePicker from "react-datepicker";
-import {  Link } from "react-router-dom"
+import { Link } from "react-router-dom";
+import {connect} from 'react-redux';
 
-export default class LoginForm extends React.Component {
+import {startLogin} from "../actions/firebase-auth";
+
+
+export class LoginForm extends React.Component {
     constructor(props) {
         super(props);
         let pe = props.expense;
-
+        
         this.state = {
-            description: pe ? pe.description : '',
-            note: pe ? pe.note : '',
-            amount: pe ? (pe.amount / 100).toString() : '0',
-            created: pe ? pe.created : (new Date()),
-            errorMsg: '',
-            buttonText: props.buttonText ? props.buttonText : 'Add Expense'
+            username: pe ? pe.username : '',
+            pw: pe ? pe.pw : '',
+            buttonText: props.buttonText ? props.buttonText : 'Log In'
         };
+        this.state['lllogin'] = props.startLogin;
     };
 
-    onChangeDescription = (e) => {
-        const newDiscription = e.target.value;
+    onChangeUsername = (e) => {
+        const newname = e.target.value;
         this.setState(() => ({
-            description: newDiscription
+            username: newname
         }));
     };
 
-    onChangeNote = (e) => {
-        const note = e.target.value;
+    onChangePW = (e) => {
+        const newPW = e.target.value;
         this.setState(() => ({
-            note
+            pw: newPW
         }));
+        console.log(this.state)
     };
 
-    onChangeAmount = (e) => {
-        const v = e.target.value;
-        if (v.match(/^\d*\.?\d{0,2}$/)) {
-            this.setState(() => ({
-                amount: v
-            }));
-        }
+    onPopLogin = ()=> {
+        startLogin();
     };
 
-    onChangeDate = (newValue) => {
-        this.setState(() => ({
-            created: newValue
-        }));
-
-    };
+   
 
     onSubmit = (e) => {
         e.preventDefault();
         // So some basic validation:
-        if (!this.state.description.length || !this.state.amount.length) {
+        if (!this.state.username.length || !this.state.pw.length) {
             // missing description or amount
             this.setState(() => ({
-                errorMsg: 'I am the Egg Man'
+                errorMsg: 'Be better'
             }));
 
             // no errors: clear errors
@@ -62,10 +55,8 @@ export default class LoginForm extends React.Component {
                 errorMsg: ''
             }));
             this.props.onSubmit({
-                description: this.state.description,
-                amount: parseFloat(this.state.amount, 10) * 100,
-                created: this.state.created,
-                note: this.state.note
+                username: this.state.username,
+                pw: this.state.pw
             });
            // console.log('onSubmit');
         }
@@ -74,7 +65,7 @@ export default class LoginForm extends React.Component {
     render() {
         return (
             <>
-                <h1>I be a form!</h1>
+                <h1>I be a login form!</h1>
                 {this.state.errorMsg &&
                     <div className="pre-form-error-banner" role="alert" title="Expense was not submitted" key="errMsg1">
                         {this.state.errorMsg}
@@ -82,62 +73,50 @@ export default class LoginForm extends React.Component {
                 }
                 <form onSubmit={this.onSubmit} title="Edit An Expense Entry" >
                     <div className="form-input-group">
-                        <div className="form-input field-wide">
-                            <label htmlFor="expense-description">Description</label>
+                        <div className="form-input">
+                            <label htmlFor="login-username">Name</label>
                             <input
-                                id="expense-description"
-                                name="description"
+                                id="login-username"
+                                name="username"
                                 type="text"
-                                placeholder="Description"
-                                value={this.state.description}
-                                onChange={this.onChangeDescription}
+                                placeholder="User Name"
+                                value={this.state.username}
+                                onChange={this.onChangeUsername}
                                 autoFocus
                             />
                         </div>
 
                         <div className="form-input">
-                            <label htmlFor="expense-amount">Expense Amount</label>
+                            <label htmlFor="login-pw">PW</label>
                             <input
-                                id="expense-amount"
-                                name="amount"
+                                id="login-pw"
+                                name="pw"
                                 type="text"
-                                placeholder="Amount"
-                                value={this.state.amount}
-                                onChange={this.onChangeAmount}
+                                placeholder=""
+                                value={this.state.pw}
+                                onChange={this.onChangePW}
 
                             />
                         </div>
 
-                        <div className="form-input">
-                            <label htmlFor="form-datepicker">Date</label>
-                            <DatePicker
-                                id="form-datepicker"
-                                selected={this.state.created}
-                                onChange={this.onChangeDate}
-                            />
-                        </div>
                     </div>
 
                     <div className="form-input-group">
-                    <div className="form-input field-wide">
-                            <label htmlFor="expense-note">Note</label>
-                        <textarea
-                            id="expense-note"
-                            placeholder="Note"
-                            value={this.state.note}
-                            onChange={this.onChangeNote}
-                            name="note"
-                        >
-                        </textarea>
-                    </div>
+                 
                     <div className="form-submit">
                         <button>{this.state.buttonText}</button>
                         </div>
                     </div>
                    
                 </form>
-                <Link to={`home`}>Fake Login</Link>
+                <button onClick={this.onPopLogin}>Popup Login</button>
             </>
         )
     }
-}
+};
+
+const mapDispatchToProps = (dispatch)=>({
+    startLogin: () => dispatch(startLogin())
+});
+
+export default connect(undefined, mapDispatchToProps)(LoginForm);

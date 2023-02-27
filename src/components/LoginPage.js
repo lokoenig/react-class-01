@@ -4,6 +4,7 @@ const LoginPage = () => (
     <>
         <h2>LOG YOSELF in</h2>
         <LoginForm />
+        
     </>
 );
 export default LoginPage;
