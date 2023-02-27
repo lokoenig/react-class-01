@@ -12,9 +12,8 @@ exports[`App framework changes 1`] = `
         class="navlink"
       >
         <a
-          aria-current="page"
-          class="active"
-          href="/"
+          class=""
+          href="/home"
         >
           Home
         </a>
@@ -35,6 +34,9 @@ exports[`App framework changes 1`] = `
           href="/help"
         >
           Help
+        </a>
+        <a>
+          Log Out
         </a>
       </div>
     </div>

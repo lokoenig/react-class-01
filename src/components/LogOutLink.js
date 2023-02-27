@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from 'react-redux';
 
-import { startLogout } from "../actions/firebase-auth";
+import {startLogout} from "../actions/firebase-auth";
 
 const localLogOut = () => {
     startLogout();
