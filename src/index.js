@@ -16,6 +16,7 @@ import { getAuth } from "firebase/auth";
  
 
 import AppRouter from './routers/AppRouter';
+import { redirect } from "react-router-dom";
 //import { HashRouter } from 'react-router-dom'
 
 
@@ -55,10 +56,12 @@ store.dispatch(startSetExpenses() ).then( ()=>{
 const firebaseAuth = getAuth(firebase);
 firebaseAuth.onAuthStateChanged( (user) => {
   if (user) {
-    console.log('logged in');
+    console.log('logging in');
+    redirect("/home");
 
   } else {
-    console.log('logged out');
+    console.log('logging out');
+     redirect("/");
   }
 })
 
