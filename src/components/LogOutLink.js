@@ -1,26 +1,22 @@
 import React from "react";
-import { firebase } from '../firebase/firebase';
-import { getAuth, signOut } from "firebase/auth";
+import { connect } from 'react-redux';
 
+import { startLogout } from "../actions/firebase-auth";
 
-const startLogOut = ()=>{
-    console.log('log out');
-    const firebaseAuth = getAuth(firebase);
-
-    return signOut(firebaseAuth).then(() => {
-        // Sign-out successful.
-    }).catch((error) => {
-        // An error happened.
-    });
-
+const localLogOut = () => {
+    startLogout();
 }
-
-export const LogOutLink = ()=>{
-    return(
+export const LogOutLink = ({startLogout}) => {
+    console.log('startLogout', startLogout);
+    return (
         <>
-            <a onClick={startLogOut}>Log Out</a>
+            <a onClick={localLogOut}>Log Out</a>
         </>
     )
 }
 
-export default LogOutLink;
+const mapDispatchToProps = (dispatch) => ({
+    startLogout: () => dispatch(startLogout())
+});
+
+export default connect(undefined, mapDispatchToProps)(LogOutLink);  
