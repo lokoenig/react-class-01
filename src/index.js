@@ -1,13 +1,16 @@
-import React from 'react';
+import React, { createContext, useState, useEffect } from 'react';
 import ReactDOM from 'react-dom/client';
 import { Provider } from 'react-redux'
 import './index.css';
 import "react-datepicker/dist/react-datepicker.css";
 import "./components/ExpenseForm.scss";
+import LoginPage from "./components/LoginPage";
 
 import reportWebVitals from './reportWebVitals';
 import {
   RouterProvider,
+  Navigate,
+  redirect
 } from 'react-router-dom';
 
 import { firebase } from './firebase/firebase';
@@ -16,8 +19,6 @@ import { getAuth } from "firebase/auth";
  
 
 import AppRouter from './routers/AppRouter';
-import { redirect } from "react-router-dom";
-//import { HashRouter } from 'react-router-dom'
 
 
 import configureStore from "./store/configureStore";
@@ -25,9 +26,12 @@ import configureStore from "./store/configureStore";
 import { setFilterText, sortByDate } from "./actions/filters";
 import getFilteredExpenses from "./selectors/expenses";
 import {startSetExpenses} from "./actions/expenses";
+
+
+
 const store = configureStore();
-
-
+export const AuthContext = createContext({ userPresent: false, user: null })
+// let [user, setUser] = React.useState < any > (null);
 
 store.dispatch(setFilterText());
 store.dispatch(sortByDate());
@@ -43,27 +47,39 @@ root.render(
 );
 
 store.dispatch(startSetExpenses() ).then( ()=>{
-  root.render(
-    <React.StrictMode>
-      <Provider store={store} >
-        <RouterProvider router={AppRouter} />
-      </Provider>
-    </React.StrictMode>
-  );
-})
+  <Provider store={store} >
+    <LoginPage />
+  </Provider>
+});
 
 // test some auth stuff:
-const firebaseAuth = getAuth(firebase);
-firebaseAuth.onAuthStateChanged( (user) => {
-  if (user) {
-    console.log('logging in');
-    redirect("/home");
 
-  } else {
-    console.log('logging out');
-     redirect("/");
-  }
-})
+  const firebaseAuth = getAuth(firebase);
+  firebaseAuth.onAuthStateChanged( (user) => {
+    if (user) {
+      console.log('logging in');
+        root.render(
+          <React.StrictMode>
+            <Provider store={store} >
+              <RouterProvider router={AppRouter} />
+            </Provider>
+          </React.StrictMode>
+        );
+    
+
+    } else {
+      console.log('logging out');
+      root.render( 
+        <Provider store={store} >
+        <LoginPage />
+        </Provider>
+      )
+    }
+  })
+
+
+
+
 
 
 

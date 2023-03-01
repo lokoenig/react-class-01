@@ -1,8 +1,13 @@
+import React, { createContext, useState, useEffect } from 'react';
 import { getAuth, signOut, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 
 import { firebase } from "../firebase/firebase";
 const firebaseAuth = getAuth(firebase);
 const googleAuthProvider = new GoogleAuthProvider();
+
+
+export const AuthContext = createContext({ userPresent: false, user: null })
+
 
 // googleAuthProvider = 'provider' from sample code
 // firebaseAuth = 'auth' from sample code
@@ -53,4 +58,47 @@ export const startLogout = () => {
             console.log('Error signing out');
         });
     
+}
+
+
+export const FirebaseAuthContext = (props) =>{
+
+
+    let [state, changeState] = useState({
+        userDataPresent: false,
+
+        user: null,
+        listener: null
+    })
+
+    useEffect(() => {
+
+        if (state.listener == null) {
+
+
+            changeState({
+                ...state, listener: firebaseAuth.onAuthStateChanged((user) => {
+
+                    if (user)
+                        changeState(oldState => ({ ...oldState, userDataPresent: true, user: user }));
+                    else
+                        changeState(oldState => ({ ...oldState, userDataPresent: true, user: null }));
+                })
+            });
+
+        }
+        return () => {
+            if (state.listener)
+                state.listener()
+        }
+
+    }, [])
+
+
+
+    return (
+        <AuthContext.Provider value={state}>
+            {props.children}
+        </AuthContext.Provider>
+    )
 }

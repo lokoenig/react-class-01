@@ -10,6 +10,7 @@ const NaviLinks = ()=> (
         <NavLink to={`create`}>Create</NavLink>
         <NavLink to={`edit`}>Edit</NavLink>
         <NavLink to={`help`}>Help</NavLink>
+        <NavLink to={'/'}>Log In</NavLink>
         <LogOutLink />
         </div>
     );
