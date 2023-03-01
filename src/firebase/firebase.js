@@ -6,47 +6,16 @@ import { getDatabase } from "firebase/database";
 // https://firebase.google.com/docs/web/setup#available-libraries
 
 // moved the credentials out of git:
-import {firebaseConfig} from "../credentials"
+import { firebaseConfig } from "../credentials"
 // console.log('api: '  + firebaseConfig.apiKey);
 
 // Initialize Firebase
 const firebase = initializeApp(firebaseConfig);
 const database = getDatabase();
 
+export { firebase, database as default };
 
-export { firebase, database as default};
 
-/*
-const p1 = 'user/id_' + 1;
-const p2 = 'user/id_' + 2;
-
-const expenseTestData = [
-    {
-        description: 'booze',
-        note: 'Drinky drink',
-        amount: 14000,
-        created: (new Date(1995, 4, 1))
-    },
-    {
-        description: 'rent',
-        note: 'Pay or move on',
-        amount: 120000,
-        created: (new Date(1999, 2, 27))
-    },
-    {
-        description: 'Cat Supplies',
-        note: '',
-        amount: 3333,
-        created: (new Date(2002, 2, 27))
-    },
-    {
-        description: 'combs',
-        note: 'For all the hair!',
-        amount: 1666299,
-        created: (new Date(2018, 12, 20))
-    }
-];
-*/
 /*
 // populate the DB 
 let newPostKey, updates;
