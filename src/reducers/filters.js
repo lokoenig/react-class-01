@@ -1,10 +1,10 @@
-import { startOfMonth, endOfMonth } from 'date-fns'
+import { endOfMonth } from 'date-fns'
 
 export const filtersReducerDef = {
     text: '',
     sortBy: 'date', // date or amount
-    dateRange: { 
-        start: (new Date(2019,1,1)),
+    dateRange: {
+        start: (new Date(2019, 1, 1)),
         end: endOfMonth(new Date())
     }
 };
@@ -37,8 +37,6 @@ export const filtersReducer = (state = filtersReducerDef, action) => {
         default:
             out = state;
     };
-// console.log(typeof state.dateRange.start)
-   // console.log(out);
     return out;
 };
 
