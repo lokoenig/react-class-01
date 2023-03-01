@@ -1,22 +1,16 @@
 import React from "react";
-import DatePicker from "react-datepicker";
-import { Link } from "react-router-dom";
-import {connect} from 'react-redux';
-
-import {startLogin} from "../actions/firebase-auth";
-
-
+import { connect } from 'react-redux';
+import { startLogin } from "../actions/firebase-auth";
 export class LoginForm extends React.Component {
     constructor(props) {
         super(props);
         let pe = props.expense;
-        
+
         this.state = {
             username: pe ? pe.username : '',
             pw: pe ? pe.pw : '',
             buttonText: props.buttonText ? props.buttonText : 'Log In'
         };
-        this.state['lllogin'] = props.startLogin;
     };
 
     onChangeUsername = (e) => {
@@ -34,11 +28,11 @@ export class LoginForm extends React.Component {
         console.log(this.state)
     };
 
-    onPopLogin = ()=> {
+    onPopLogin = () => {
         startLogin();
     };
 
-   
+
 
     onSubmit = (e) => {
         e.preventDefault();
@@ -58,7 +52,7 @@ export class LoginForm extends React.Component {
                 username: this.state.username,
                 pw: this.state.pw
             });
-           // console.log('onSubmit');
+            // console.log('onSubmit');
         }
     }
 
@@ -102,12 +96,12 @@ export class LoginForm extends React.Component {
                     </div>
 
                     <div className="form-input-group">
-                 
-                    <div className="form-submit">
-                        <button>{this.state.buttonText}</button>
+
+                        <div className="form-submit">
+                            <button>{this.state.buttonText}</button>
                         </div>
                     </div>
-                   
+
                 </form>
                 <button onClick={this.onPopLogin}>Popup Login</button>
             </>
@@ -115,7 +109,7 @@ export class LoginForm extends React.Component {
     }
 };
 
-const mapDispatchToProps = (dispatch)=>({
+const mapDispatchToProps = (dispatch) => ({
     startLogin: () => dispatch(startLogin())
 });
 
