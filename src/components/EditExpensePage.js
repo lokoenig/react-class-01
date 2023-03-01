@@ -5,9 +5,8 @@ import withRouter from '../routers/WithRouter';
 
 import ExpenseForm from "./ExpenseForm";
 import { startUpdateExpense, startRemoveExpense } from "../actions/expenses";
-import DeleteExpenseButton  from "./DeleteExpenseButton"; // connected version
-
-export class EditExpensePageContent extends React.Component{
+// import DeleteExpenseButton  from "./DeleteExpenseButton"; // connected version
+export class EditExpensePageContent extends React.Component {
 
     onSubmit = (expense) => {
         const { navigate } = this.props;
@@ -17,13 +16,13 @@ export class EditExpensePageContent extends React.Component{
 
     onRemove = () => {
         const { navigate } = this.props;
-        this.props.startRemoveExpense(this.props.params.eid );
+        this.props.startRemoveExpense(this.props.params.eid);
         navigate('/');
     }
 
-    render(){
+    render() {
         let out;
-        if(this.props.params.eid) {
+        if (this.props.params.eid) {
             out = (
                 <>
                     <div>Editing: {this.props.params.eid}</div>
@@ -33,9 +32,9 @@ export class EditExpensePageContent extends React.Component{
                         onSubmit={this.onSubmit}
                     />
                     <button
-                    onClick={this.onRemove} 
+                        onClick={this.onRemove}
                     >
-                    Delete
+                        Delete
                     </button>
 
                 </>
