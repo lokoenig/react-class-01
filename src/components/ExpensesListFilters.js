@@ -1,14 +1,11 @@
-import React, { useState } from "react";
+import React from "react";
 import { connect } from "react-redux";
-import { format, startOfMonth, endOfMonth } from 'date-fns'
+import { format, endOfMonth } from 'date-fns'
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import "./ExpensesListFilters.scss";
 
-
 import { setFilterText, sortByDate, sortByAmount, setFilterDateRange } from "../actions/filters";
-
-
 export class ExpensesListFilters extends React.Component {
     constructor(props) {
         super(props);
@@ -51,7 +48,7 @@ export class ExpensesListFilters extends React.Component {
                     <input
                         type="text"
                         id="search-text-input"
-                        data-testid="sssss" 
+                        data-testid="sssss"
                         value={this.props.filters.text}
                         onChange={this.onTextChange} />
 
