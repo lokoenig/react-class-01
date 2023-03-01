@@ -1,5 +1,4 @@
-import uuid from 'react-uuid';
-import { getDatabase, ref, set, get, off, remove, update, onValue, push, child } from "firebase/database";
+import { ref, get, remove, update, push, child } from "firebase/database";
 
 import database from "../firebase/firebase";
 
@@ -14,12 +13,12 @@ export const addExpense = (expense) => ({
 export const removeExpense = (id) => {
     return {
         type: 'REMOVE_EXPENSE',
-        id : id
+        id: id
     }
 };
 
 // REMOVE_EXPENSE (with database)
-export const startRemoveExpense =(id) =>{
+export const startRemoveExpense = (id) => {
     return (dispatch) => {
         const dbRef = ref(database, '/expenses/' + id);
         dispatch(removeExpense(id));
@@ -37,14 +36,14 @@ export const updateExpense = (id, updates) => {
 };
 
 // UPDATE_EXPENSE (with database)
-export const startUpdateExpense =(id, updates) => {
+export const startUpdateExpense = (id, updates) => {
     let i;
     return (dispatch) => {
-        const dbPath =  '/expenses/' + id + '/';
+        const dbPath = '/expenses/' + id + '/';
         dispatch(updateExpense(id, updates));
         let dbUpdates = {};
 
-        for ( i in updates){
+        for (i in updates) {
             dbUpdates[dbPath + i] = updates[i];
         }
         return update(ref(database), dbUpdates);
@@ -72,7 +71,7 @@ export const startAddExpense = (expenseData = {}) => {
         console.log('startAddExpense: dispatched');
 
         return update(ref(database), updates); // return the promise for the update
-  
+
     }
 }
 
@@ -84,29 +83,29 @@ export const setExpenses = (expenses) => ({
 
 export const startSetExpenses = () => {
 
-    return(dispatch) => {
+    return (dispatch) => {
         const dbRef = ref(database, '/expenses');
         let expensesFromDB = [];
-        let  ex, childKey, childData;
+        let childKey, childData;
 
         return get(dbRef)
-        .then(snapshot => {
-            if (snapshot.exists) {
-                snapshot.forEach((ex) => {
-                    childKey = ex.key;
-                    childData = ex.val();
-                    expensesFromDB.push({
-                        ...childData, 
-                        created: new Date(childData.created),
-                        id: childKey 
-                    })
-                });
-                dispatch(setExpenses(expensesFromDB));
-            }
+            .then(snapshot => {
+                if (snapshot.exists) {
+                    snapshot.forEach((ex) => {
+                        childKey = ex.key;
+                        childData = ex.val();
+                        expensesFromDB.push({
+                            ...childData,
+                            created: new Date(childData.created),
+                            id: childKey
+                        })
+                    });
+                    dispatch(setExpenses(expensesFromDB));
+                }
 
-        });
+            });
 
-     
+
 
 
     };
