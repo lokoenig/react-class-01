@@ -18,15 +18,10 @@ import reportWebVitals from './reportWebVitals';
 import './index.css';
 import "./components/ExpenseForm.scss";
 import LoginPage from "./components/LoginPage";
-
-
-
-
-
 import { firebase } from './firebase/firebase';
-
 import AppRouter from './routers/AppRouter';
 import configureStore from "./store/configureStore";
+import {LoggedInContext } from "./actions/firebase-auth";
 
 // set default filters:
 import { setFilterText, sortByDate } from "./actions/filters";
@@ -52,7 +47,9 @@ root.render(
 
 store.dispatch(startSetExpenses() ).then( ()=>{
   <Provider store={store} >
+    <LoggedInContext>
     <LoginPage />
+    </LoggedInContext>
   </Provider>
 });
 

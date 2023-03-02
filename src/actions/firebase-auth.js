@@ -103,3 +103,9 @@ export const FirebaseAuthContext = (props) =>{
     )
 }
 */
+
+export const LoggedInContext = ({children, props}) =>{
+    <div className='peanuts'>
+        {children}
+    </div>
+}
