@@ -60,7 +60,7 @@ export const startLogout = () => {
     
 }
 
-
+/*
 export const FirebaseAuthContext = (props) =>{
 
 
@@ -102,3 +102,4 @@ export const FirebaseAuthContext = (props) =>{
         </AuthContext.Provider>
     )
 }
+*/
