@@ -41,17 +41,11 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 
 root.render(
   <>
-    <p>Connecting to database</p>
+    <p>Checking User status</p>
   </>
 );
 
-store.dispatch(startSetExpenses() ).then( ()=>{
-  <Provider store={store} >
-    <LoggedInContext>
-    <LoginPage />
-    </LoggedInContext>
-  </Provider>
-});
+
 
 // test some auth stuff:
 
@@ -59,13 +53,18 @@ store.dispatch(startSetExpenses() ).then( ()=>{
   firebaseAuth.onAuthStateChanged( (user) => {
     if (user) {
       console.log('logging in');
+      root.render(<><p>Fetching User data</p></>);
+      store.dispatch(startSetExpenses())
+      .then(() => {
+        console.log('startSetExpenses returned promise');
         root.render(
-          <React.StrictMode>
-            <Provider store={store} >
-              <RouterProvider router={AppRouter} />
-            </Provider>
-          </React.StrictMode>
+        <Provider store={store} >
+          <LoggedInContext>
+            <LoginPage />
+          </LoggedInContext>
+        </Provider>
         );
+      });
     
 
     } else {
