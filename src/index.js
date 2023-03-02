@@ -39,6 +39,26 @@ const filtered = getFilteredExpenses(currentState.expenses, currentState.filters
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
+const RenderRoot = (userState) => {
+  console.log(userState);
+  //let navigate = Navigate();
+  if (userState) {
+    root.render(
+      <React.StrictMode>
+        <Provider store={store} >
+          <RouterProvider router={AppRouter} />
+        </Provider>
+      </React.StrictMode>
+    );
+  } else {
+    root.render(
+      <Provider store={store} >
+        <LoginPage />
+      </Provider>
+    );
+   // navigate('/');
+  }
+}
 root.render(
   <>
     <p>Checking User status</p>
@@ -56,25 +76,14 @@ root.render(
       root.render(<><p>Fetching User data</p></>);
       store.dispatch(startSetExpenses())
       .then(() => {
-        console.log('startSetExpenses returned promise');
-        root.render(
-        <Provider store={store} >
-          <LoggedInContext>
-            <LoginPage />
-          </LoggedInContext>
-        </Provider>
-        );
+        RenderRoot(true);
       });
     
 
     } else {
       console.log('logging out');
-      root.render( 
-        <Provider store={store} >
-        <LoginPage />
-        </Provider>
-      )
-    }
+      RenderRoot(false);
+     }
   })
 
 
