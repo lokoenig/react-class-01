@@ -1,33 +1,37 @@
 import React, { createContext, useState, useEffect } from 'react';
 import ReactDOM from 'react-dom/client';
 import { Provider } from 'react-redux'
-import './index.css';
-import "react-datepicker/dist/react-datepicker.css";
-import "./components/ExpenseForm.scss";
-import LoginPage from "./components/LoginPage";
 
-import reportWebVitals from './reportWebVitals';
+import { getAuth } from "firebase/auth";
 import {
   RouterProvider,
   Navigate,
   redirect
 } from 'react-router-dom';
 
-import { firebase } from './firebase/firebase';
-import { getAuth } from "firebase/auth";
+// import "react-datepicker/dist/react-datepicker.css";
 
- 
+// import react-app stuff:
+import reportWebVitals from './reportWebVitals';
+
+// import my stuff:
+import './index.css';
+import "./components/ExpenseForm.scss";
+import LoginPage from "./components/LoginPage";
+
+
+
+
+
+import { firebase } from './firebase/firebase';
 
 import AppRouter from './routers/AppRouter';
-
-
 import configureStore from "./store/configureStore";
+
 // set default filters:
 import { setFilterText, sortByDate } from "./actions/filters";
 import getFilteredExpenses from "./selectors/expenses";
 import {startSetExpenses} from "./actions/expenses";
-
-
 
 const store = configureStore();
 export const AuthContext = createContext({ userPresent: false, user: null })
@@ -42,7 +46,7 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 
 root.render(
   <>
-    <p>Loading</p>
+    <p>Connecting to database</p>
   </>
 );
 
