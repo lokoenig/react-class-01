@@ -6,7 +6,16 @@ const firebaseAuth = getAuth(firebase);
 const googleAuthProvider = new GoogleAuthProvider();
 
 
-export const AuthContext = createContext({ userPresent: false, user: null })
+
+export const login = (uid) => ({
+    type: 'LOGIN',
+    uid: uid
+});
+
+export const logout = ()=>({
+    type:'LOGOUT'
+});
+
 
 
 // googleAuthProvider = 'provider' from sample code

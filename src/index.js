@@ -25,7 +25,7 @@ import {LoggedInContext } from "./actions/firebase-auth";
 
 // set default filters:
 import { setFilterText, sortByDate } from "./actions/filters";
-import getFilteredExpenses from "./selectors/expenses";
+import {login, logout} from "./actions/firebase-auth";
 import {startSetExpenses} from "./actions/expenses";
 
 const store = configureStore();
@@ -35,7 +35,6 @@ export const AuthContext = createContext({ userPresent: false, user: null })
 store.dispatch(setFilterText());
 store.dispatch(sortByDate());
 const currentState = store.getState();
-const filtered = getFilteredExpenses(currentState.expenses, currentState.filters);
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
@@ -43,7 +42,7 @@ const RenderRoot = (userState) => {
   console.log(userState);
   //let navigate = Navigate();
   if (userState) {
-    root.render(
+    return(
       <React.StrictMode>
         <Provider store={store} >
           <RouterProvider router={AppRouter} />
@@ -51,7 +50,7 @@ const RenderRoot = (userState) => {
       </React.StrictMode>
     );
   } else {
-    root.render(
+    return(
       <Provider store={store} >
         <LoginPage />
       </Provider>
@@ -72,17 +71,29 @@ root.render(
   const firebaseAuth = getAuth(firebase);
   firebaseAuth.onAuthStateChanged( (user) => {
     if (user) {
-      console.log('logging in');
+      console.log('logging in ' + user.uid);
+      store.dispatch(login(user.uid));
       root.render(<><p>Fetching User data</p></>);
       store.dispatch(startSetExpenses())
       .then(() => {
-        RenderRoot(true);
+        root.render(
+        <>
+        <RenderRoot
+              userState={true}
+        />
+        </>);
       });
     
 
     } else {
       console.log('logging out');
-      RenderRoot(false);
+      store.dispatch(logout);
+      root.render(
+        <>
+          <RenderRoot
+            userState={false}
+          />
+        </>);
      }
   })
 
