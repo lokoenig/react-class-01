@@ -56,7 +56,7 @@ export const startUpdateExpense = (id, updates) => {
 export const startAddExpense = (expenseData = {}) => {
     return (dispatch, getState) => {
         const uid = getState().auth.uid;
-        console.log('startAddExpense', uid);
+        console.log('startAddExpense uid:', uid);
         const {
             description = '',
             note = '',

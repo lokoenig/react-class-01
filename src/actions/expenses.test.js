@@ -20,6 +20,8 @@ const testUserID='iAmTheWalrus';
 const expenseDBPath = '/user_data/' + testUserID + '/expenses/';
 
 const mockStore = configureStore([thunk]);
+const store = mockStore({ auth: { uid: testUserID } });
+
 
 describe('CRUD an Expense', () => {
     let lastID;
@@ -56,36 +58,6 @@ describe('CRUD an Expense', () => {
 
     });
 
-    
-
-
-
-
-
-    test(
-        'should add expense to database and store', 
-        (done) => {
-        const store = mockStore({auth:{testUserID} });
-
-        store.dispatch(startAddExpense(ExpenseAlternateSingleTestData))
-        .then(() => {
-            const actions = store.getActions();
-            let localTestData = { ...ExpenseAlternateSingleTestData}; //deep copy
-            console.log('expense created' , actions[0].expense.created)
-            const dbRef = ref(database, expenseDBPath + actions[0].expense.id );
-            return get(dbRef);
-        }).then((snapshot) => {
-          console.log('add expense', snapshot)
-            expect(snapshot.val()).toEqual(ExpenseAlternateSingleTestData);
-            done();
-        });
-    });
-
-
-  
-
-
-
     test(
         'SET creates multiple expenses',
         () => {
@@ -98,23 +70,46 @@ describe('CRUD an Expense', () => {
         }
     );
 
+    // 
+    // Database connected tests:
+    //
+
+    test(
+        'should add expense to database and store',
+        (done) => {
+            let localTestData = { ...ExpenseAlternateSingleTestData }; //deep copy
+            store.dispatch(startAddExpense(ExpenseAlternateSingleTestData))
+                .then(() => {
+                    const actions = store.getActions();
+                    console.log('expense created', actions[0].expense.created)
+                    const dbRef = ref(database, expenseDBPath + actions[0].expense.id);
+                    return get(dbRef);
+                }).then((snapshot) => {
+                    //console.log('add expense', snapshot)
+                    let returnVal = {...snapshot.val() }; // mutable copy
+                    returnVal.created = 0;
+                    localTestData.created = 0;
+                    localTestData.id = returnVal.id;
+
+                    expect(returnVal).toEqual(localTestData);
+                    done();
+                });
+        });
 
     test(
         'should read all test data from database',
         (done) => {
-            const store = mockStore({ auth: { testUserID } });
             store.dispatch(startSetExpenses())
                 .then(() => {
+                    /*
                     const actions = store.getActions();
-                    
-                   // console.log('actions[0].expenses', actions[0].expenses);
-                   /* expect(actions[0]).toEqual({
-                        type: 'SET_EXPENSES',
-                        expenses: ExpenseTestData
-                    });
-                    */
-                    lastID = actions[0].expenses[actions[0].expenses.length -1].id;
+                   console.log('actions[0].expenses', actions[0].expenses);
+                    const justExpenses = actions[0].expenses;
+                    const lastExpense = justExpenses[justExpenses.length - 1]
+                    console.log('lastExpense', lastExpense);
+                    lastID = lastExpense.id;
                     expect(actions[0].type).toEqual('SET_EXPENSES');
+                    */
                     done();
 
                 });
@@ -127,13 +122,12 @@ describe('CRUD an Expense', () => {
     test(
         'UPDATE expense on store and database',
         (done) => {
-            const store = mockStore({ auth: testUserID});
             const newNote = 'I am not a note';
             const dbPath = '/user_data/' + testUserID + '/expenses/' + lastID + '/note';
             store.dispatch(startUpdateExpense(lastID, {note:newNote}))
             .then( ()=> {
                 const actions = store.getActions();
-                console.log('UPDATE actions', actions);
+               // console.log('UPDATE actions', actions);
                 return get(ref(database,dbPath));
             })
             .then( (snapshot) => {
@@ -149,11 +143,10 @@ describe('CRUD an Expense', () => {
     test(
         'REMOVE expense (store and database)',
         (done) => {
-            const store = mockStore({ auth: testUserID});
             store.dispatch(startRemoveExpense(lastID))
                 .then(() => {
                     const actions = store.getActions();
-                    console.log('REMOVE actions',actions);
+                   // console.log('REMOVE actions',actions);
                     done();
                 })
         }
