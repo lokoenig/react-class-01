@@ -19,8 +19,9 @@ export const removeExpense = (id) => {
 
 // REMOVE_EXPENSE (with database)
 export const startRemoveExpense = (id) => {
-    return (dispatch) => {
-        const dbRef = ref(database, '/expenses/' + id);
+    return (dispatch, getState) => {
+        const uid = getState().auth.uid;
+        const dbRef = ref(database, `user_data/${uid}/expenses/${id}/`);
         dispatch(removeExpense(id));
         return remove(dbRef)
     }
@@ -38,8 +39,9 @@ export const updateExpense = (id, updates) => {
 // UPDATE_EXPENSE (with database)
 export const startUpdateExpense = (id, updates) => {
     let i;
-    return (dispatch) => {
-        const dbPath = '/expenses/' + id + '/';
+    return (dispatch, getState) => {
+        const uid = getState().auth.uid;
+        const dbPath = `user_data/${uid}/expenses/${id}/`;
         dispatch(updateExpense(id, updates));
         let dbUpdates = {};
 
@@ -52,19 +54,21 @@ export const startUpdateExpense = (id, updates) => {
 
 //connect the thunk calls. (For Firebase)
 export const startAddExpense = (expenseData = {}) => {
-    return (dispatch) => {
+    return (dispatch, getState) => {
+        const uid = getState().auth.uid;
+        console.log('startAddExpense', uid);
         const {
             description = '',
             note = '',
             amount = 0,
             created = new Date()
         } = expenseData;
-
-        const newPostKey = push(child(ref(database), 'expenses')).key;
+        const userPath = `user_data/${uid}/`;
+        const newPostKey = push(child(ref(database), userPath + 'expenses')).key;
         const rec = { description, note, amount, created, id: newPostKey };
 
         let updates = {};
-        updates['/expenses/' + newPostKey] = rec;
+        updates['/' + userPath + 'expenses/' + newPostKey] = rec;
         updates['/user_expenses/1/' + newPostKey] = rec.description;
 
         dispatch(addExpense(rec));
@@ -83,8 +87,10 @@ export const setExpenses = (expenses) => ({
 
 export const startSetExpenses = () => {
 
-    return (dispatch) => {
-        const dbRef = ref(database, '/expenses');
+    return (dispatch, getState) => {
+        const uid = getState().auth.uid;
+        const expensesDBPath = `/user_data/${uid}/expenses`;
+        const dbRef = ref(database, expensesDBPath);
         let expensesFromDB = [];
         let childKey, childData;
 

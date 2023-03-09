@@ -4,10 +4,10 @@ import { connect } from 'react-redux';
 import {startLogout} from "../actions/firebase-auth";
 
 const localLogOut = () => {
+    console.log('startLogout');
     startLogout();
 }
 export const LogOutLink = ({startLogout}) => {
-    console.log('startLogout', startLogout);
     return (
         <>
             <a onClick={localLogOut}>Log Out</a>
