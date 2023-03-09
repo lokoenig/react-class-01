@@ -69,7 +69,7 @@ export const startAddExpense = (expenseData = {}) => {
 
         let updates = {};
         updates['/' + userPath + 'expenses/' + newPostKey] = rec;
-        updates['/user_expenses/1/' + newPostKey] = rec.description;
+        //updates['/user_expenses/1/' + newPostKey] = rec.description;
 
         dispatch(addExpense(rec));
         console.log('startAddExpense: dispatched');
