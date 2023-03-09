@@ -130,7 +130,7 @@ export default class ExpenseForm extends React.Component {
                         </textarea>
                     </div>
                     <div className="form-submit">
-                        <button>{this.state.buttonText}</button>
+                        <button title="save">{this.state.buttonText}</button>
                         </div>
                     </div>
                    

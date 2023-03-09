@@ -9,7 +9,7 @@ export const ExpenseAlternateSingleTestData ={
     description: 'A box of truffles of every type and flavor - an irresistible mixture of best-selling creamy, nutty, chewy and soft center favorites wrapped in See’s rich milk and dark chocolates',
     note: 'Sometimes a note is just a note',
     amount: '226.83',
-    created: new Date(2022,6,12)
+    created: new Date(2022,10,14)
 };
 
 export default ExpenseSingleTestData;

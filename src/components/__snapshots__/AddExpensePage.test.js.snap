@@ -67,7 +67,7 @@ exports[`renders full Edit Expense page 1`] = `
                 class=""
                 id="form-datepicker"
                 type="text"
-                value="02/21/2023"
+                value="03/09/2023"
               />
             </div>
           </div>
@@ -93,7 +93,9 @@ exports[`renders full Edit Expense page 1`] = `
         <div
           class="form-submit"
         >
-          <button>
+          <button
+            title="save"
+          >
             Add Expense
           </button>
         </div>

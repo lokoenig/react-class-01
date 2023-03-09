@@ -1,5 +1,6 @@
 import React from "react";
 import { render, screen, waitFor, within } from '@testing-library/react';
+import { act } from 'react-dom/test-utils';
 import user from '@testing-library/user-event';
 
 import ExpenseTestData from "../fixtures/expenses";
@@ -28,7 +29,9 @@ describe('ExpenseForm', () => {
                 onSubmit={onSubmitSpy}
             />
         );
+        act(() => {
         clickSubmitButton();
+    });
         const alertElem = screen.getByRole('alert', {
             name: /expense was not submitted/i
         });
@@ -37,15 +40,17 @@ describe('ExpenseForm', () => {
 
     test('submits valid ExpenseForm', () =>{
         const exSub =jest.fn();
+        
         render(
             <ExpenseForm
                 onSubmit={exSub}
                 expense={ExpenseSingleTestData}
             />
         );
+        act(() => {
         clickSubmitButton();
         //screen.debug();
-
+        });
         expect(exSub).toBeCalled();
     });
 
@@ -60,7 +65,9 @@ describe('ExpenseForm', () => {
         );
 
         const numberBox = screen.getByLabelText('Expense Amount');
+        act(() => {
         user.type(numberBox, '{selectall}{backspace}123.2');
+        });
         expect(numberBox).toHaveValue('123.2')
     })
 
@@ -71,7 +78,9 @@ describe('ExpenseForm', () => {
             />
         );
         const numberBox = screen.getByLabelText('Expense Amount');
+        act(() => {
         user.type(numberBox, '{selectall}{backspace}12z3.2rr555');
+        });
         expect(numberBox).toHaveValue('123.25')
     })
 });
@@ -79,6 +88,7 @@ describe('ExpenseForm', () => {
 
 function clickSubmitButton() {
     user.click(
-        screen.getByRole('button', { name: /Add Expense/ }),
+        screen.getByTitle(/save/i)
+      
         );
 }
