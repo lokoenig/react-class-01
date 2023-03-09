@@ -32,7 +32,6 @@ store.dispatch(sortByDate());
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 const RenderRoot = ({userState}) => {
-  console.log('RenderRoot', userState);
     return(
       <React.StrictMode>
         <Provider store={store} >
