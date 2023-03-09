@@ -18,7 +18,8 @@ export const logout = ()=>({
 });
 
 
-export const UserStatus = ({loggedIn=false, children}) => {
+export const UserStatus = ({children}) => {
+    const loggedIn = useContext(LoggedInContext);
     console.log('UserStatus', children);
     return (
     <div className="logged-in-status">

@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useContext } from "react";
 import {NavLink} from "react-router-dom";
 import LogOutLink from "./LogOutLink";
+import { LoggedInContext } from '../actions/firebase-auth';
+
 import './navLinks.scss';
 
 
@@ -10,8 +12,12 @@ const NaviLinks = ()=> (
         <NavLink to={`create`}>Create</NavLink>
         <NavLink to={`edit`}>Edit</NavLink>
         <NavLink to={`help`}>Help</NavLink>
+        {
+        (!useContext(LoggedInContext)) ?
         <NavLink to={'/'}>Log In</NavLink>
+        :
         <LogOutLink />
+        }
         </div>
     );
 

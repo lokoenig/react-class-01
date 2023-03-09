@@ -2,12 +2,7 @@ import React, { useContext } from 'react';
 import ReactDOM from 'react-dom/client';
 import { Provider } from 'react-redux'
 import { getAuth } from "firebase/auth";
-import {
-  RouterProvider,
-  Navigate,
-  redirect
-} from 'react-router-dom';
-
+import { RouterProvider } from 'react-router-dom';
 
 // import react-app stuff:
 import reportWebVitals from './reportWebVitals';
@@ -41,7 +36,7 @@ const RenderRoot = ({userState}) => {
     return(
       <React.StrictMode>
         <Provider store={store} >
-          <LoggedInContext.Provider loggedIn={userState}>
+          <LoggedInContext.Provider value={userState}>
             <RouterProvider router={AppRouter} />
           </LoggedInContext.Provider>
         </Provider>
