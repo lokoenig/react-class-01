@@ -2,8 +2,8 @@
   --edge-margin: 1rem;
   height: 100%;
   //padding: var(--edge-margin);
-  background-color: teal;
-  color: white;
+  background: var(--color-nav-back);
+  color: var(--color-nav-fore);
 
   a {
     color: white;
@@ -12,8 +12,8 @@
   //  margin-bottom: .8rem;
   padding: var(--edge-margin);
     &.active {
-      background: peachpuff;
-      color: black;
+      background: var(--color-nav-back-alt);
+      color: var(--color-nav-fore-alt);
       font-weight: bold;
     }
   }
