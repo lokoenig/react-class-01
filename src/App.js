@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import './App.css';
-import { Outlet, Navigate } from "react-router-dom";
+import { Outlet, Navigate, useLocation } from "react-router-dom";
 import NaviLinks  from "./components/navLinks";
 import PageHeader from "./components/Header";
 import { UserStatus, LoggedInContext } from './actions/firebase-auth';
@@ -8,10 +8,15 @@ import { UserStatus, LoggedInContext } from './actions/firebase-auth';
 
 function App() {
   const loggedIn = useContext(LoggedInContext);
+  const location = useLocation();
   if (!loggedIn){
     return <Navigate replace to="/login" />
   } else {
-  return (
+    if ('/' === location.pathname) {
+      return <Navigate replace to="/home" />
+
+    } else {
+      return (
     <div className="App">
       <PageHeader />
       <div className='sidebar' >
@@ -25,6 +30,7 @@ function App() {
     </div>
   );
   }
+}
 }
 
 export default App;
