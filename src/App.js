@@ -3,6 +3,8 @@ import './App.css';
 import { Outlet } from "react-router-dom";
 import NaviLinks  from "./components/navLinks";
 import PageHeader from "./components/Header";
+import { UserStatus } from './actions/firebase-auth';
+
 
 function App() {
   return (
@@ -13,7 +15,9 @@ function App() {
       </div>
       <div id="page-main">
         <Outlet />
+        <UserStatus />
       </div>
+     
     </div>
   );
 }

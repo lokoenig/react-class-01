@@ -1,7 +1,6 @@
-import React, { createContext, useState, useEffect } from 'react';
+import React, { useContext } from 'react';
 import ReactDOM from 'react-dom/client';
 import { Provider } from 'react-redux'
-
 import { getAuth } from "firebase/auth";
 import {
   RouterProvider,
@@ -9,7 +8,6 @@ import {
   redirect
 } from 'react-router-dom';
 
-// import "react-datepicker/dist/react-datepicker.css";
 
 // import react-app stuff:
 import reportWebVitals from './reportWebVitals';
@@ -21,42 +19,34 @@ import LoginPage from "./components/LoginPage";
 import { firebase } from './firebase/firebase';
 import AppRouter from './routers/AppRouter';
 import configureStore from "./store/configureStore";
-import {LoggedInContext } from "./actions/firebase-auth";
 
 // set default filters:
 import { setFilterText, sortByDate } from "./actions/filters";
 import {login, logout} from "./actions/firebase-auth";
 import {startSetExpenses} from "./actions/expenses";
 
+import { LoggedInContext } from './actions/firebase-auth';
+
+
 const store = configureStore();
-export const AuthContext = createContext({ userPresent: false, user: null })
-// let [user, setUser] = React.useState < any > (null);
 
 store.dispatch(setFilterText());
 store.dispatch(sortByDate());
-const currentState = store.getState();
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
-const RenderRoot = (userState) => {
-  console.log(userState);
-  //let navigate = Navigate();
-  if (userState) {
+const RenderRoot = ({userState}) => {
+  console.log('RenderRoot', userState);
     return(
       <React.StrictMode>
         <Provider store={store} >
-          <RouterProvider router={AppRouter} />
+          <LoggedInContext.Provider loggedIn={userState}>
+            <RouterProvider router={AppRouter} />
+          </LoggedInContext.Provider>
         </Provider>
       </React.StrictMode>
     );
-  } else {
-    return(
-      <Provider store={store} >
-        <LoginPage />
-      </Provider>
-    );
-   // navigate('/');
-  }
 }
 root.render(
   <>

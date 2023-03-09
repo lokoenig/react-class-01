@@ -37,3 +37,19 @@ code {
 #page-main > div {
   width:min(80ch, 100% );
 }
+
+#page-main {
+  position: relative;
+}
+
+.logged-in-status {
+    position: absolute;
+    right: 1rem;
+    bottom: 1rem;
+    padding: .5rem;
+    max-width: fit-content;
+    background: blueviolet;
+    color: white;
+    border-radius: .4em;
+    text-transform: uppercase;
+}

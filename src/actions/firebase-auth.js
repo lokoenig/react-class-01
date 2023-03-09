@@ -1,11 +1,12 @@
-import React, { createContext, useState, useEffect } from 'react';
 import { getAuth, signOut, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
-
 import { firebase } from "../firebase/firebase";
+import { createContext, useContext } from 'react';
+
+
 const firebaseAuth = getAuth(firebase);
 const googleAuthProvider = new GoogleAuthProvider();
 
-
+export const LoggedInContext = createContext(0);
 
 export const login = (uid) => ({
     type: 'LOGIN',
@@ -17,6 +18,14 @@ export const logout = ()=>({
 });
 
 
+export const UserStatus = ({loggedIn=false, children}) => {
+    console.log('UserStatus', children);
+    return (
+    <div className="logged-in-status">
+    {'user_' + !!loggedIn}
+    </div>
+    );
+}
 
 // googleAuthProvider = 'provider' from sample code
 // firebaseAuth = 'auth' from sample code
@@ -69,52 +78,3 @@ export const startLogout = () => {
     
 }
 
-/*
-export const FirebaseAuthContext = (props) =>{
-
-
-    let [state, changeState] = useState({
-        userDataPresent: false,
-
-        user: null,
-        listener: null
-    })
-
-    useEffect(() => {
-
-        if (state.listener == null) {
-
-
-            changeState({
-                ...state, listener: firebaseAuth.onAuthStateChanged((user) => {
-
-                    if (user)
-                        changeState(oldState => ({ ...oldState, userDataPresent: true, user: user }));
-                    else
-                        changeState(oldState => ({ ...oldState, userDataPresent: true, user: null }));
-                })
-            });
-
-        }
-        return () => {
-            if (state.listener)
-                state.listener()
-        }
-
-    }, [])
-
-
-
-    return (
-        <AuthContext.Provider value={state}>
-            {props.children}
-        </AuthContext.Provider>
-    )
-}
-*/
-
-export const LoggedInContext = ({children, props}) =>{
-    <div className='peanuts'>
-        {children}
-    </div>
-}

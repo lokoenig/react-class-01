@@ -1,6 +1,6 @@
 import { ref, get, remove, update, push, child } from "firebase/database";
 
-import database from "../firebase/firebase";
+import {database} from "../firebase/firebase";
 
 
 // ADD_EXPENSE

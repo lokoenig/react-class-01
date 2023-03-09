@@ -10,10 +10,16 @@ import AddExpensePage from "../components/AddExpensePage";
 import EditExpensePage from "../components/EditExpensePage";
 import LoginPage from '../components/LoginPage';
 
+
 const AppRouter = createBrowserRouter(
   [
     {
       path: "/",
+      element: <App />,
+      errorElement: <ErrorPage />
+  },
+    {
+      path: "login",
       element: <LoginPage />,
       errorElement: <ErrorPage />
     },
