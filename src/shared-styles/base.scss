@@ -1,15 +1,29 @@
 @use 'layouts';
+@use 'buttons';
+
+// super-basic reset
+html {
+  background-image: unset;
+}
 
 
 :root {
   --text-on-dark: white;
   --text-on-light: black;
 
+  --color-accent: #c2e4bd;
+
   --color-nav-back: teal;
   --color-nav-fore: var(--text-on-dark);
   --color-nav-back-alt: peachpuff;
   --color-nav-fore-alt: var(--text-on-light);
   --color-content-bg-light: rgb(231, 231, 231);
+
+  --card-radius: .5rem;
+
+
+  /* Typography */
+  --text-size-base: 1.5rem;
 
 }
 
@@ -23,7 +37,9 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: var(--text-on-light);
+  font-size: var(--text-size-base);
   background-color: var(--color-content-bg-light);
+
 
 }
 

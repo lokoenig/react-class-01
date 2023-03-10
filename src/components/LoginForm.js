@@ -103,7 +103,7 @@ export class LoginForm extends React.Component {
                     </div>
 
                 </form>
-                <button onClick={this.onPopLogin}>Popup Login</button>
+                <button onClick={this.onPopLogin}>Log in with Google</button>
             </>
         )
     }

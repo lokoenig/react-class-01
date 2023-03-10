@@ -1,0 +1,9 @@
+button, a.button {
+    background-color: var(--color-accent);
+    color: var(--text-on-light);
+    font-size: calc(var(--text-size-base) * .8 );
+    padding: .2em 1rem .2em 1rem;
+    text-transform: uppercase;
+    border-radius: .25em;
+    text-decoration: none;
+}

@@ -1,8 +1,32 @@
 
-html {
-    background-image: url('../../public/images/background-splash.jpg');
-    background-size: cover;
+div#root {
+ //   background-color: rgba(200,200,200,.3);
+
 }
+
 body {
+    --card-color: var(--color-content-bg-light);
+    --card-text: var(--text-on-light);
     background: transparent;
+
+}
+
+.focus-card {
+    background-color: var(--card-color);
+    color: var(--card-text);
+    max-width: min(30ch, 90vw);
+    padding: 1rem;
+    border-radius: var(--card-radius);
+    & > * {
+        margin: 1rem 0 0 0;
+        text-align: center;
+        &:first-child {
+            margin-top: 0;
+        }
+    }
+
+    .signup-link {
+        display: block;
+    }
+
 }

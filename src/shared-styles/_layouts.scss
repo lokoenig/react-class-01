@@ -1,5 +1,17 @@
-.box-layout {
+.focus-layout {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    min-height: 100svh;
+    &.with-background {
+        background-image: url('../../public/images/background-splash.jpg');
+        background-size: cover;
+        background-repeat: no-repeat;
 
+    }
 }
+
+
 
 
