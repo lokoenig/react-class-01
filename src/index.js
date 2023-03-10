@@ -8,7 +8,7 @@ import { RouterProvider } from 'react-router-dom';
 import reportWebVitals from './reportWebVitals';
 
 // import my stuff:
-import './index.css';
+import './shared-styles/base.scss';
 import "./components/ExpenseForm.scss";
 import LoginPage from "./components/LoginPage";
 import { firebase } from './firebase/firebase';

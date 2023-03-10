@@ -9,13 +9,14 @@ import HelpPage from "../components/HelpPage";
 import AddExpensePage from "../components/AddExpensePage";
 import EditExpensePage from "../components/EditExpensePage";
 import LoginPage from '../components/LoginPage';
+import SplashPage from '../components/SplashPage';
 
 
 const AppRouter = createBrowserRouter(
   [
     {
       path: "/",
-      element: <App />,
+      element: <SplashPage />,
       errorElement: <ErrorPage />
   },
     {

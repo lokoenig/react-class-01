@@ -1,8 +1,16 @@
+@use 'layouts';
+
+
 :root {
+  --text-on-dark: white;
+  --text-on-light: black;
+
   --color-nav-back: teal;
-  --color-nav-fore: white;
+  --color-nav-fore: var(--text-on-dark);
   --color-nav-back-alt: peachpuff;
-  --color-nav-fore-alt: black;
+  --color-nav-fore-alt: var(--text-on-light);
+  --color-content-bg-light: rgb(231, 231, 231);
+
 }
 
 
@@ -14,6 +22,9 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  color: var(--text-on-light);
+  background-color: var(--color-content-bg-light);
+
 }
 
 code {
@@ -62,4 +73,8 @@ code {
     border-radius: .4em;
     text-transform: uppercase;
     opacity: .5;
+}
+
+.on-dark {
+  color: var(--text-on-dark);
 }
