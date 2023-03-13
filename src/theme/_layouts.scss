@@ -1,3 +1,41 @@
+:root {
+    --grid-gap: 1rem;
+}
+
+
+
+.App {
+  display: grid;
+  grid-template-columns: 10ch 1fr;
+  column-gap: 0;
+  grid-template-areas:
+    "nav pagehead"
+    "nav  main"
+    "foot  foot";
+}
+
+.App>.sidebar {
+  grid-area: nav;
+}
+
+#page-main {
+position: relative;
+    &>header {
+        grid-area: pagehead;
+        padding-left: var(--grid-gap);
+    }
+& > div {
+  grid-area: main;
+  padding-right: var(--grid-gap);
+  padding-left: var(--grid-gap);
+   width:min(80ch, 100% );
+
+}
+}
+
+
+
+
 .focus-layout {
     display: flex;
     justify-content: center;

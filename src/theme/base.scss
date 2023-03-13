@@ -36,35 +36,6 @@ body {
 
 
 
-#root>.App {
-  display: grid;
-  grid-template-columns: 10ch 1fr;
-  column-gap: 1rem;
-  grid-template-areas:
-    "pagehead pagehead"
-    "nav  main"
-    "foot  foot";
-}
-
-#root>.App>header {
-  grid-area: pagehead;
-}
-
-#root>.App>.sidebar {
-  grid-area: nav;
-}
-
-#page-main {
-  grid-area: main;
-  padding-right: 1rem;
-}
-#page-main > div {
-  width:min(80ch, 100% );
-}
-
-#page-main {
-  position: relative;
-}
 
 .logged-in-status {
     position: fixed;
@@ -81,4 +52,8 @@ body {
 
 .on-dark {
   color: var(--text-on-dark);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+
 }
