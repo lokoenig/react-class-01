@@ -12,6 +12,12 @@
     }
 }
 
+#page-main {
+    &>header {
+        background-color: var(--color-content-bg-light);
+    }
+}
+
 
 
 

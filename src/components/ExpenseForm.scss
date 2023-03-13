@@ -1,22 +1,5 @@
 form {
-    --form-gap: 1rem;
-    .form-input-group{
-        display:flex;
-        gap: var(--form-gap);
-
-        .form-input{
-            &.field-wide{
-                flex-grow: 1;
-            }
-        }
-    }
-    label {
-        color: blue;
-        display: block
-    }
-
-    
-
+  
     input#expense-description, #expense-note {
         width: calc(100% - var(--form-gap));
     }

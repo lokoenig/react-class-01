@@ -2,7 +2,6 @@ import React, { useContext } from 'react';
 import './App.css';
 import { Outlet, Navigate, useLocation } from "react-router-dom";
 import NaviLinks  from "./components/navLinks";
-import PageHeader from "./components/Header";
 import { UserStatus, LoggedInContext } from './actions/firebase-auth';
 
 
@@ -18,15 +17,13 @@ function App() {
     } else {
       return (
     <div className="App">
-      <PageHeader />
       <div className='sidebar' >
         <NaviLinks />
       </div>
       <div id="page-main">
         <Outlet />
-        <UserStatus />
       </div>
-     
+          <UserStatus />
     </div>
   );
   }

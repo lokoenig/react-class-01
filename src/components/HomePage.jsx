@@ -1,11 +1,13 @@
 import React from "react";
-import ExpensesList from "./components/ExpensesList";
-import ExpensesListFilters from "./components/ExpensesListFilters";
+import ExpensesList from "./ExpensesList";
+import ExpensesListFilters from "./ExpensesListFilters";
+import ExpensesListHeader from "./ExpensesListHeader";
+
 
 function HomePage() {
   return (
     <>
-      <h2>If you dare</h2>
+      <ExpensesListHeader />
       <div>
         <ExpensesListFilters />
       </div>

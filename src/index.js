@@ -9,8 +9,6 @@ import reportWebVitals from './reportWebVitals';
 
 // import my stuff:
 import './theme/base.scss';
-import "./components/ExpenseForm.scss";
-import LoginPage from "./components/LoginPage";
 import { firebase } from './firebase/firebase';
 import AppRouter from './routers/AppRouter';
 import configureStore from "./store/configureStore";

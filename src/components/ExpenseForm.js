@@ -1,6 +1,8 @@
 import React from "react";
 import DatePicker from "react-datepicker";
 
+import "./ExpenseForm.scss";
+
 export default class ExpenseForm extends React.Component {
     constructor(props) {
         super(props);

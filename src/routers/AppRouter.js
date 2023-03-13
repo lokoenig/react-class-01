@@ -4,7 +4,7 @@ import {
 } from 'react-router-dom';
 import App from '../App';
 import ErrorPage from "../components/error";
-import HomePage from "../HomePage";
+import HomePage from "../components/HomePage";
 import HelpPage from "../components/HelpPage";
 import AddExpensePage from "../components/AddExpensePage";
 import EditExpensePage from "../components/EditExpensePage";
