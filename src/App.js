@@ -10,7 +10,7 @@ function App() {
   const loggedIn = useContext(LoggedInContext);
   const location = useLocation();
   if (!loggedIn){
-    return <Navigate replace to="/login" />
+    return <Navigate replace to="/" />
   } else {
     if ('/' === location.pathname) {
       return <Navigate replace to="/home" />

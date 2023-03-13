@@ -5,6 +5,10 @@
   background: var(--color-nav-back);
   color: var(--color-nav-fore);
 
+  .logo {
+    max-width: 98%;
+  }
+
   a {
     color: white;
     display: block;
