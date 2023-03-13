@@ -43,15 +43,19 @@ export class ExpensesListFilters extends React.Component {
     render() {
         return (
             <>
-                <form>
+                <form className="filters-form">
+                    <div>
                     <label htmlFor="search-text-input">Search Text</label>
                     <input
                         type="text"
                         id="search-text-input"
                         data-testid="sssss"
                         value={this.props.filters.text}
-                        onChange={this.onTextChange} />
+                        onChange={this.onTextChange} 
+                    />
+                    </div>
 
+                    <div>
                     <label htmlFor="sort-by-selector">Sort by</label>
                     <select
                         id="sort-by-selector"
@@ -61,8 +65,10 @@ export class ExpensesListFilters extends React.Component {
                         <option value="date" >Date</option>
                         <option value="amount" >Amount</option>
                     </select>
-                    <p>start: {format(this.props.filters.dateRange.start, 'MM/dd/yyyy')}</p>
-                    <p>end: {format(this.props.filters.dateRange.end, 'MM/dd/yyyy')}</p>
+                    </div>
+
+                    <div>
+                   
                     <label htmlFor="double-pick">Date Range</label>
                     <DatePicker
                         id="double-pick"
@@ -90,6 +96,7 @@ export class ExpensesListFilters extends React.Component {
                         isClearable
                         placeholderText="Select a display range"
                     />
+                    </div>
                 </form>
             </>
         )

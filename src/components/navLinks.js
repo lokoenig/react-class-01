@@ -11,7 +11,6 @@ const NaviLinks = ()=> (
         <div className='navlink'>
         <NavLink to={`home`}><img src={logo} alt="Logo" className="logo" /></NavLink>
         <NavLink to={`create`}>Create</NavLink>
-        <NavLink to={`edit`}>Edit</NavLink>
         <NavLink to={`help`}>Help</NavLink>
         {
         (!useContext(LoggedInContext)) ?

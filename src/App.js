@@ -3,6 +3,7 @@ import './App.css';
 import { Outlet, Navigate, useLocation } from "react-router-dom";
 import NaviLinks  from "./components/navLinks";
 import { UserStatus, LoggedInContext } from './actions/firebase-auth';
+import PageFooter from "./components/Footer";
 
 
 function App() {
@@ -23,7 +24,8 @@ function App() {
       <div id="page-main">
         <Outlet />
       </div>
-          <UserStatus />
+      <PageFooter />
+      <UserStatus />
     </div>
   );
   }

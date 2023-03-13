@@ -3,12 +3,18 @@
     --header-padding: 1.5rem var(--grid-gap) ;
 }
 
+html {
+    $breakpoint-desktop: 45rem;
+}
+
 
 
 .App {
   display: grid;
   grid-template-columns: 10ch 1fr;
+  grid-template-rows: 1fr fit-content(4rem);
   column-gap: 0;
+  min-height: 100svh;
   grid-template-areas:
     "nav pagehead"
     "nav  main"
@@ -19,22 +25,27 @@
   grid-area: nav;
 }
 
+.App>footer {
+    grid-area: foot;
+    padding: var(--grid-gap);
+}
+
 #page-main {
-position: relative;
+    position: relative;
+    overflow-x: hidden;
     &>header {
         grid-area: pagehead;
         display: flex;
         justify-content: space-between;
-        background-color: var(--color-content-bg-light);
+        background-color: var(--color-content-back-alt);
         padding: var(--header-padding);
+        box-shadow: var(--color-nav-back) 0px 3px 6px;
     }
     & > div {
         grid-area: main;
         margin-top: var(--grid-gap); /* since we don't use gap on grid */
         padding-right: var(--grid-gap);
         padding-left: var(--grid-gap);
-       // width:min(80ch, 100% );
-
     }
 
 }
@@ -54,6 +65,10 @@ position: relative;
         background-repeat: no-repeat;
 
     }
+}
+
+.App-footer {
+    background-color: red;
 }
 
 
