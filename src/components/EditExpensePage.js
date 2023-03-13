@@ -25,7 +25,7 @@ export class EditExpensePageContent extends React.Component {
         if (this.props.params.eid) {
             out = (
                 <>
-                    <div>Editing: {this.props.params.eid}</div>
+                    <header>Editing: {this.props.params.eid}</header>
                     <ExpenseForm
                         expense={this.props.expense}
                         buttonText="Update Expense"

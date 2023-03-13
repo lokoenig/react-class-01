@@ -9,7 +9,7 @@ import './navLinks.scss';
 console.log(logo);
 const NaviLinks = ()=> (
         <div className='navlink'>
-        <div><img src={logo} alt="Logo" className="logo" /></div>
+        <NavLink to={`home`}><img src={logo} alt="Logo" className="logo" /></NavLink>
         <NavLink to={`create`}>Create</NavLink>
         <NavLink to={`edit`}>Edit</NavLink>
         <NavLink to={`help`}>Help</NavLink>

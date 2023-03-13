@@ -1,5 +1,6 @@
 :root {
     --grid-gap: 1rem;
+    --header-padding: 1.5rem var(--grid-gap) ;
 }
 
 
@@ -22,15 +23,20 @@
 position: relative;
     &>header {
         grid-area: pagehead;
-        padding-left: var(--grid-gap);
+        display: flex;
+        justify-content: space-between;
+        background-color: var(--color-content-bg-light);
+        padding: var(--header-padding);
     }
-& > div {
-  grid-area: main;
-  padding-right: var(--grid-gap);
-  padding-left: var(--grid-gap);
-   width:min(80ch, 100% );
+    & > div {
+        grid-area: main;
+        margin-top: var(--grid-gap); /* since we don't use gap on grid */
+        padding-right: var(--grid-gap);
+        padding-left: var(--grid-gap);
+       // width:min(80ch, 100% );
 
-}
+    }
+
 }
 
 
@@ -50,11 +56,6 @@ position: relative;
     }
 }
 
-#page-main {
-    &>header {
-        background-color: var(--color-content-bg-light);
-    }
-}
 
 
 
