@@ -5,6 +5,7 @@ form.filters-form {
     flex-direction: column;
     gap:1rem;
     flex-wrap: wrap;
+    margin-bottom: 2rem;
 
     & label {
         font-size: smaller;
@@ -32,6 +33,7 @@ form.filters-form {
 @media (min-width:$breakpoint-desktop){
     form.filters-form {
         flex-direction: row;
+        margin-bottom: unset;
     }
 }
 

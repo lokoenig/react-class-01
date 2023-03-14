@@ -2,14 +2,13 @@ import React, { useContext } from "react";
 import {NavLink} from "react-router-dom";
 import LogOutLink from "./LogOutLink";
 import { LoggedInContext } from '../actions/firebase-auth';
-import logo from "../images/logo.svg";
+import { ReactComponent as ReactLogo } from "../images/logo.svg";
 
 import './navLinks.scss';
 
-console.log(logo);
 const NaviLinks = ()=> (
         <div className='navlink'>
-        <NavLink to={`home`}><img src={logo} alt="Logo" className="logo" /></NavLink>
+        <NavLink to={`home`}><ReactLogo className="logo" /></NavLink>
         <NavLink to={`create`}>Create</NavLink>
         <NavLink to={`help`}>Help</NavLink>
         {
