@@ -1,4 +1,4 @@
-@use "../theme/vars"  as *; // import without namespace
+@use "../theme/vars" as *; // import without namespace
 
 form {
     --form-gap: 1rem;
@@ -15,6 +15,12 @@ form {
         flex-direction: column;
         flex-wrap: wrap;
         gap: var(--form-gap);
+        margin-bottom: var(--form-gap);
+    }
+
+    .button-group {
+        display: flex;
+        justify-content: center;
     }
 
 
@@ -39,6 +45,10 @@ form {
                     flex: 3;
                 }
             }
+        }
+
+        .button-group {
+            justify-content: end;
         }
     }
 }

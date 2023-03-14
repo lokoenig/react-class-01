@@ -25,18 +25,19 @@ export class EditExpensePageContent extends React.Component {
         if (this.props.params.eid) {
             out = (
                 <>
-                    <header>Editing: {this.props.params.eid}</header>
+                    <header>Editing: {this.props.params.eid}<button
+                        onClick={this.onRemove}
+                    >
+                        Delete
+                    </button>
+                    </header>
                     <section>
                     <ExpenseForm
                         expense={this.props.expense}
                         buttonText="Update Expense"
                         onSubmit={this.onSubmit}
                     />
-                    <button
-                        onClick={this.onRemove}
-                    >
-                        Delete
-                    </button>
+                    
                     </section>
                 </>
             );
