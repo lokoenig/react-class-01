@@ -12,11 +12,14 @@ export class AddExpensePage extends React.Component {
 
   render() {
     return(
-    <div>
+    <>
+    <header>Huh</header>
+    <section>
       <ExpenseForm
         onSubmit={this.onSubmit}
       />
-    </div>
+      </section>
+    </>
   )}
 
 }

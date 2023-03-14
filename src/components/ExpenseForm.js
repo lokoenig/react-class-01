@@ -68,14 +68,14 @@ export default class ExpenseForm extends React.Component {
                 created: this.state.created,
                 note: this.state.note
             });
-           // console.log('onSubmit');
+            // console.log('onSubmit');
         }
     }
 
     render() {
         return (
             <>
-                <h1>I be a form!</h1>
+                <header>I be a form!</header>
                 {this.state.errorMsg &&
                     <div className="pre-form-error-banner" role="alert" title="Expense was not submitted" key="errMsg1">
                         {this.state.errorMsg}
@@ -120,22 +120,22 @@ export default class ExpenseForm extends React.Component {
                     </div>
 
                     <div className="form-input-group">
-                    <div className="form-input field-wide">
+                        <div className="form-input field-wide">
                             <label htmlFor="expense-note">Note</label>
-                        <textarea
-                            id="expense-note"
-                            placeholder="Note"
-                            value={this.state.note}
-                            onChange={this.onChangeNote}
-                            name="note"
-                        >
-                        </textarea>
-                    </div>
-                    <div className="form-submit">
-                        <button title="save">{this.state.buttonText}</button>
+                            <textarea
+                                id="expense-note"
+                                placeholder="Note"
+                                value={this.state.note}
+                                onChange={this.onChangeNote}
+                                name="note"
+                            >
+                            </textarea>
+                        </div>
+                        <div className="form-submit">
+                            <button title="save">{this.state.buttonText}</button>
                         </div>
                     </div>
-                   
+
                 </form>
             </>
         )

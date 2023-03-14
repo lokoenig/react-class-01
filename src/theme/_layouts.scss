@@ -39,11 +39,12 @@ html {
         justify-content: space-between;
         background-color: var(--color-content-back-alt);
         padding: var(--header-padding);
+        margin-bottom: calc(var(--grid-gap) * 2);
         box-shadow: var(--color-nav-back) 0px 3px 6px;
     }
-    & > div {
+    & > section {
         grid-area: main;
-        margin-top: var(--grid-gap); /* since we don't use gap on grid */
+       // margin-top: var(--grid-gap); /* since we don't use gap on grid */
         padding-right: var(--grid-gap);
         padding-left: var(--grid-gap);
     }

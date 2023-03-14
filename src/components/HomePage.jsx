@@ -8,10 +8,11 @@ function HomePage() {
   return (
     <>
       <ExpensesListHeader />
-      <div>
+      <section>
         <ExpensesListFilters />
-      </div>
+     
       <ExpensesList />
+      </section>
 
     </>
   );

@@ -1,6 +1,8 @@
-@use 'layouts';
+@use 'vars';
 @use 'typography';
+@use 'layouts';
 @use 'buttons';
+@use 'forms';
 
 // super-basic reset
 html {

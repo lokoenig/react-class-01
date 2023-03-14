@@ -1,5 +1,5 @@
-//@use "../theme/base.scss";
- $breakpoint-desktop: 50rem;
+@import "../theme/vars";
+
 form.filters-form {
     display: flex;
     flex-direction: column;
@@ -7,11 +7,7 @@ form.filters-form {
     flex-wrap: wrap;
     margin-bottom: 2rem;
 
-    & label {
-        font-size: smaller;
-        text-transform: uppercase;
-        color:var(--color-nav-back);
-    }
+
 
     & input, & select {
     font-size: 1.1rem;

@@ -26,6 +26,7 @@ export class EditExpensePageContent extends React.Component {
             out = (
                 <>
                     <header>Editing: {this.props.params.eid}</header>
+                    <section>
                     <ExpenseForm
                         expense={this.props.expense}
                         buttonText="Update Expense"
@@ -36,7 +37,7 @@ export class EditExpensePageContent extends React.Component {
                     >
                         Delete
                     </button>
-
+                    </section>
                 </>
             );
             /* had to remove the 
