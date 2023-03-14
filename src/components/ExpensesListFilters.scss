@@ -1,4 +1,4 @@
-@import "../theme/vars";
+@use "../theme/vars"  as *;
 
 form.filters-form {
     display: flex;

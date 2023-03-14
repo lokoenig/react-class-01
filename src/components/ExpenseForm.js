@@ -75,13 +75,12 @@ export default class ExpenseForm extends React.Component {
     render() {
         return (
             <>
-                <header>I be a form!</header>
-                {this.state.errorMsg &&
-                    <div className="pre-form-error-banner" role="alert" title="Expense was not submitted" key="errMsg1">
-                        {this.state.errorMsg}
-                    </div>
-                }
                 <form onSubmit={this.onSubmit} title="Edit An Expense Entry" >
+                    {this.state.errorMsg &&
+                        <div className="form__error-banner" role="alert" title="Expense was not submitted" key="errMsg1">
+                            {this.state.errorMsg}
+                        </div>
+                    }
                     <div className="form-input-group">
                         <div className="form-input field-wide">
                             <label htmlFor="expense-description">Description</label>

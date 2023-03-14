@@ -1,7 +1,14 @@
-@import "../theme/vars";
+@use "../theme/vars"  as *; // import without namespace
 
 form {
     --form-gap: 1rem;
+
+    .form__error-banner {
+        background-color: red;
+        color: white;
+        padding: var(--form-gap);
+        margin-bottom: var(--form-gap);
+    }
 
     .form-input-group {
         display: flex;
