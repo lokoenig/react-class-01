@@ -25,8 +25,10 @@ export class EditExpensePageContent extends React.Component {
         if (this.props.params.eid) {
             out = (
                 <>
-                    <header>Editing: {this.props.params.eid}<button
+                    <header>Editing: {this.props.params.eid}
+                    <button
                         onClick={this.onRemove}
+                        className="button-danger"
                     >
                         Delete
                     </button>

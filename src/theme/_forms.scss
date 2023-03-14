@@ -4,7 +4,7 @@ form {
     --form-gap: 1rem;
 
     .form__error-banner {
-        background-color: red;
+        background-color: var(--color-alert, red);
         color: white;
         padding: var(--form-gap);
         margin-bottom: var(--form-gap);

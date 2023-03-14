@@ -7,3 +7,8 @@ button, a.button {
     border-radius: .25em;
     text-decoration: none;
 }
+
+button.button-danger, a.button.button-danger {
+    background-color: var(--color-alert);
+    color: white;
+}
