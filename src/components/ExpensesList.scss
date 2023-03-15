@@ -1,3 +1,5 @@
+@use "../theme/vars" as *; // import without namespace
+
 .expense-list {
     --pad: 1rem;
     display: flex;
@@ -25,20 +27,30 @@
     &__list {
         
         .expense-single{
-            padding: .25rem var(--pad) .25rem var(--pad);
+            --border: 1px solid var(--color-content-bg-light);
+            padding: .5rem var(--pad) .5rem var(--pad);
             text-decoration: none;
             color:var(--text-on-light);
-            display: grid;
-            grid-template-columns: 4fr 1fr 1fr;
-            outline: 2px solid transparent;
+            display: flex;
+            flex-direction: column;
+            gap: .6rem;
+            border-top:none;
+            border-left: var(--border);
+            border-bottom: var(--border);
+            border-right: var(--border);
 
-            margin-bottom: .25rem;
+            outline: 2px solid transparent; // focus selector
 
             &:nth-child(even){
                 background-color: var(--color-content-back-alt);
             }
+
+            &__description {
+                word-break: break-all;
+            }
             &__amount {
-                text-align: right;
+                text-align: left;
+                font-weight: 700;
             }
 
             &:hover, &:focus-visible {
@@ -51,4 +63,22 @@
             }
         }
     }
+}
+
+@media (min-width: $breakpoint-desktop) {
+    .expense-list {
+        .expense-single{
+            display: grid;
+            grid-template-columns: 4fr 1fr 1fr;
+            align-items: center;
+
+             &__amount {
+                text-align: right;
+            }
+
+        }
+
+    }
+
+
 }
