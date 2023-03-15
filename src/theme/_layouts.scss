@@ -47,6 +47,10 @@ html {
        // margin-top: var(--grid-gap); /* since we don't use gap on grid */
         padding-right: var(--grid-gap);
         padding-left: var(--grid-gap);
+
+        &>* {
+            margin-bottom: var(--grid-gap);
+        }
     }
 
 }

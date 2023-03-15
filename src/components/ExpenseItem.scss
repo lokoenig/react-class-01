@@ -1,9 +1,0 @@
-.expense-single {
-    display: grid;
-    width: 30rem;
-    grid-template-columns: 10rem 1fr 1fr max-content max-content;
-    gap: 1rem;
-    &>span {
-        outline: 1px solid plum;
-    }
-}

@@ -1,0 +1,19 @@
+@use "../theme/vars" as *; // import without namespace
+
+
+.mobile-only {
+}
+
+.desktop-only {
+    display: none;
+}
+
+@media (min-width: $breakpoint-desktop) {
+    .mobile-only {
+        display: none;
+    }
+
+    .desktop-only {
+        display: inherit;
+    }   
+}

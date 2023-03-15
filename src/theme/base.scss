@@ -1,4 +1,5 @@
 @use 'vars';
+@use 'utility';
 @use 'typography';
 @use 'layouts';
 @use 'buttons';
@@ -12,7 +13,7 @@ html {
 
 :root {
   --text-on-dark: white;
-  --text-on-light: black;
+  --text-on-light: rgb(2, 39, 63);
   --color-content-back-alt: #f4f4f4;
 
   --color-accent: #c2e4bd;

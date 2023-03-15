@@ -1,0 +1,49 @@
+.expense-list {
+    --pad: 1rem;
+    display: flex;
+    flex-direction: column;
+    --grid-cols: ;
+
+
+
+    &__column-header {
+        display: grid;
+        grid-template-columns: 5fr 1fr;
+
+        background-color: var(--color-content-back-alt);
+        padding: var(--pad);
+
+
+        &--name {
+        }
+
+        &--amount {
+            text-align: right;
+        }
+    }
+
+    &__list {
+        
+        .expense-single{
+            padding: .25rem var(--pad) .25rem var(--pad);
+            text-decoration: none;
+            color:var(--text-on-light);
+            display: grid;
+            grid-template-columns: 4fr 1fr 1fr;
+            margin-bottom: .25rem;
+
+            &:nth-child(even){
+                background-color: var(--color-content-back-alt);
+            }
+            &__amount {
+                text-align: right;
+            }
+
+            &:hover, &:focus-visible {
+                outline: 2px solid var(--color-nav-back);
+                background-color: var(--color-nav-back-alt);
+
+            }
+        }
+    }
+}
