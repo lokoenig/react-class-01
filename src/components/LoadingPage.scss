@@ -1,0 +1,19 @@
+div.loading-message {
+    position: fixed;
+    min-height: 100vh;
+    min-height: 100svh;
+    min-width: 100vw;
+    min-width: 100svw;
+    display: grid;
+    align-items: center;
+    justify-content: center;
+    div {
+        border:3px solid red;
+        border-radius: .5rem;
+        overflow: hidden;
+    p {
+        text-align: center;
+        text-transform: uppercase;
+    }
+}
+}

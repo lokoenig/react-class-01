@@ -50,7 +50,7 @@ root.render(
 
 
 // test some auth stuff:
-/*
+
   const firebaseAuth = getAuth(firebase);
   firebaseAuth.onAuthStateChanged( (user) => {
     if (user) {
@@ -79,7 +79,7 @@ root.render(
         </>);
      }
   });
-*/
+
 
 
 
