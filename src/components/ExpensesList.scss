@@ -30,6 +30,8 @@
             color:var(--text-on-light);
             display: grid;
             grid-template-columns: 4fr 1fr 1fr;
+            outline: 2px solid transparent;
+
             margin-bottom: .25rem;
 
             &:nth-child(even){
@@ -42,6 +44,9 @@
             &:hover, &:focus-visible {
                 outline: 2px solid var(--color-nav-back);
                 background-color: var(--color-nav-back-alt);
+                transition: 
+                background-color .3s ease-in,
+                outline-color .3s ease-in; 
 
             }
         }
