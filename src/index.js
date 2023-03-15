@@ -19,6 +19,7 @@ import {login, logout} from "./actions/firebase-auth";
 import {startSetExpenses} from "./actions/expenses";
 
 import { LoggedInContext } from './actions/firebase-auth';
+import { LoadingPage } from './components/LoadingPage';
 
 
 const store = configureStore();
@@ -42,14 +43,14 @@ const RenderRoot = ({userState}) => {
 }
 root.render(
   <>
-    <p>Checking User status</p>
+<LoadingPage />
   </>
 );
 
 
 
 // test some auth stuff:
-
+/*
   const firebaseAuth = getAuth(firebase);
   firebaseAuth.onAuthStateChanged( (user) => {
     if (user) {
@@ -77,8 +78,8 @@ root.render(
           />
         </>);
      }
-  })
-
+  });
+*/
 
 
 
