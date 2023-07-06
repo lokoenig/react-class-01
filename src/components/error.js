@@ -7,7 +7,6 @@ export default function ErrorPage() {
   const error = useRouteError();
  console.error('error', error);
  // eventually figure out how to get to operate in the test mode
- // {error.statusText || error.message}
 
   return (
     <div id="error-page">

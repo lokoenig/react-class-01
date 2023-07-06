@@ -2,9 +2,6 @@
 
 exports[`ExpenseForm checks if empty ExpenseForm changed 1`] = `
 <DocumentFragment>
-  <h1>
-    I be a form!
-  </h1>
   <form
     title="Edit An Expense Entry"
   >
@@ -66,7 +63,7 @@ exports[`ExpenseForm checks if empty ExpenseForm changed 1`] = `
               class=""
               id="form-datepicker"
               type="text"
-              value="03/09/2023"
+              value="03/15/2023"
             />
           </div>
         </div>
@@ -89,15 +86,15 @@ exports[`ExpenseForm checks if empty ExpenseForm changed 1`] = `
           placeholder="Note"
         />
       </div>
-      <div
-        class="form-submit"
+    </div>
+    <div
+      class="form-submit button-group"
+    >
+      <button
+        title="save"
       >
-        <button
-          title="save"
-        >
-          Add Expense
-        </button>
-      </div>
+        Add Expense
+      </button>
     </div>
   </form>
 </DocumentFragment>

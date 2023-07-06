@@ -2,10 +2,10 @@
 
 exports[`renders full Edit Expense page 1`] = `
 <DocumentFragment>
-  <div>
-    <h1>
-      I be a form!
-    </h1>
+  <header>
+    Huh
+  </header>
+  <section>
     <form
       title="Edit An Expense Entry"
     >
@@ -67,7 +67,7 @@ exports[`renders full Edit Expense page 1`] = `
                 class=""
                 id="form-datepicker"
                 type="text"
-                value="03/09/2023"
+                value="03/15/2023"
               />
             </div>
           </div>
@@ -90,17 +90,17 @@ exports[`renders full Edit Expense page 1`] = `
             placeholder="Note"
           />
         </div>
-        <div
-          class="form-submit"
+      </div>
+      <div
+        class="form-submit button-group"
+      >
+        <button
+          title="save"
         >
-          <button
-            title="save"
-          >
-            Add Expense
-          </button>
-        </div>
+          Add Expense
+        </button>
       </div>
     </form>
-  </div>
+  </section>
 </DocumentFragment>
 `;

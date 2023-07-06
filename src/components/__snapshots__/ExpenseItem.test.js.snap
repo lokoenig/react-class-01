@@ -2,8 +2,9 @@
 
 exports[`ExpenseItem - render single item 1`] = `
 <DocumentFragment>
-  <div
+  <a
     class="expense-single"
+    href="/edit/undefined"
   >
     <span
       class="expense-single__description"
@@ -11,18 +12,15 @@ exports[`ExpenseItem - render single item 1`] = `
       A very special expense
     </span>
     <span
+      class="expense-singe__created"
+    >
+      3/15/2023
+    </span>
+    <span
       class="expense-single__amount"
     >
       $666.66
     </span>
-    <span
-      class="expense-singe__created"
-    >
-      3/9/2023
-    </span>
-    <button>
-      Edit
-    </button>
-  </div>
+  </a>
 </DocumentFragment>
 `;

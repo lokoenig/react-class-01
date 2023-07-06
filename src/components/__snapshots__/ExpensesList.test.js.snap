@@ -2,124 +2,119 @@
 
 exports[`renders ExpensesList component - no expenses 1`] = `
 <DocumentFragment>
-  <p>
+  <div>
     No expenses in meet the search criteria.
-  </p>
+  </div>
 </DocumentFragment>
 `;
 
 exports[`renders ExpensesList component - with expenses 1`] = `
 <DocumentFragment>
-  <div>
-    <h2>
-      List of Expenses
-    </h2>
+  <div
+    class="expense-list"
+  >
     <div
-      class="expense-list-header"
+      class="expense-list__column-header"
     >
-      <div>
-        Description
-      </div>
-      <div>
-        4 Expenses for  
+      <span
+        class="mobile-only expense-list__column-header--name"
+      >
+        Expenses
+      </span>
+      <span
+        class="desktop-only expense-list__column-header--name"
+      >
+        Expense
+      </span>
+      <span
+        class="desktop-only expense-list__column-header--amount"
+      >
+        Amount
+      </span>
+    </div>
+    <div
+      class="expense-list__list"
+    >
+      <a
+        class="expense-single"
+        href="/edit/737d0f8d-aab7-1508-25aa-8f0ea76e53fb"
+      >
         <span
-          class="total-amount"
-          title="Total Expenses Amount"
+          class="expense-single__description"
         >
-          $18,036.32
+          booze
         </span>
-      </div>
-      <div>
-        Date Posted
-      </div>
-    </div>
-    <div
-      class="expense-single"
-    >
-      <span
-        class="expense-single__description"
+        <span
+          class="expense-singe__created"
+        >
+          5/1/1995
+        </span>
+        <span
+          class="expense-single__amount"
+        >
+          $140.00
+        </span>
+      </a>
+      <a
+        class="expense-single"
+        href="/edit/ce66195c-6180-76e3-0797-9382b5b7a989"
       >
-        booze
-      </span>
-      <span
-        class="expense-single__amount"
+        <span
+          class="expense-single__description"
+        >
+          rent
+        </span>
+        <span
+          class="expense-singe__created"
+        >
+          3/27/1999
+        </span>
+        <span
+          class="expense-single__amount"
+        >
+          $1,200.00
+        </span>
+      </a>
+      <a
+        class="expense-single"
+        href="/edit/17db2be4-02ff-9264-4f5d-c10f1cd80371"
       >
-        $140.00
-      </span>
-      <span
-        class="expense-singe__created"
+        <span
+          class="expense-single__description"
+        >
+          Cat Supplies
+        </span>
+        <span
+          class="expense-singe__created"
+        >
+          3/27/2002
+        </span>
+        <span
+          class="expense-single__amount"
+        >
+          $33.33
+        </span>
+      </a>
+      <a
+        class="expense-single"
+        href="/edit/5e5ca05d-9ccb-5476-d5f1-3bc7a4cb929a"
       >
-        5/1/1995
-      </span>
-      <button>
-        Edit
-      </button>
-    </div>
-    <div
-      class="expense-single"
-    >
-      <span
-        class="expense-single__description"
-      >
-        rent
-      </span>
-      <span
-        class="expense-single__amount"
-      >
-        $1,200.00
-      </span>
-      <span
-        class="expense-singe__created"
-      >
-        3/27/1999
-      </span>
-      <button>
-        Edit
-      </button>
-    </div>
-    <div
-      class="expense-single"
-    >
-      <span
-        class="expense-single__description"
-      >
-        Cat Supplies
-      </span>
-      <span
-        class="expense-single__amount"
-      >
-        $33.33
-      </span>
-      <span
-        class="expense-singe__created"
-      >
-        3/27/2002
-      </span>
-      <button>
-        Edit
-      </button>
-    </div>
-    <div
-      class="expense-single"
-    >
-      <span
-        class="expense-single__description"
-      >
-        combs
-      </span>
-      <span
-        class="expense-single__amount"
-      >
-        $16,662.99
-      </span>
-      <span
-        class="expense-singe__created"
-      >
-        1/20/2019
-      </span>
-      <button>
-        Edit
-      </button>
+        <span
+          class="expense-single__description"
+        >
+          combs
+        </span>
+        <span
+          class="expense-singe__created"
+        >
+          1/20/2019
+        </span>
+        <span
+          class="expense-single__amount"
+        >
+          $16,662.99
+        </span>
+      </a>
     </div>
   </div>
 </DocumentFragment>

@@ -2,98 +2,102 @@
 
 exports[`renders full Add Expense page 1`] = `
 <DocumentFragment>
-  <div>
+  <header>
     Editing: ce66195c-6180-76e3-0797-9382b5b7a989
-  </div>
-  <h1>
-    I be a form!
-  </h1>
-  <form
-    title="Edit An Expense Entry"
-  >
-    <div
-      class="form-input-group"
+    <button
+      class="button-danger"
+    >
+      Delete
+    </button>
+  </header>
+  <section>
+    <form
+      title="Edit An Expense Entry"
     >
       <div
-        class="form-input field-wide"
+        class="form-input-group"
       >
-        <label
-          for="expense-description"
-        >
-          Description
-        </label>
-        <input
-          id="expense-description"
-          name="description"
-          placeholder="Description"
-          type="text"
-          value=""
-        />
-      </div>
-      <div
-        class="form-input"
-      >
-        <label
-          for="expense-amount"
-        >
-          Expense Amount
-        </label>
-        <input
-          id="expense-amount"
-          name="amount"
-          placeholder="Amount"
-          type="text"
-          value="0"
-        />
-      </div>
-      <div
-        class="form-input"
-      >
-        <label
-          for="form-datepicker"
-        >
-          Date
-        </label>
         <div
-          class="react-datepicker-wrapper"
+          class="form-input field-wide"
         >
-          <div
-            class="react-datepicker__input-container"
+          <label
+            for="expense-description"
           >
-            <span
-              aria-live="polite"
-              class="react-datepicker__aria-live"
-              role="alert"
-            />
-            <input
-              class=""
-              id="form-datepicker"
-              type="text"
-              value="03/09/2023"
-            />
+            Description
+          </label>
+          <input
+            id="expense-description"
+            name="description"
+            placeholder="Description"
+            type="text"
+            value=""
+          />
+        </div>
+        <div
+          class="form-input"
+        >
+          <label
+            for="expense-amount"
+          >
+            Expense Amount
+          </label>
+          <input
+            id="expense-amount"
+            name="amount"
+            placeholder="Amount"
+            type="text"
+            value="0"
+          />
+        </div>
+        <div
+          class="form-input"
+        >
+          <label
+            for="form-datepicker"
+          >
+            Date
+          </label>
+          <div
+            class="react-datepicker-wrapper"
+          >
+            <div
+              class="react-datepicker__input-container"
+            >
+              <span
+                aria-live="polite"
+                class="react-datepicker__aria-live"
+                role="alert"
+              />
+              <input
+                class=""
+                id="form-datepicker"
+                type="text"
+                value="03/15/2023"
+              />
+            </div>
           </div>
         </div>
       </div>
-    </div>
-    <div
-      class="form-input-group"
-    >
       <div
-        class="form-input field-wide"
+        class="form-input-group"
       >
-        <label
-          for="expense-note"
+        <div
+          class="form-input field-wide"
         >
-          Note
-        </label>
-        <textarea
-          id="expense-note"
-          name="note"
-          placeholder="Note"
-        />
+          <label
+            for="expense-note"
+          >
+            Note
+          </label>
+          <textarea
+            id="expense-note"
+            name="note"
+            placeholder="Note"
+          />
+        </div>
       </div>
       <div
-        class="form-submit"
+        class="form-submit button-group"
       >
         <button
           title="save"
@@ -101,10 +105,7 @@ exports[`renders full Add Expense page 1`] = `
           Update Expense
         </button>
       </div>
-    </div>
-  </form>
-  <button>
-    Delete
-  </button>
+    </form>
+  </section>
 </DocumentFragment>
 `;

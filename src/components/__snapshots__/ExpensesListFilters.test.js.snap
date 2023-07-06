@@ -2,72 +2,74 @@
 
 exports[`renders ExpensesList Filters component with normal data 1`] = `
 <DocumentFragment>
-  <form>
-    <label
-      for="search-text-input"
-    >
-      Search Text
-    </label>
-    <input
-      data-testid="sssss"
-      id="search-text-input"
-      type="text"
-      value=""
-    />
-    <label
-      for="sort-by-selector"
-    >
-      Sort by
-    </label>
-    <select
-      id="sort-by-selector"
-    >
-      <option
-        value="date"
+  <form
+    class="filters-form"
+  >
+    <div>
+      <label
+        for="search-text-input"
       >
-        Date
-      </option>
-      <option
-        value="amount"
+        Search Text
+      </label>
+      <input
+        data-testid="sssss"
+        id="search-text-input"
+        type="text"
+        value=""
+      />
+    </div>
+    <div>
+      <label
+        for="sort-by-selector"
       >
-        Amount
-      </option>
-    </select>
-    <p>
-      start: 12/31/1979
-    </p>
-    <p>
-      end: 12/31/2028
-    </p>
-    <label
-      for="double-pick"
-    >
-      Date Range
-    </label>
-    <div
-      class="react-datepicker-wrapper"
-    >
+        Sort by
+      </label>
+      <select
+        id="sort-by-selector"
+      >
+        <option
+          value="date"
+        >
+          Date
+        </option>
+        <option
+          value="amount"
+        >
+          Amount
+        </option>
+      </select>
+    </div>
+    <div>
+      <label
+        for="double-pick"
+      >
+        Date Range
+      </label>
       <div
-        class="react-datepicker__input-container"
+        class="react-datepicker-wrapper"
       >
-        <span
-          aria-live="polite"
-          class="react-datepicker__aria-live"
-          role="alert"
-        />
-        <input
-          class=""
-          id="double-pick"
-          placeholder="Select a display range"
-          type="text"
-          value="12/31/1979 - 12/31/2028"
-        />
-        <button
-          aria-label="Close"
-          class="react-datepicker__close-icon"
-          tabindex="-1"
-          type="button"
-        />
+        <div
+          class="react-datepicker__input-container"
+        >
+          <span
+            aria-live="polite"
+            class="react-datepicker__aria-live"
+            role="alert"
+          />
+          <input
+            class=""
+            id="double-pick"
+            placeholder="Select a display range"
+            type="text"
+            value="12/31/1979 - 12/31/2028"
+          />
+          <button
+            aria-label="Close"
+            class="react-datepicker__close-icon"
+            tabindex="-1"
+            type="button"
+          />
+        </div>
       </div>
     </div>
   </form>
@@ -76,72 +78,74 @@ exports[`renders ExpensesList Filters component with normal data 1`] = `
 
 exports[`renders ExpensesList Filters component with null data 1`] = `
 <DocumentFragment>
-  <form>
-    <label
-      for="search-text-input"
-    >
-      Search Text
-    </label>
-    <input
-      data-testid="sssss"
-      id="search-text-input"
-      type="text"
-      value=""
-    />
-    <label
-      for="sort-by-selector"
-    >
-      Sort by
-    </label>
-    <select
-      id="sort-by-selector"
-    >
-      <option
-        value="date"
+  <form
+    class="filters-form"
+  >
+    <div>
+      <label
+        for="search-text-input"
       >
-        Date
-      </option>
-      <option
-        value="amount"
+        Search Text
+      </label>
+      <input
+        data-testid="sssss"
+        id="search-text-input"
+        type="text"
+        value=""
+      />
+    </div>
+    <div>
+      <label
+        for="sort-by-selector"
       >
-        Amount
-      </option>
-    </select>
-    <p>
-      start: 12/17/2019
-    </p>
-    <p>
-      end: 02/28/2023
-    </p>
-    <label
-      for="double-pick"
-    >
-      Date Range
-    </label>
-    <div
-      class="react-datepicker-wrapper"
-    >
+        Sort by
+      </label>
+      <select
+        id="sort-by-selector"
+      >
+        <option
+          value="date"
+        >
+          Date
+        </option>
+        <option
+          value="amount"
+        >
+          Amount
+        </option>
+      </select>
+    </div>
+    <div>
+      <label
+        for="double-pick"
+      >
+        Date Range
+      </label>
       <div
-        class="react-datepicker__input-container"
+        class="react-datepicker-wrapper"
       >
-        <span
-          aria-live="polite"
-          class="react-datepicker__aria-live"
-          role="alert"
-        />
-        <input
-          class=""
-          id="double-pick"
-          placeholder="Select a display range"
-          type="text"
-          value="12/17/2019 - 02/28/2023"
-        />
-        <button
-          aria-label="Close"
-          class="react-datepicker__close-icon"
-          tabindex="-1"
-          type="button"
-        />
+        <div
+          class="react-datepicker__input-container"
+        >
+          <span
+            aria-live="polite"
+            class="react-datepicker__aria-live"
+            role="alert"
+          />
+          <input
+            class=""
+            id="double-pick"
+            placeholder="Select a display range"
+            type="text"
+            value="12/17/2019 - 03/31/2023"
+          />
+          <button
+            aria-label="Close"
+            class="react-datepicker__close-icon"
+            tabindex="-1"
+            type="button"
+          />
+        </div>
       </div>
     </div>
   </form>
